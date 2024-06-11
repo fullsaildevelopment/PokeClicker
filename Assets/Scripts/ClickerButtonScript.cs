@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ClickerButtonScript : MonoBehaviour
 {
+    [Header("----- Stats -----")]
+    public int maxHP;
+    public int currHP;
+    public int level;
     // Start is called before the first frame update
     void Start()
     {
-        
+        newPokemon();
     }
 
     // Update is called once per frame
@@ -18,21 +23,30 @@ public class ClickerButtonScript : MonoBehaviour
 
     public void click()
     {
-        float hp = GameManager.Instance.EnemyHP.fillAmount;
         if (crit())
-            hp -= 0.6f;
+            currHP -= 20;
         else
-            hp -= 0.3f;
+            currHP -= 5;
 
-        if (hp <= 0)
-            hp = 1;
-        GameManager.Instance.EnemyHP.fillAmount = hp;
+        if (currHP <= 0)
+            newPokemon();
+        GameManager.Instance.EnemyHP.fillAmount = (float)currHP/maxHP;
     }
     private bool crit()
     {
-        float rng = Random.value;
-        if (rng >= 0.9f)
+        float rng = Random.Range(0.0f, 1.0f);
+        if (rng >= 0.99f)
+        {
+            Instantiate(GameManager.Instance.EnemyCritBox, GameManager.Instance.Canvas.transform);
             return true;
+        }
         return false;
+    }
+    private void newPokemon()
+    {
+        level = Random.Range(5, 100);
+        maxHP = (int)(level * Random.Range(1.5f, 2.5f));
+        currHP = maxHP;
+        GameManager.Instance.EnemyLevel.text = "lv." + level.ToString();
     }
 }

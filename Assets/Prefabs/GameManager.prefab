@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Canvas: {fileID: 0}
+  EnemySprite: {fileID: 0}
   EnemyHP: {fileID: 0}
   EnemyCritBox: {fileID: 4643560006246936373, guid: 53cd5d407b1f8c5439e9e03f40680bf3, type: 3}
   EnemyLevel: {fileID: 0}
+  EnemyName: {fileID: 0}

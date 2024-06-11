@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     [Header("----- UI -----")]
     public GameObject Canvas;
     [Header("----- Enemy -----")]
+    public Image EnemySprite;
     public Image EnemyHP;
     public GameObject EnemyCritBox;
     public TextMeshProUGUI EnemyLevel;
+    public TextMeshProUGUI EnemyName;
     // Start is called before the first frame update
     void Awake()
     {

@@ -23,7 +23,60 @@ public enum TerraType
     Dragon,
     Dark,
     Steel,
+    Fairy,
+    Stellar
+}
+public enum PokemonType
+{
+    None,
+    Normal,
+    Fire,
+    Water,
+    Electric,
+    Grass,
+    Ice,
+    Fighting,
+    Poison,
+    Ground,
+    Flying,
+    Psychic,
+    Bug,
+    Rock,
+    Ghost,
+    Dragon,
+    Dark,
+    Steel,
     Fairy
+}
+public enum HeldItem
+{
+    None
+}
+public enum Weather
+{
+    None, Sun, Rain, Sand, Snow, Fog
+}
+public enum TimeOfDay
+{
+    Night, Day, Dusk
+}
+public enum UnownLetters
+{
+    None, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, exclemation, question
+}
+
+public enum DeoxysForms
+{
+    None, Normal, Attack, Defense, Speed
+}
+
+public enum KyuremForms
+{
+    None, Black, White
+}
+public enum ZygardeForms
+{
+    None, Ten, Fifty, Complete
 }
 
 public class GameManager : MonoBehaviour
@@ -65,12 +118,58 @@ public class Pokemon
     public int level = 1;
     public int exp = 0;
 
-    public bool Mega = false;
-    public bool GMax = false;
+    //pokemon in this game can have multiple held items
+    public List<HeldItem> items = new List<HeldItem>();
 
+    public PokemonType type1 = PokemonType.None;
+    public PokemonType type2 = PokemonType.None; //not all pokemon have a second type
+
+    //Generational Gimmicks / Forms
+    //(any pre-evolutions may have this set for when it evolves)
+    public bool Mega = false, currMega = false; //is active until the pokemon faints or is stored away
+    public bool GMax = false; //is active for 30 seconds
+    public TerraType terraType = TerraType.Normal; //is active until the pokemon faints or switches out
+
+
+    //Reginal Forms
+    //(any pre-evolutions may have this set for when it evolves)
     public bool Alolan = false;
     public bool Galarian = false;
     public bool Hisuian = false;
     public bool Paldean = false;
-    public TerraType terraType = TerraType.Normal;
+
+    //Specific Pokemon Forms / Gimmicks
+    //(any pre-evolutions may have this set for when it evolves)
+    public bool isShedinja = false; //Shedinja 1 hp gimmick
+
+    public bool Origin = false; //Origin form Dialga, Palkia, Giratina
+    public bool GenieAlt = false; //Therian form Tornadus, Thundarus, Landarus, Enamorus
+    public bool Primal = false; //Primal Groudon, Kyogre
+
+    public bool Amped = false; //Toxtricity LowKey (false) or Amped (true)
+    public bool Bloodmoon = false; //Ursaluna Normal (false) or Bloodmoon (true)
+    public bool Hero = false; //Palafin Zero (false) or Hero (true)
+
+    //Forms for:
+    //Paldean Tauros, (None(Combat), Fire(Blaze), Water(Aqua))
+    //Burmy/Wormadam, (Grass(Plant), Ground(Sandy), Steel(Trash))
+    //Rotom, (Ghost(Normal), Fire(Heat), Water(Wash), Ice(Frost), Flying(Fan), Grass(Mow)) 
+    //Oricorio, (Fire(Baile), Electric(Pom-Pom), Psychic(Pa'u), Ghost(Sensu))
+    //Calyrex, (Grass(Unmounted), Ice(Ice Rider), Ghost(Shadow Rider))
+    //Ogerpon, (None(Teal), Water(Wellspring), Fire(Hearthflame), Rock(Cornerstone))
+    //Urshifu, (Dark(Single), Water(Rapid))
+    //Necrozma, (None, Steel(Dusk Mane), Ghost(Dawn Wings), Dragon(Ultra))
+    //Shaymin, (None(Land), Flying(Sky))
+    //Hoopa, (Ghost(Confined), Dark(Unbound))
+    //Meloetta (Psychic(Aria), Fighting(Pirouette))
+    public PokemonType TypeForms = PokemonType.None;
+
+    public TimeOfDay Lycanroc = TimeOfDay.Day; //Lycanroc forms, Day, Night, Dusk
+    public UnownLetters Unown = UnownLetters.None; //Unown Letter Forms
+    public DeoxysForms Deoxys = DeoxysForms.None; //Deoxys forms, Normal, Attack, Speed, Defense
+    public KyuremForms Kyurem = KyuremForms.None; //Kyurem fusion forms, Reshiram, Zekrom
+    public ZygardeForms Zygarde = ZygardeForms.None; //Zygarde 10%, 50%, Complete
+
+
+
 }

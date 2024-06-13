@@ -6,21 +6,28 @@ using UnityEngine.UIElements;
 
 public class ClickerButtonScript : MonoBehaviour
 {
+    public static ClickerButtonScript Instance;
     [Header("----- Stats -----")]
     public int maxHP;
     public int currHP;
     public int level;
+    public Pokemon enemy;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
+        enemy = new Pokemon();
         newPokemon();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void click()
@@ -31,7 +38,11 @@ public class ClickerButtonScript : MonoBehaviour
             currHP -= 5;
 
         if (currHP <= 0)
+        {
+            Player.Instance.AddEXP(level * 2, Player.Instance.currSlot);
             newPokemon();
+        }
+            
         GameManager.Instance.EnemyHP.fillAmount = (float)currHP/maxHP;
     }
     private bool crit()
@@ -47,12 +58,15 @@ public class ClickerButtonScript : MonoBehaviour
     private void newPokemon()
     {
         level = Random.Range(5, 60);
-        maxHP = (int)(level * Random.Range(1.5f, 2.5f));
+        maxHP = (int)(level * Random.Range(2, 3));
         currHP = maxHP;
         GameManager.Instance.EnemyLevel.text = "lv." + level.ToString();
         int DexID = Random.Range(1, 1025);
         GameManager.Instance.EnemySprite.sprite = Resources.Load<Sprite>("Pokemon/Normal/" + PokemonList.pokemonIDs[DexID].ToLower());
         GameManager.Instance.EnemyName.text = PokemonList.pokemonNames[DexID];
-
+        enemy.level = level;
+        enemy.maxHP = maxHP;
+        enemy.currHP = currHP;
+        enemy.DexID = DexID;
     }
 }

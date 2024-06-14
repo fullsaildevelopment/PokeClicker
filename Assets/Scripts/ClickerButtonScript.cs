@@ -32,10 +32,11 @@ public class ClickerButtonScript : MonoBehaviour
 
     public void click()
     {
+        int damage = (int)(Player.Instance.party[Player.Instance.currSlot].level * 1.5f);
+        damage = (int)(damage * GameManager.Instance.TypeMatchup(Player.Instance.party[Player.Instance.currSlot], enemy));
         if (crit())
-            currHP -= 20;
-        else
-            currHP -= 5;
+            damage *= 2;
+        currHP -= damage;
 
         if (currHP <= 0)
         {

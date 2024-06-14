@@ -52,6 +52,10 @@ public enum HeldItem
 {
     None
 }
+public enum EvolveMethod
+{
+    None, LevelUp, UseItem, HeldItemAndLevel
+}
 public enum Weather
 {
     None, Sun, Rain, Sand, Snow, Fog
@@ -62,7 +66,7 @@ public enum TimeOfDay
 }
 public enum UnownLetters
 {
-    None, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, exclemation, question
+    None, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, exclamation, question
 }
 
 public enum DeoxysForms
@@ -108,6 +112,81 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+    public float TypeMatchup(Pokemon AttackingPokemon, Pokemon DefendingPokemon)
+    {
+        PokemonType aType1 = AttackingPokemon.type1;
+        PokemonType aType2 = AttackingPokemon.type2;
+        PokemonType dType1 = DefendingPokemon.type1;
+        PokemonType dType2 = DefendingPokemon.type2;
+        float multiplier = 1;
+        foreach (PokemonType type in PokemonList.SuperEffectiveTypes[(int)aType1])
+        {
+            if (type == dType1)
+            {
+                multiplier *= 2;
+            }
+            if (type == dType2)
+            {
+                multiplier *= 2;
+            }
+        }
+        foreach (PokemonType type in PokemonList.SuperEffectiveTypes[(int)aType2])
+        {
+            if (type == dType1)
+            {
+                multiplier *= 2;
+            }
+            if (type == dType2)
+            {
+                multiplier *= 2;
+            }
+        }
+        foreach (PokemonType type in PokemonList.NotVeryEffectiveTypes[(int)aType1])
+        {
+            if (type == dType1)
+            {
+                multiplier /= 2;
+            }
+            if (type == dType2)
+            {
+                multiplier /= 2;
+            }
+        }
+        foreach (PokemonType type in PokemonList.NotVeryEffectiveTypes[(int)aType2])
+        {
+            if (type == dType1)
+            {
+                multiplier /= 2;
+            }
+            if (type == dType2)
+            {
+                multiplier /= 2;
+            }
+        }
+        foreach (PokemonType type in PokemonList.ImmuneTypes[(int)aType1])
+        {
+            if (type == dType1)
+            {
+                multiplier = 0.1f;
+            }
+            if (type == dType2)
+            {
+                multiplier = 0.1f;
+            }
+        }
+        foreach (PokemonType type in PokemonList.ImmuneTypes[(int)aType2])
+        {
+            if (type == dType1)
+            {
+                multiplier = 0.1f;
+            }
+            if (type == dType2)
+            {
+                multiplier = 0.1f;
+            }
+        }
+        return multiplier;
     }
 }
 public class Pokemon
@@ -169,7 +248,4 @@ public class Pokemon
     public DeoxysForms Deoxys = DeoxysForms.None; //Deoxys forms, Normal, Attack, Speed, Defense
     public KyuremForms Kyurem = KyuremForms.None; //Kyurem fusion forms, Reshiram, Zekrom
     public ZygardeForms Zygarde = ZygardeForms.None; //Zygarde 10%, 50%, Complete
-
-
-
 }

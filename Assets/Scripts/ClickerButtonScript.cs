@@ -37,14 +37,14 @@ public class ClickerButtonScript : MonoBehaviour
         if (crit())
             damage *= 2;
         currHP -= damage;
-
+        GameManager.Instance.EnemyHP.fillAmount = (float)currHP / maxHP;
         if (currHP <= 0)
         {
             Player.Instance.AddEXP(level * 2, Player.Instance.currSlot);
             newPokemon();
         }
             
-        GameManager.Instance.EnemyHP.fillAmount = (float)currHP/maxHP;
+        
     }
     private bool crit()
     {
@@ -56,7 +56,7 @@ public class ClickerButtonScript : MonoBehaviour
         }
         return false;
     }
-    private void newPokemon()
+    public void newPokemon()
     {
         level = Random.Range(5, 60);
         maxHP = (int)(level * Random.Range(2, 3));
@@ -65,6 +65,7 @@ public class ClickerButtonScript : MonoBehaviour
         int DexID = Random.Range(1, 1025);
         GameManager.Instance.EnemySprite.sprite = Resources.Load<Sprite>("Pokemon/Normal/" + PokemonList.pokemonIDs[DexID].ToLower());
         GameManager.Instance.EnemyName.text = PokemonList.pokemonNames[DexID];
+        GameManager.Instance.EnemyHP.fillAmount = (float)currHP / maxHP;
         enemy.level = level;
         enemy.maxHP = maxHP;
         enemy.currHP = currHP;

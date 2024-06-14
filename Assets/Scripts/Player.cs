@@ -33,12 +33,16 @@ public class Player : MonoBehaviour
         starter.level = 5;
         starter.maxHP = (int)(starter.level * UnityEngine.Random.Range(2, 3));
         starter.currHP = starter.maxHP;
-        party.Add(starter);
+        AddToParty(starter);
         SetActivePokemon(0);
     }
-    void AddToParty(Pokemon pokemon)
+    public void AddToParty(Pokemon pokemon)
     {
-
+        if (party.Count < party.Capacity)
+        {
+            party.Add(pokemon);
+            GameManager.Instance.PartySlots[party.Count - 1].interactable = true;
+        }
     }
     public void AddEXP(int exp, int slot)
     {
@@ -73,7 +77,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.PlayerLevel.text = "lv." + pokemon.level.ToString();
         return pokemon;
     }
-    void SetActivePokemon(int slot)
+    public void SetActivePokemon(int slot)
     {
         currSlot = slot;
         GameManager.Instance.PlayerSprite.sprite = Resources.Load<Sprite>("Pokemon/NormalBack/" + PokemonList.pokemonIDs[party[slot].DexID].ToLower());

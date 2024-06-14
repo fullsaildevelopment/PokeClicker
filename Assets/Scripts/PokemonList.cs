@@ -2106,67 +2106,74 @@ public class PokemonList : MonoBehaviour
 
     public static List<List<PokemonType>> SuperEffectiveTypes = new List<List<PokemonType>>()
     {
-        new List<PokemonType>(){}, //None
-        new List<PokemonType>(){}, //Normal
-        new List<PokemonType>(){PokemonType.Grass, PokemonType.Ice, PokemonType.Bug, PokemonType.Steel }, //Fire
-        new List<PokemonType>(){PokemonType.Fire, PokemonType.Ground, PokemonType.Rock }, //Water
-        new List<PokemonType>(){PokemonType.Water, PokemonType.Flying }, //Electric
-        new List<PokemonType>(){PokemonType.Water, PokemonType.Ground, PokemonType.Rock }, //Grass
-        new List<PokemonType>(){PokemonType.Grass, PokemonType.Ground, PokemonType.Flying, PokemonType.Dragon }, //Ice
-        new List<PokemonType>(){PokemonType.Normal, PokemonType.Ice, PokemonType.Rock, PokemonType.Dark, PokemonType.Steel }, //Fighting
-        new List<PokemonType>(){PokemonType.Grass, PokemonType.Fairy }, //Poison
-        new List<PokemonType>(){PokemonType.Fire, PokemonType.Electric, PokemonType.Poison, PokemonType.Rock, PokemonType.Steel}, //Ground
-        new List<PokemonType>(){PokemonType.Grass, PokemonType.Fighting, PokemonType.Bug }, //Flying
-        new List<PokemonType>(){PokemonType.Fighting, PokemonType.Poison}, //Psychic
-        new List<PokemonType>(){PokemonType.Grass, PokemonType.Psychic, PokemonType.Dark}, //Bug
-        new List<PokemonType>(){PokemonType.Fire, PokemonType.Ice, PokemonType.Flying, PokemonType.Bug}, //Rock
-        new List<PokemonType>(){PokemonType.Psychic, PokemonType.Ghost}, //Ghost
-        new List<PokemonType>(){PokemonType.Dragon }, //Dragon
-        new List<PokemonType>(){PokemonType.Ice, PokemonType.Rock, PokemonType.Fairy }, //Steel
-        new List<PokemonType>(){PokemonType.Fighting, PokemonType.Dragon, PokemonType.Dark } //Fairy
+        new(){}, //None
+        new(){}, //Normal
+        new(){PokemonType.Grass, PokemonType.Ice, PokemonType.Bug, PokemonType.Steel }, //Fire
+        new(){PokemonType.Fire, PokemonType.Ground, PokemonType.Rock }, //Water
+        new(){PokemonType.Water, PokemonType.Flying }, //Electric
+        new(){PokemonType.Water, PokemonType.Ground, PokemonType.Rock }, //Grass
+        new(){PokemonType.Grass, PokemonType.Ground, PokemonType.Flying, PokemonType.Dragon }, //Ice
+        new(){PokemonType.Normal, PokemonType.Ice, PokemonType.Rock, PokemonType.Dark, PokemonType.Steel }, //Fighting
+        new(){PokemonType.Grass, PokemonType.Fairy }, //Poison
+        new(){PokemonType.Fire, PokemonType.Electric, PokemonType.Poison, PokemonType.Rock, PokemonType.Steel}, //Ground
+        new(){PokemonType.Grass, PokemonType.Fighting, PokemonType.Bug }, //Flying
+        new(){PokemonType.Fighting, PokemonType.Poison}, //Psychic
+        new(){PokemonType.Grass, PokemonType.Psychic, PokemonType.Dark}, //Bug
+        new(){PokemonType.Fire, PokemonType.Ice, PokemonType.Flying, PokemonType.Bug}, //Rock
+        new(){PokemonType.Psychic, PokemonType.Ghost}, //Ghost
+        new(){PokemonType.Dragon }, //Dragon
+        new(){PokemonType.Ice, PokemonType.Rock, PokemonType.Fairy }, //Steel
+        new(){PokemonType.Fighting, PokemonType.Dragon, PokemonType.Dark } //Fairy
     };
     public static List<List<PokemonType>> NotVeryEffectiveTypes = new List<List<PokemonType>>()
     {
-        new List<PokemonType>(){}, //None
-        new List<PokemonType>(){PokemonType.Rock, PokemonType.Steel }, //Normal
-        new List<PokemonType>(){PokemonType.Fire, PokemonType.Water, PokemonType.Rock, PokemonType.Dragon}, //Fire
-        new List<PokemonType>(){PokemonType.Water, PokemonType.Grass, PokemonType.Dragon }, //Water
-        new List<PokemonType>(){PokemonType.Electric, PokemonType.Grass, PokemonType.Dragon }, //Electric
-        new List<PokemonType>(){PokemonType.Fire, PokemonType.Grass, PokemonType.Poison, PokemonType.Flying, PokemonType.Bug, PokemonType.Dragon, PokemonType.Steel }, //Grass
-        new List<PokemonType>(){PokemonType.Fire, PokemonType.Water, PokemonType.Ice, PokemonType.Steel }, //Ice
-        new List<PokemonType>(){PokemonType.Poison, PokemonType.Flying, PokemonType.Psychic, PokemonType.Bug, PokemonType.Fairy }, //Fighting
-        new List<PokemonType>(){PokemonType.Poison, PokemonType.Ground, PokemonType.Rock, PokemonType.Ghost }, //Poison
-        new List<PokemonType>(){PokemonType.Grass, PokemonType.Bug}, //Ground
-        new List<PokemonType>(){PokemonType.Electric, PokemonType.Rock, PokemonType.Steel }, //Flying
-        new List<PokemonType>(){PokemonType.Psychic, PokemonType.Steel }, //Psychic
-        new List<PokemonType>(){PokemonType.Fire, PokemonType.Fighting, PokemonType.Poison, PokemonType.Flying, PokemonType.Ghost, PokemonType.Steel, PokemonType.Fairy }, //Bug
-        new List<PokemonType>(){PokemonType.Fighting, PokemonType.Ground, PokemonType.Steel }, //Rock
-        new List<PokemonType>(){PokemonType.Dark }, //Ghost
-        new List<PokemonType>(){PokemonType.Steel }, //Dragon
-        new List<PokemonType>(){PokemonType.Fighting, PokemonType.Dark, PokemonType.Fairy }, //Dark
-        new List<PokemonType>(){PokemonType.Fire, PokemonType.Water, PokemonType.Electric, PokemonType.Steel }, //Steel
-        new List<PokemonType>(){PokemonType.Fire, PokemonType.Poison, PokemonType.Steel} //Fairy
+        new(){}, //None
+        new(){PokemonType.Rock, PokemonType.Steel }, //Normal
+        new(){PokemonType.Fire, PokemonType.Water, PokemonType.Rock, PokemonType.Dragon}, //Fire
+        new(){PokemonType.Water, PokemonType.Grass, PokemonType.Dragon }, //Water
+        new(){PokemonType.Electric, PokemonType.Grass, PokemonType.Dragon }, //Electric
+        new(){PokemonType.Fire, PokemonType.Grass, PokemonType.Poison, PokemonType.Flying, PokemonType.Bug, PokemonType.Dragon, PokemonType.Steel }, //Grass
+        new(){PokemonType.Fire, PokemonType.Water, PokemonType.Ice, PokemonType.Steel }, //Ice
+        new(){PokemonType.Poison, PokemonType.Flying, PokemonType.Psychic, PokemonType.Bug, PokemonType.Fairy }, //Fighting
+        new(){PokemonType.Poison, PokemonType.Ground, PokemonType.Rock, PokemonType.Ghost }, //Poison
+        new(){PokemonType.Grass, PokemonType.Bug}, //Ground
+        new(){PokemonType.Electric, PokemonType.Rock, PokemonType.Steel }, //Flying
+        new(){PokemonType.Psychic, PokemonType.Steel }, //Psychic
+        new(){PokemonType.Fire, PokemonType.Fighting, PokemonType.Poison, PokemonType.Flying, PokemonType.Ghost, PokemonType.Steel, PokemonType.Fairy }, //Bug
+        new(){PokemonType.Fighting, PokemonType.Ground, PokemonType.Steel }, //Rock
+        new(){PokemonType.Dark }, //Ghost
+        new(){PokemonType.Steel }, //Dragon
+        new(){PokemonType.Fighting, PokemonType.Dark, PokemonType.Fairy }, //Dark
+        new(){PokemonType.Fire, PokemonType.Water, PokemonType.Electric, PokemonType.Steel }, //Steel
+        new(){PokemonType.Fire, PokemonType.Poison, PokemonType.Steel} //Fairy
     };
     public static List<List<PokemonType>> ImmuneTypes = new List<List<PokemonType>>()
     {
-        new List<PokemonType>(){ }, //None
-        new List<PokemonType>(){PokemonType.Ghost }, //Normal
-        new List<PokemonType>(){ }, //Fire
-        new List<PokemonType>(){ }, //Water
-        new List<PokemonType>(){PokemonType.Ground }, //Electric
-        new List<PokemonType>(){ }, //Grass
-        new List<PokemonType>(){ }, //Ice
-        new List<PokemonType>(){PokemonType.Ghost }, //Fighting
-        new List<PokemonType>(){PokemonType.Steel }, //Poison
-        new List<PokemonType>(){PokemonType.Flying }, //Ground
-        new List<PokemonType>(){ }, //Flying
-        new List<PokemonType>(){PokemonType.Dark }, //Psychic
-        new List<PokemonType>(){ }, //Bug
-        new List<PokemonType>(){ }, //Rock
-        new List<PokemonType>(){PokemonType.Normal }, //Ghost
-        new List<PokemonType>(){PokemonType.Fairy }, //Dragon
-        new List<PokemonType>(){ }, //Dark
-        new List<PokemonType>(){ }, //Steel
-        new List<PokemonType>(){ } //Fairy
+        new(){ }, //None
+        new(){PokemonType.Ghost }, //Normal
+        new(){ }, //Fire
+        new(){ }, //Water
+        new(){PokemonType.Ground }, //Electric
+        new(){ }, //Grass
+        new(){ }, //Ice
+        new(){PokemonType.Ghost }, //Fighting
+        new(){PokemonType.Steel }, //Poison
+        new(){PokemonType.Flying }, //Ground
+        new(){ }, //Flying
+        new(){PokemonType.Dark }, //Psychic
+        new(){ }, //Bug
+        new(){ }, //Rock
+        new(){PokemonType.Normal }, //Ghost
+        new(){PokemonType.Fairy }, //Dragon
+        new(){ }, //Dark
+        new(){ }, //Steel
+        new(){ } //Fairy
+    };
+    public static List<BallType> BallTypes = new List<BallType>()
+    {
+        new("PokeBall", 1),
+        new("Great Ball", 1.5f),
+        new("Ultra Ball", 2),
+        new("Master Ball", 0)
     };
 }

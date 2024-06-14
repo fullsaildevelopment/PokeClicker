@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [Header("----- UI -----")]
     public GameObject Canvas;
+    public Image ThrownBall;
     [Header("----- Enemy -----")]
     public Image EnemySprite;
     public Image EnemyHP;
@@ -102,6 +103,10 @@ public class GameManager : MonoBehaviour
     //public GameObject PlayerCritBox;
     public TextMeshProUGUI PlayerLevel;
     public TextMeshProUGUI PlayerName;
+    [Header("----- Buttons -----")]
+    public List<Button> PartySlots;
+    public Button ThrowBall;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -248,4 +253,27 @@ public class Pokemon
     public DeoxysForms Deoxys = DeoxysForms.None; //Deoxys forms, Normal, Attack, Speed, Defense
     public KyuremForms Kyurem = KyuremForms.None; //Kyurem fusion forms, Reshiram, Zekrom
     public ZygardeForms Zygarde = ZygardeForms.None; //Zygarde 10%, 50%, Complete
+
+    public Pokemon()
+    {
+
+    }
+    public Pokemon(Pokemon pokemon)
+    {
+        DexID = pokemon.DexID;
+        level = pokemon.level;
+        maxHP = pokemon.maxHP;
+        currHP = pokemon.currHP;
+    }
+}
+public class BallType
+{
+    public string BallName;
+    //Sprite BallSprite;
+    public float BaseCatchRate;
+    public BallType(string ballName, float baseCatchRate)
+    {
+        BallName = ballName;
+        BaseCatchRate = baseCatchRate;
+    }
 }

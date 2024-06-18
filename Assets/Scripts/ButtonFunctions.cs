@@ -102,7 +102,7 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void NewStarter(int dexID)
     {
-        Player.Instance.SelectStarter(new Pokemon(dexID, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None, 5));
+        Player.Instance.SelectStarter(new Pokemon(dexID, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None, RegionalForm.None, StaticPokemonForms.None, 5));
         ClickerButtonScript.Instance.newPokemon();
         GameManager.Instance.StarterSelection.SetActive(false);
         EnemyAI.Instance.CanDealDamage = true;

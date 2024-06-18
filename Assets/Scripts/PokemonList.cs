@@ -2176,4 +2176,22 @@ public class PokemonList : MonoBehaviour
         new("Ultra Ball", 2),
         new("Master Ball", 0)
     };
+    public static List<Pokemon> PokemonData = new List<Pokemon>()
+    {
+        new(0, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None),
+        new (1, 16, EvolveMethod.LevelUp, 2, PokemonType.Grass, PokemonType.Poison)
+    };
+    public static List<Pokemon> RegionalPokemonData = new List<Pokemon>()
+    {
+        new(0, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None),
+        new(19, 20, EvolveMethod.LevelUp, 20, PokemonType.Dark, PokemonType.Normal, RegionalForm.Alolan)
+    };
+    public static List<Pokemon> StaticFormPokemonData = new List<Pokemon>()
+    {
+        new(0, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None),
+        new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Alolan, StaticPokemonForms.BlazeBreed),
+        new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Alolan, StaticPokemonForms.AquaBreed),
+        new(201, 0, EvolveMethod.None, 0, PokemonType.Psychic, PokemonType.None, RegionalForm.None, StaticPokemonForms.A)
+
+    };
 }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking.Types;
 using UnityEngine.UI;
 
 public enum TerraType
 {
+    Stellar,
     Normal,
     Fire,
     Water,
@@ -24,8 +26,7 @@ public enum TerraType
     Dragon,
     Dark,
     Steel,
-    Fairy,
-    Stellar
+    Fairy
 }
 public enum PokemonType
 {
@@ -66,20 +67,59 @@ public enum KyuremForms
 {
     None, Black, White
 }
-public enum ExtraPokemonForms
+public enum StaticPokemonForms   //These forms cannot change and are set on creation
 {
-    None,       //put this if this doesn't apply to the Pokemon
-    Zen,        //put this if the Pokemon is the Zen Mode variant of Darmanitan
-    LowKey,     //put this if the Pokemon is the Low Key variant of Toxtricity
-    Bloodmoon,  //put this if the Pokemon is the bloodmoon variant of ursaluna
-    LycanNight, LycanDay, LycanDusk, //put one of these if the Pokemon is a Lycanroc
-    DeoxysNormal, DeoxysAttack, DeoxysDefense, DeoxysSpeed, //put one of these if the Pokemon is a Deoxys
-    ZTen, ZFifty, ZComplete, //put one of these is the Pokemon is a Zygarde
-    A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, exclamation, question, //put one of these if the Pokemon is Unown
-    spring, summer, fall, winter //put one of these if the Pokemon is Deerling or Sawsbuck
+    None, //put this if this doesn't apply to the Pokemon
+    PlantCloak, SandyCloak, TrashCloak, //Burmy or Wormadam
+    
+    RedStripe, BlueStripe, WhiteStripe, //Basculin
+    DarmanNormal, DarmanZen, //Darmanitan
+    spring, summer, fall, winter, //Deerling or Sawsbuck
+    PomPomStyle, BaileStyle, PauStyle, SensuStyle, //Oricorio
+    LycanNight, LycanDay, LycanDusk, //Lycanroc
+    BlueCore, GreenCore, IndigoCore, OrangeCore, RedCore, VioletCore, YellowCore, //Minior
+    Amped, LowKey, //Toxtricity
+    SingleStrike, RapidStrike, //Urshifu
+    CombatBreed, BlazeBreed, AquaBreed, //Paldean Tauros
+    GreenPlumage, YellowPlumage, BluePlumage, WhitePlumage, //Squakabilly
+    A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, exclamation, question, //Unown
+    WestSea, EastSea, //Shellos or Gastrodon
+    //Add Vivillion later, just use None for now.
+    RedFlower, BlueFlower, OrangeFlower, WhiteFlower, YellowFlower, //Flabebe, Floett, or Florges
+    //Add Alcemie later, just use None for now.
+    Family3, Family4, //Maushold
+    Curly, Stretchy, Droopy, //Tatsugiri
+    Segment2, Segment3, //Dundunsparce
+    UrsaNormal, UrsaBloodmoon,  //Ursaluna
 
 }
-public enum ReginalForm
+public enum DynamicPokemonForms //these forms are changeable and is None by default
+{
+    None, //use this if the Pokemon is in its normal form or doesn't apply here
+    DeoxysAttack, DeoxysDefense, DeoxysSpeed, //Deoxys (changes with meteorite)
+    RotoMow, RotoFrost, RotoHeat, RotoFan, RotoWash, //Rotom (changes with appliances)
+    Origin, //Dialga, Palkia, Giratina (changes with their orbs)
+    Sky, //Shaymin (changes with gracidea flower)
+    Therian, //Tornadus, Thundurus, Landorus, Enamorus (changes with Reflective Mirror)
+    Black, White, //Kyurem (fused with Reshiram or Zekrom)
+    Resolution, //Keldeo (for this game, give it a Secret Sword held item)
+    Pirouette, //Meloetta (for this game, give it an ancient music sheet held item)
+    //BattleBond, //Greninja (for this game, idk)
+    //Blade, //Aegislash
+    ZTen, ZFifty, ZComplete, //Zygarde (changes with Z-Cube)
+    Unbound, //Hoopa (changes with Prison Bottle)
+    School, //Wishiwashi (if over lv20 and 25% hp, use school form)
+    Core, //Minior (reveal core if less than 50% hp)
+    DuskMane, DawnWings, Ultra, //Necrozma (fused with Solgaleo or Lunala, Ultra is with Z-Move)
+    Crowned, //Zacian, Zamazenta (if they have their sword or shield)
+    IceRider, ShadowRider, //Calyrex (fuses with Glastrier or Spectrier)
+    Hero, //Palafin (becomes hero if switched out from battle)
+    Sunny, Rainy, Snowy, //Castform (changes with weather) also Cherrim (only Sunny)
+    Hangry, //Morpeko (in this game, will switch after 10 seconds)
+    Wellspring, Hearthflame, Cornerstone //Ogerpon (mask held item)
+}
+
+public enum RegionalForm
 {
     None,
     Alolan,
@@ -145,70 +185,97 @@ public class GameManager : MonoBehaviour
         foreach (PokemonType type in PokemonList.SuperEffectiveTypes[(int)aType1])
         {
             if (type == dType1)
-            {
                 multiplier *= 2;
-            }
             if (type == dType2)
-            {
                 multiplier *= 2;
-            }
         }
         foreach (PokemonType type in PokemonList.SuperEffectiveTypes[(int)aType2])
         {
             if (type == dType1)
-            {
                 multiplier *= 2;
-            }
+
             if (type == dType2)
-            {
                 multiplier *= 2;
-            }
         }
         foreach (PokemonType type in PokemonList.NotVeryEffectiveTypes[(int)aType1])
         {
             if (type == dType1)
-            {
                 multiplier /= 2;
-            }
             if (type == dType2)
-            {
                 multiplier /= 2;
-            }
         }
         foreach (PokemonType type in PokemonList.NotVeryEffectiveTypes[(int)aType2])
         {
             if (type == dType1)
-            {
                 multiplier /= 2;
-            }
             if (type == dType2)
-            {
                 multiplier /= 2;
-            }
         }
         foreach (PokemonType type in PokemonList.ImmuneTypes[(int)aType1])
         {
             if (type == dType1)
-            {
                 multiplier = 0.1f;
-            }
             if (type == dType2)
-            {
                 multiplier = 0.1f;
-            }
         }
         foreach (PokemonType type in PokemonList.ImmuneTypes[(int)aType2])
         {
             if (type == dType1)
-            {
                 multiplier = 0.1f;
-            }
             if (type == dType2)
-            {
                 multiplier = 0.1f;
-            }
         }
         return multiplier;
+    }
+    Pokemon CreatePokemon(int _dexID, RegionalForm rForm = RegionalForm.None, StaticPokemonForms sForm = StaticPokemonForms.None,
+                          bool RandomizeRegionalForm = false, bool RandomizeStaticForm = false)
+    {   //IMPLEMENT THIS FUNCTION AFTER THE POKEMON DATABASE IS SETUP
+        RegionalForm regionalForm = rForm;
+        StaticPokemonForms staticForm = sForm;
+        //Randomization if enabled
+        if (RandomizeRegionalForm)
+        {
+            List<Pokemon> forms = new List<Pokemon>();
+            forms.Add(PokemonList.PokemonData[_dexID]);
+            for (int i = 0; i < PokemonList.RegionalPokemonData.Count; ++i)
+            {
+                if (PokemonList.RegionalPokemonData[i].dexID == _dexID)
+                    forms.Add(PokemonList.RegionalPokemonData[i]);
+            }
+            regionalForm = forms[Random.Range(1, forms.Count) - 1].reginalForm;
+        }
+        if (RandomizeStaticForm)
+        {
+            List<Pokemon> forms = new List<Pokemon>();
+            forms.Add(PokemonList.PokemonData[_dexID]);
+            for (int i = 0; i < PokemonList.StaticFormPokemonData.Count; ++i)
+            {
+                if (PokemonList.StaticFormPokemonData[i].dexID == _dexID)
+                {
+                    forms.Add(PokemonList.StaticFormPokemonData[i]);
+                }
+            }
+            staticForm = forms[Random.Range(1, forms.Count) - 1].staticForm;
+        }
+
+        //Searching for and returning the Pokemon
+        if ((regionalForm != RegionalForm.None && staticForm != StaticPokemonForms.None) || staticForm != StaticPokemonForms.None)
+        { //if the Pokemon has a static form and/or a regional form too
+            foreach (Pokemon pokemon in PokemonList.StaticFormPokemonData)
+            {
+                if (pokemon.dexID == _dexID && pokemon.reginalForm == regionalForm && pokemon.staticForm == staticForm)
+                    return new Pokemon(pokemon);
+            }
+        }
+        else if (regionalForm != RegionalForm.None)
+        { //if the pokemon just has a regional form
+            foreach (Pokemon pokemon in PokemonList.RegionalPokemonData)
+            {
+                if (pokemon.dexID == _dexID && pokemon.reginalForm == regionalForm)
+                    return new Pokemon(pokemon);
+            }
+        }
+        return new Pokemon(PokemonList.PokemonData[_dexID]);
     }
 }
 public class Pokemon
@@ -222,21 +289,9 @@ public class Pokemon
 
 
 
-    //Forms for:
-    //Paldean Tauros, (None(Combat), Fire(Blaze), Water(Aqua))
-    //Burmy/Wormadam, (Grass(Plant), Ground(Sandy), Steel(Trash))
-    //Rotom, (Ghost(Normal), Fire(Heat), Water(Wash), Ice(Frost), Flying(Fan), Grass(Mow)) 
-    //Oricorio, (Fire(Baile), Electric(Pom-Pom), Psychic(Pa'u), Ghost(Sensu))
-    //Calyrex, (Grass(Unmounted), Ice(Ice Rider), Ghost(Shadow Rider))
-    //Ogerpon, (None(Teal), Water(Wellspring), Fire(Hearthflame), Rock(Cornerstone))
-    //Urshifu, (Dark(Single), Water(Rapid))
-    //Necrozma, (None, Steel(Dusk Mane), Ghost(Dawn Wings), Dragon(Ultra))
-    //Shaymin, (None(Land), Flying(Sky))
-    //Hoopa, (Ghost(Confined), Dark(Unbound))
-    //Meloetta (Psychic(Aria), Fighting(Pirouette))
-    public PokemonType typeForm;
-    public ExtraPokemonForms extraPokemonForm;
-    public ReginalForm reginalForm;
+    public DynamicPokemonForms dynamicForm;
+    public StaticPokemonForms staticForm;
+    public RegionalForm reginalForm;
 
 
 
@@ -259,12 +314,6 @@ public class Pokemon
     public bool isDyna = false; //is active for 3 turns or until the Pokemon faints or switches out
     public TerraType terraType; //is active until the pokemon faints or switches out
 
-    public bool Origin; //Origin form Dialga, Palkia, Giratina
-    public bool GenieAlt; //Therian form Tornadus, Thundarus, Landarus, Enamorus
-    public bool Primal; //Primal Groudon, Kyogre
-    public bool Hero; //Palafin Zero (false) or Hero (true)
-    public KyuremForms kyurem; //Kyurem fusion forms, Reshiram, Zekrom
-
 
     public Pokemon()    //Remove this constructor when the Pokemon Database is setup
     {
@@ -279,9 +328,9 @@ public class Pokemon
         maxHP = (int)(level * Random.Range(2, 3));
         currHP = maxHP;
         exp = 0;
-        typeForm = PokemonType.None;
-        extraPokemonForm = ExtraPokemonForms.None;
-        reginalForm = ReginalForm.None;
+        dynamicForm = DynamicPokemonForms.None;
+        staticForm = StaticPokemonForms.None;
+        reginalForm = RegionalForm.None;
         terraType = TerraType.Normal;
     }
     public Pokemon(Pokemon pokemon)
@@ -297,14 +346,18 @@ public class Pokemon
         level = pokemon.level;
         maxHP = pokemon.maxHP;
         currHP = pokemon.currHP;
-        exp = 0;
+        exp = pokemon.exp;
 
-        typeForm = pokemon.typeForm;
-        extraPokemonForm = pokemon.extraPokemonForm;
+        dynamicForm = pokemon.dynamicForm;
+        staticForm = pokemon.staticForm;
         reginalForm = pokemon.reginalForm;
         terraType = pokemon.terraType;
     }
-    public Pokemon(int _dexID, int _evolveLevel, EvolveMethod _evolveMethod, int _evoDexID, PokemonType _type1, PokemonType _type2, int _level = 0)
+    public Pokemon(int _dexID, int _evolveLevel, EvolveMethod _evolveMethod, int _evoDexID,
+                   PokemonType _type1, PokemonType _type2,
+                   RegionalForm _reginalForm = RegionalForm.None, 
+                   StaticPokemonForms _staticForm = StaticPokemonForms.None, 
+                   int _level = 0)
     {
         dexID= _dexID;
         evolveLevel= _evolveLevel;
@@ -319,11 +372,21 @@ public class Pokemon
         maxHP = (int)(level * Random.Range(2, 3));
         currHP = maxHP;
         exp = 0;
-        typeForm = PokemonType.None;
-        extraPokemonForm = ExtraPokemonForms.None;
-        reginalForm = ReginalForm.None;
-        terraType = TerraType.Normal;
+        dynamicForm = DynamicPokemonForms.None;
+        staticForm = _staticForm;
+        reginalForm = _reginalForm;
+
+        if (type2 != PokemonType.None)
+        {
+            if (Random.Range(0,1) >= 0.5f)
+                terraType = (TerraType)type1;
+            else
+                terraType = (TerraType)type2;
+        }
+        else
+            terraType = (TerraType)type1;
     }
+    
 }
 public class BallType
 {

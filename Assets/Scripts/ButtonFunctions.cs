@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 
 public class ButtonFunctions : MonoBehaviour
@@ -52,7 +53,7 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.ThrowBall.interactable = false;
         GameManager.Instance.EnemySprite.enabled = false;
         GameManager.Instance.ThrownBall.enabled = true;
-
+        EnemyAI.Instance.CanDealDamage = false;
         Pokemon pokemon = ClickerButtonScript.Instance.enemy;
         
         //Shakes on Successes
@@ -64,17 +65,6 @@ public class ButtonFunctions : MonoBehaviour
         StartCoroutine(BallShakes(ShakeChance));
         
     }
-    public void SetActivePartyPokemon(int slot)
-    {
-        if (Player.Instance.party[slot] != null)
-        {
-            Player.Instance.SetActivePokemon(slot);
-        }
-    }
-
-
-
-
     IEnumerator BallShakes(float ShakeChance)
     {
         for (int i = 0; i < 4; i++)
@@ -87,6 +77,7 @@ public class ButtonFunctions : MonoBehaviour
                 GameManager.Instance.EnemySprite.enabled = true;
                 GameManager.Instance.ThrownBall.enabled = false;
                 GameManager.Instance.ThrowBall.interactable = true;
+                EnemyAI.Instance.CanDealDamage = true;
                 yield break;
             }
             if (i != 3)
@@ -100,5 +91,20 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.EnemySprite.enabled = true;
         GameManager.Instance.ThrownBall.enabled = false;
         GameManager.Instance.ThrowBall.interactable = true;
+        EnemyAI.Instance.CanDealDamage = true;
+    }
+    public void SetActivePartyPokemon(int slot)
+    {
+        if (Player.Instance.party[slot] != null && Player.Instance.party[slot].currHP > 0)
+        {
+            Player.Instance.SetActivePokemon(slot);
+        }
+    }
+    public void NewStarter(int dexID)
+    {
+        Player.Instance.SelectStarter(new Pokemon(dexID, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None, 5));
+        ClickerButtonScript.Instance.newPokemon();
+        GameManager.Instance.StarterSelection.SetActive(false);
+        EnemyAI.Instance.CanDealDamage = true;
     }
 }

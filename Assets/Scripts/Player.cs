@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SelectStarter();
+
     }
 
     // Update is called once per frame
@@ -26,13 +26,8 @@ public class Player : MonoBehaviour
     {
         
     }
-    void SelectStarter()
+    public void SelectStarter(Pokemon starter)
     {
-        Pokemon starter = new Pokemon();
-        starter.DexID = 1;
-        starter.level = 5;
-        starter.maxHP = (int)(starter.level * UnityEngine.Random.Range(2, 3));
-        starter.currHP = starter.maxHP;
         AddToParty(starter);
         SetActivePokemon(0);
     }
@@ -80,11 +75,24 @@ public class Player : MonoBehaviour
     public void SetActivePokemon(int slot)
     {
         currSlot = slot;
-        GameManager.Instance.PlayerSprite.sprite = Resources.Load<Sprite>("Pokemon/NormalBack/" + PokemonList.pokemonIDs[party[slot].DexID].ToLower());
+        GameManager.Instance.PlayerSprite.sprite = Resources.Load<Sprite>("Pokemon/NormalBack/" + PokemonList.pokemonIDs[party[slot].dexID].ToLower());
+        GameManager.Instance.PlayerSprite.enabled = true;
         GameManager.Instance.PlayerLevel.text = "lv." + party[slot].level.ToString();
-        GameManager.Instance.PlayerName.text = PokemonList.pokemonNames[party[slot].DexID];
+        GameManager.Instance.PlayerName.text = PokemonList.pokemonNames[party[slot].dexID];
         GameManager.Instance.PlayerHP.fillAmount = (float)party[slot].currHP / party[slot].maxHP;
         GameManager.Instance.PlayerHPNum.text = party[slot].currHP.ToString() + "/" + party[slot].maxHP.ToString();
         GameManager.Instance.PlayerEXP.fillAmount = party[slot].exp / (float)Math.Pow(party[slot].level, 3);
+        EnemyAI.Instance.CanDealDamage = true;
+    }
+    public void TakeDamage(int damage)
+    {
+        party[currSlot].currHP -= damage;
+        GameManager.Instance.PlayerHP.fillAmount = (float)party[currSlot].currHP / party[currSlot].maxHP;
+        GameManager.Instance.PlayerHPNum.text = party[currSlot].currHP.ToString() + "/" + party[currSlot].maxHP.ToString();
+        if (party[currSlot].currHP <= 0)
+        {
+            EnemyAI.Instance.CanDealDamage = false;
+            GameManager.Instance.PlayerSprite.enabled = false;
+        }
     }
 }

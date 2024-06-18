@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1129256487371106833}
   - component: {fileID: 1129256487371106838}
   - component: {fileID: 1129256487371106839}
+  - component: {fileID: -5562656292476610823}
   m_Layer: 5
   m_Name: ClickerButton
   m_TagString: Untagged
@@ -149,3 +150,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129256487371106835}
   m_CullTransparentMesh: 1
+--- !u!114 &-5562656292476610823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129256487371106835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b7025afe4a5bf42b78ffa8f4374eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

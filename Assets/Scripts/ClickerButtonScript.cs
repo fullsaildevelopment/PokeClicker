@@ -20,8 +20,7 @@ public class ClickerButtonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemy = new Pokemon();
-        newPokemon();
+
     }
 
     // Update is called once per frame
@@ -43,32 +42,27 @@ public class ClickerButtonScript : MonoBehaviour
             Player.Instance.AddEXP(level * 2, Player.Instance.currSlot);
             newPokemon();
         }
-            
-        
     }
     private bool crit()
     {
         float rng = Random.Range(0.0f, 1.0f);
         if (rng >= 0.99f)
         {
-            Instantiate(GameManager.Instance.EnemyCritBox, GameManager.Instance.Canvas.transform);
+            Instantiate(GameManager.Instance.EnemyCritBox, GameManager.Instance.MainScreen.transform);
             return true;
         }
         return false;
     }
     public void newPokemon()
     {
-        level = Random.Range(5, 60);
-        maxHP = (int)(level * Random.Range(2, 3));
-        currHP = maxHP;
+        enemy = new Pokemon();
+        level = enemy.level;
+        maxHP = enemy.maxHP;
+        currHP = enemy.currHP;
+        
         GameManager.Instance.EnemyLevel.text = "lv." + level.ToString();
-        int DexID = Random.Range(1, 1025);
-        GameManager.Instance.EnemySprite.sprite = Resources.Load<Sprite>("Pokemon/Normal/" + PokemonList.pokemonIDs[DexID].ToLower());
-        GameManager.Instance.EnemyName.text = PokemonList.pokemonNames[DexID];
+        GameManager.Instance.EnemySprite.sprite = Resources.Load<Sprite>("Pokemon/Normal/" + PokemonList.pokemonIDs[enemy.dexID].ToLower());
+        GameManager.Instance.EnemyName.text = PokemonList.pokemonNames[enemy.dexID];
         GameManager.Instance.EnemyHP.fillAmount = (float)currHP / maxHP;
-        enemy.level = level;
-        enemy.maxHP = maxHP;
-        enemy.currHP = currHP;
-        enemy.DexID = DexID;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking.Types;
 using UnityEngine.UI;
 
 public enum TerraType
@@ -60,34 +61,48 @@ public enum Weather
 {
     None, Sun, Rain, Sand, Snow, Fog
 }
-public enum TimeOfDay
-{
-    Night, Day, Dusk
-}
-public enum UnownLetters
-{
-    None, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, exclamation, question
-}
-
-public enum DeoxysForms
-{
-    None, Normal, Attack, Defense, Speed
-}
 
 public enum KyuremForms
 {
     None, Black, White
 }
-public enum ZygardeForms
+public enum ExtraPokemonForms
 {
-    None, Ten, Fifty, Complete
+    None,       //put this if this doesn't apply to the Pokemon
+    Zen,        //put this if the Pokemon is the Zen Mode variant of Darmanitan
+    LowKey,     //put this if the Pokemon is the Low Key variant of Toxtricity
+    Bloodmoon,  //put this if the Pokemon is the bloodmoon variant of ursaluna
+    LycanNight, LycanDay, LycanDusk, //put one of these if the Pokemon is a Lycanroc
+    DeoxysNormal, DeoxysAttack, DeoxysDefense, DeoxysSpeed, //put one of these if the Pokemon is a Deoxys
+    ZTen, ZFifty, ZComplete, //put one of these is the Pokemon is a Zygarde
+    A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, exclamation, question, //put one of these if the Pokemon is Unown
+    spring, summer, fall, winter //put one of these if the Pokemon is Deerling or Sawsbuck
+
+}
+public enum ReginalForm
+{
+    None,
+    Alolan,
+    Galarian,
+    Hisuian,
+    Paldean
+}
+public enum EXPType
+{
+    MediumFast,     //1,000,000 exp at lv 100
+    Erratic,        //600,000 exp at lv 100
+    Fluctuating,    //1,640,000 exp at lv 100
+    MediumSlow,     //1,059,860 exp at lv 100
+    Fast,           //800,000 exp at lv 100
+    Slow            //1,250,000 exp at lv 100
 }
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [Header("----- UI -----")]
-    public GameObject Canvas;
+    public GameObject MainScreen;
+    public GameObject StarterSelection;
     public Image ThrownBall;
     [Header("----- Enemy -----")]
     public Image EnemySprite;
@@ -106,11 +121,13 @@ public class GameManager : MonoBehaviour
     [Header("----- Buttons -----")]
     public List<Button> PartySlots;
     public Button ThrowBall;
+    public List<Button> Starters;
 
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
+        StarterSelection.SetActive(true);
     }
 
     // Update is called once per frame
@@ -196,43 +213,14 @@ public class GameManager : MonoBehaviour
 }
 public class Pokemon
 {
-    public int DexID = 0;
-    public int maxHP = 1;
-    public int currHP = 1;
-    public int level = 1;
-    public int exp = 0;
-
-    //pokemon in this game can have multiple held items
-    public List<HeldItem> items = new List<HeldItem>();
-
-    public PokemonType type1 = PokemonType.None;
-    public PokemonType type2 = PokemonType.None; //not all pokemon have a second type
-
-    //Generational Gimmicks / Forms
-    //(any pre-evolutions may have this set for when it evolves)
-    public bool Mega = false, currMega = false; //is active until the pokemon faints or is stored away
-    public bool GMax = false; //is active for 30 seconds
-    public TerraType terraType = TerraType.Normal; //is active until the pokemon faints or switches out
+    public int dexID;                   //The pokemon's National Pokedex numeber
+    public int evolveLevel;             //The level a Pokemon needs to evolve (0 if no level required or can't evolve)
+    public EvolveMethod evolveMethod;
+    public int evoDexID;                //the national dex number the pokemon evolves into (0 if the pokemon can't evolve)
+    public PokemonType type1;
+    public PokemonType type2;
 
 
-    //Reginal Forms
-    //(any pre-evolutions may have this set for when it evolves)
-    public bool Alolan = false;
-    public bool Galarian = false;
-    public bool Hisuian = false;
-    public bool Paldean = false;
-
-    //Specific Pokemon Forms / Gimmicks
-    //(any pre-evolutions may have this set for when it evolves)
-    public bool isShedinja = false; //Shedinja 1 hp gimmick
-
-    public bool Origin = false; //Origin form Dialga, Palkia, Giratina
-    public bool GenieAlt = false; //Therian form Tornadus, Thundarus, Landarus, Enamorus
-    public bool Primal = false; //Primal Groudon, Kyogre
-
-    public bool Amped = false; //Toxtricity LowKey (false) or Amped (true)
-    public bool Bloodmoon = false; //Ursaluna Normal (false) or Bloodmoon (true)
-    public bool Hero = false; //Palafin Zero (false) or Hero (true)
 
     //Forms for:
     //Paldean Tauros, (None(Combat), Fire(Blaze), Water(Aqua))
@@ -246,24 +234,95 @@ public class Pokemon
     //Shaymin, (None(Land), Flying(Sky))
     //Hoopa, (Ghost(Confined), Dark(Unbound))
     //Meloetta (Psychic(Aria), Fighting(Pirouette))
-    public PokemonType TypeForms = PokemonType.None;
+    public PokemonType typeForm;
+    public ExtraPokemonForms extraPokemonForm;
+    public ReginalForm reginalForm;
 
-    public TimeOfDay Lycanroc = TimeOfDay.Day; //Lycanroc forms, Day, Night, Dusk
-    public UnownLetters Unown = UnownLetters.None; //Unown Letter Forms
-    public DeoxysForms Deoxys = DeoxysForms.None; //Deoxys forms, Normal, Attack, Speed, Defense
-    public KyuremForms Kyurem = KyuremForms.None; //Kyurem fusion forms, Reshiram, Zekrom
-    public ZygardeForms Zygarde = ZygardeForms.None; //Zygarde 10%, 50%, Complete
 
-    public Pokemon()
+
+
+    public int maxHP;
+    public int currHP;
+    public int level;
+    public int exp;
+
+    //pokemon in this game can have multiple held items
+    public List<HeldItem> items = new List<HeldItem>();
+
+
+
+    //Generational Gimmicks / Forms
+    //(any pre-evolutions may have this set for when it evolves)
+    public bool Mega = false;   //can the Pokemon MegaEvolve?
+    public bool isMega = false; //is active until the pokemon faints or is stored away
+    public bool GMax = false; //can the Pokemon Gigantamax?
+    public bool isDyna = false; //is active for 3 turns or until the Pokemon faints or switches out
+    public TerraType terraType; //is active until the pokemon faints or switches out
+
+    public bool Origin; //Origin form Dialga, Palkia, Giratina
+    public bool GenieAlt; //Therian form Tornadus, Thundarus, Landarus, Enamorus
+    public bool Primal; //Primal Groudon, Kyogre
+    public bool Hero; //Palafin Zero (false) or Hero (true)
+    public KyuremForms kyurem; //Kyurem fusion forms, Reshiram, Zekrom
+
+
+    public Pokemon()    //Remove this constructor when the Pokemon Database is setup
     {
+        dexID = Random.Range(1, 1025);
+        evolveLevel = 0;
+        evolveLevel = 0;
+        evoDexID = 0;
+        type1 = PokemonType.None; 
+        type2 = PokemonType.None;
 
+        level = Random.Range(5, 60);
+        maxHP = (int)(level * Random.Range(2, 3));
+        currHP = maxHP;
+        exp = 0;
+        typeForm = PokemonType.None;
+        extraPokemonForm = ExtraPokemonForms.None;
+        reginalForm = ReginalForm.None;
+        terraType = TerraType.Normal;
     }
     public Pokemon(Pokemon pokemon)
     {
-        DexID = pokemon.DexID;
+        dexID = pokemon.dexID;
+        evolveLevel = pokemon.evolveLevel;
+        evolveMethod = pokemon.evolveMethod;
+        evoDexID = pokemon.evoDexID;
+        type1 = pokemon.type1;
+        type2 = pokemon.type2;
+
+
         level = pokemon.level;
         maxHP = pokemon.maxHP;
         currHP = pokemon.currHP;
+        exp = 0;
+
+        typeForm = pokemon.typeForm;
+        extraPokemonForm = pokemon.extraPokemonForm;
+        reginalForm = pokemon.reginalForm;
+        terraType = pokemon.terraType;
+    }
+    public Pokemon(int _dexID, int _evolveLevel, EvolveMethod _evolveMethod, int _evoDexID, PokemonType _type1, PokemonType _type2, int _level = 0)
+    {
+        dexID= _dexID;
+        evolveLevel= _evolveLevel;
+        evolveMethod= _evolveMethod;
+        evoDexID = _evoDexID;
+        type1 = _type1;
+        type2 = _type2;
+        if (_level == 0)
+            level = Random.Range(5, 60);
+        else
+            level = _level;
+        maxHP = (int)(level * Random.Range(2, 3));
+        currHP = maxHP;
+        exp = 0;
+        typeForm = PokemonType.None;
+        extraPokemonForm = ExtraPokemonForms.None;
+        reginalForm = ReginalForm.None;
+        terraType = TerraType.Normal;
     }
 }
 public class BallType

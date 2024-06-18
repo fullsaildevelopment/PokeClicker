@@ -30,6 +30,8 @@ public class EnemyAI : MonoBehaviour
     }
     void Attack()
     {
-        Player.Instance.TakeDamage(1);
+        int damage = (int)(ClickerButtonScript.Instance.enemy.level * 1.5f);
+        damage = (int)(damage * GameManager.Instance.TypeMatchup(ClickerButtonScript.Instance.enemy, Player.Instance.party[Player.Instance.currSlot])) / 3;
+        Player.Instance.TakeDamage(damage);
     }
 }

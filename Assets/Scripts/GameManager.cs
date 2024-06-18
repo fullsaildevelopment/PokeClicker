@@ -324,8 +324,18 @@ public class Pokemon
         type1 = PokemonType.None; 
         type2 = PokemonType.None;
 
-        level = Random.Range(5, 60);
-        maxHP = (int)(level * Random.Range(2, 3));
+        level = 0;
+        foreach (Pokemon pokemon in Player.Instance.party)
+        {
+            level += pokemon.level;
+        }
+        level /= Player.Instance.party.Count;
+        int min = level - 8;
+        if (min <= 0)
+            min = 1;
+        int max = level + 1;
+        level = Random.Range(min, max);
+        maxHP = (int)(level * Random.Range(3, 8));
         currHP = maxHP;
         exp = 0;
         dynamicForm = DynamicPokemonForms.None;
@@ -366,10 +376,22 @@ public class Pokemon
         type1 = _type1;
         type2 = _type2;
         if (_level == 0)
-            level = Random.Range(5, 60);
+        {
+            level = 0;
+            foreach (Pokemon pokemon in Player.Instance.party)
+            {
+                level += pokemon.level;
+            }
+            level /= Player.Instance.party.Count;
+            int min = level - 8;
+            if (min <= 0)
+                min = 1;
+            int max = level + 1;
+            level = Random.Range(min, max);
+        }
         else
             level = _level;
-        maxHP = (int)(level * Random.Range(2, 3));
+        maxHP = (int)(level * Random.Range(3, 8));
         currHP = maxHP;
         exp = 0;
         dynamicForm = DynamicPokemonForms.None;

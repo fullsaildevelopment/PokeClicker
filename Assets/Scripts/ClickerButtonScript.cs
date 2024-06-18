@@ -31,16 +31,20 @@ public class ClickerButtonScript : MonoBehaviour
 
     public void click()
     {
-        int damage = (int)(Player.Instance.party[Player.Instance.currSlot].level * 1.5f);
-        damage = (int)(damage * GameManager.Instance.TypeMatchup(Player.Instance.party[Player.Instance.currSlot], enemy));
-        if (crit())
-            damage *= 2;
-        currHP -= damage;
-        GameManager.Instance.EnemyHP.fillAmount = (float)currHP / maxHP;
-        if (currHP <= 0)
+        if (Player.Instance.party[Player.Instance.currSlot].currHP > 0)
         {
-            Player.Instance.AddEXP(level * 2, Player.Instance.currSlot);
-            newPokemon();
+            int damage = (int)(Player.Instance.party[Player.Instance.currSlot].level * 1.5f);
+            damage = (int)(damage * GameManager.Instance.TypeMatchup(Player.Instance.party[Player.Instance.currSlot], enemy));
+            if (crit())
+                damage *= 2;
+            currHP -= damage;
+            GameManager.Instance.EnemyHP.fillAmount = (float)currHP / maxHP;
+            if (currHP <= 0)
+            {
+                int exp = (100 * level) / 7;
+                Player.Instance.AddEXP(exp, Player.Instance.currSlot);
+                newPokemon();
+            }
         }
     }
     private bool crit()

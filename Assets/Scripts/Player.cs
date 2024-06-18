@@ -87,6 +87,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         party[currSlot].currHP -= damage;
+        if (party[currSlot].currHP < 0)
+            party[currSlot].currHP = 0;
         GameManager.Instance.PlayerHP.fillAmount = (float)party[currSlot].currHP / party[currSlot].maxHP;
         GameManager.Instance.PlayerHPNum.text = party[currSlot].currHP.ToString() + "/" + party[currSlot].maxHP.ToString();
         if (party[currSlot].currHP <= 0)

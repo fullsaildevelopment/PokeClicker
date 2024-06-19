@@ -53,7 +53,7 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.ThrowBall.interactable = false;
         GameManager.Instance.EnemySprite.enabled = false;
         GameManager.Instance.ThrownBall.enabled = true;
-        EnemyAI.Instance.CanDealDamage = false;
+        EnemyAI.Instance.PauseAttack(true);
         Pokemon pokemon = ClickerButtonScript.Instance.enemy;
         
         //Shakes on Successes
@@ -77,7 +77,8 @@ public class ButtonFunctions : MonoBehaviour
                 GameManager.Instance.EnemySprite.enabled = true;
                 GameManager.Instance.ThrownBall.enabled = false;
                 GameManager.Instance.ThrowBall.interactable = true;
-                EnemyAI.Instance.CanDealDamage = true;
+                EnemyAI.Instance.PauseAttack(false);
+                EnemyAI.Instance.Attack();
                 yield break;
             }
             if (i != 3)
@@ -87,11 +88,12 @@ public class ButtonFunctions : MonoBehaviour
 
         }
         Player.Instance.AddToParty(new Pokemon(ClickerButtonScript.Instance.enemy));
+        GameManager.Instance.IncreaseStageEnemiesDefeated();
         ClickerButtonScript.Instance.newPokemon();
         GameManager.Instance.EnemySprite.enabled = true;
         GameManager.Instance.ThrownBall.enabled = false;
         GameManager.Instance.ThrowBall.interactable = true;
-        EnemyAI.Instance.CanDealDamage = true;
+        EnemyAI.Instance.PauseAttack(false);
     }
     public void SetActivePartyPokemon(int slot)
     {
@@ -105,6 +107,6 @@ public class ButtonFunctions : MonoBehaviour
         Player.Instance.SelectStarter(new Pokemon(dexID, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None, RegionalForm.None, StaticPokemonForms.None, 5));
         ClickerButtonScript.Instance.newPokemon();
         GameManager.Instance.StarterSelection.SetActive(false);
-        EnemyAI.Instance.CanDealDamage = true;
+        EnemyAI.Instance.PauseAttack(false);
     }
 }

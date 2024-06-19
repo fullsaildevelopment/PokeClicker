@@ -136,6 +136,14 @@ public enum EXPType
     Fast,           //800,000 exp at lv 100
     Slow            //1,250,000 exp at lv 100
 }
+public enum StageType
+{
+    Regular,
+    MiniBoss,
+    Boss,
+    BigBoss,
+    Special
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -144,6 +152,10 @@ public class GameManager : MonoBehaviour
     public GameObject MainScreen;
     public GameObject StarterSelection;
     public Image ThrownBall;
+    public TextMeshProUGUI StageText;
+    [Header("----- Game Stats -----")]
+    public int StageNumber;
+    public int StageEnemiesDefeated;
     [Header("----- Enemy -----")]
     public Image EnemySprite;
     public Image EnemyHP;
@@ -163,11 +175,14 @@ public class GameManager : MonoBehaviour
     public Button ThrowBall;
     public List<Button> Starters;
 
+    public StageType stageType;
+
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
         StarterSelection.SetActive(true);
+        setStage(1);
     }
 
     // Update is called once per frame
@@ -277,6 +292,40 @@ public class GameManager : MonoBehaviour
         }
         return new Pokemon(PokemonList.PokemonData[_dexID]);
     }
+    public void setStage(int stagenum)
+    {
+        StageNumber = stagenum;
+        StageText.text = "Stage " + StageNumber.ToString();
+        StageEnemiesDefeated = 0;
+        if (StageNumber % 100 == 0)
+        {
+            stageType = StageType.BigBoss;
+        }
+        else if (StageNumber % 50 == 0)
+        {
+            stageType = StageType.Boss;
+        }
+        else if (StageNumber % 10 == 0)
+        {
+            stageType = StageType.MiniBoss;
+        }
+        else if (StageNumber % 25 == 0 && StageNumber > 100)
+        {
+            stageType = StageType.Special;
+        }
+        else
+        {
+            stageType = StageType.Regular;
+        }
+    }
+    public void IncreaseStageEnemiesDefeated()
+    {
+        StageEnemiesDefeated++;
+        if ((StageEnemiesDefeated >= 10 && stageType == StageType.Regular) || (StageEnemiesDefeated != 0 && stageType != StageType.Regular))
+        {
+            setStage(StageNumber + 1);
+        }
+    }
 }
 public class Pokemon
 {
@@ -324,16 +373,10 @@ public class Pokemon
         type1 = PokemonType.None; 
         type2 = PokemonType.None;
 
-        level = 0;
-        foreach (Pokemon pokemon in Player.Instance.party)
-        {
-            level += pokemon.level;
-        }
-        level /= Player.Instance.party.Count;
-        int min = level - 8;
-        if (min <= 0)
-            min = 1;
-        int max = level + 1;
+        int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10)) / 2;
+        int max = min + 5;
+        if (min <= 1)
+            min = 2;
         level = Random.Range(min, max);
         maxHP = (int)(level * Random.Range(3, 8));
         currHP = maxHP;
@@ -377,16 +420,10 @@ public class Pokemon
         type2 = _type2;
         if (_level == 0)
         {
-            level = 0;
-            foreach (Pokemon pokemon in Player.Instance.party)
-            {
-                level += pokemon.level;
-            }
-            level /= Player.Instance.party.Count;
-            int min = level - 8;
-            if (min <= 0)
-                min = 1;
-            int max = level + 1;
+            int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10)) / 2;
+            int max = min + 5;
+            if (min <= 1)
+                min = 2;
             level = Random.Range(min, max);
         }
         else

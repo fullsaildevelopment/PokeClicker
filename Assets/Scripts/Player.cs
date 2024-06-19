@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.PlayerHP.fillAmount = (float)party[slot].currHP / party[slot].maxHP;
         GameManager.Instance.PlayerHPNum.text = party[slot].currHP.ToString() + "/" + party[slot].maxHP.ToString();
         GameManager.Instance.PlayerEXP.fillAmount = party[slot].exp / (float)Math.Pow(party[slot].level, 3);
-        EnemyAI.Instance.CanDealDamage = true;
+        EnemyAI.Instance.PauseAttack(false);
     }
     public void TakeDamage(int damage)
     {
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.PlayerHPNum.text = party[currSlot].currHP.ToString() + "/" + party[currSlot].maxHP.ToString();
         if (party[currSlot].currHP <= 0)
         {
-            EnemyAI.Instance.CanDealDamage = false;
+            EnemyAI.Instance.PauseAttack(true);
             GameManager.Instance.PlayerSprite.enabled = false;
         }
     }

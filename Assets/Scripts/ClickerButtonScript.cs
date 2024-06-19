@@ -43,7 +43,9 @@ public class ClickerButtonScript : MonoBehaviour
             {
                 int exp = (100 * level) / 7;
                 Player.Instance.AddEXP(exp, Player.Instance.currSlot);
+                GameManager.Instance.IncreaseStageEnemiesDefeated();
                 newPokemon();
+
             }
         }
     }
@@ -59,6 +61,7 @@ public class ClickerButtonScript : MonoBehaviour
     }
     public void newPokemon()
     {
+        EnemyAI.Instance.ResetAttack();
         enemy = new Pokemon();
         level = enemy.level;
         maxHP = enemy.maxHP;

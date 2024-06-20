@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
     public int currSlot;
     public List<Pokemon> party = new List<Pokemon>(6);
 
+    public bool CanAttack;
+
     private void Awake()
     {
         Instance = this;
@@ -18,18 +21,18 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-    }
+        CanAttack = false;    }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void SelectStarter(Pokemon starter)
     {
         AddToParty(starter);
         SetActivePokemon(0);
+        CanAttack = true;
     }
     public void AddToParty(Pokemon pokemon)
     {
@@ -89,12 +92,28 @@ public class Player : MonoBehaviour
         party[currSlot].currHP -= damage;
         if (party[currSlot].currHP < 0)
             party[currSlot].currHP = 0;
-        GameManager.Instance.PlayerHP.fillAmount = (float)party[currSlot].currHP / party[currSlot].maxHP;
+        StartCoroutine(UpdateHPBar((float)party[currSlot].currHP / party[currSlot].maxHP));
         GameManager.Instance.PlayerHPNum.text = party[currSlot].currHP.ToString() + "/" + party[currSlot].maxHP.ToString();
         if (party[currSlot].currHP <= 0)
         {
             EnemyAI.Instance.PauseAttack(true);
             GameManager.Instance.PlayerSprite.enabled = false;
+        }
+    }
+    IEnumerator UpdateHPBar(float newPercentage)
+    {
+        while (GameManager.Instance.PlayerHP.fillAmount != newPercentage)
+        {
+            GameManager.Instance.PlayerHP.fillAmount -= 0.01f;
+            if (GameManager.Instance.PlayerHP.fillAmount <= 0.2f)
+                GameManager.Instance.PlayerHP.color = new Color((float)225 / 255, 0, 0);
+            else if (GameManager.Instance.PlayerHP.fillAmount <= 0.5f)
+                GameManager.Instance.PlayerHP.color = Color.yellow;
+            else
+                GameManager.Instance.PlayerHP.color = new Color(0, (float)225/255, 0);
+            if (GameManager.Instance.PlayerHP.fillAmount <= newPercentage)
+                GameManager.Instance.PlayerHP.fillAmount = newPercentage;
+            yield return new WaitForSeconds(0.003f); 
         }
     }
 }

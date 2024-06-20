@@ -87,9 +87,12 @@ public class ButtonFunctions : MonoBehaviour
             }
 
         }
+        GameManager.Instance.ThrownBall.color = Color.gray;
+        yield return new WaitForSeconds(1);
         Player.Instance.AddToParty(new Pokemon(ClickerButtonScript.Instance.enemy));
         GameManager.Instance.IncreaseStageEnemiesDefeated();
         ClickerButtonScript.Instance.newPokemon();
+        GameManager.Instance.ThrownBall.color = Color.white;
         GameManager.Instance.EnemySprite.enabled = true;
         GameManager.Instance.ThrownBall.enabled = false;
         GameManager.Instance.ThrowBall.interactable = true;

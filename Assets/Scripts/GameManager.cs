@@ -378,7 +378,7 @@ public class Pokemon
         if (min <= 1)
             min = 2;
         level = Random.Range(min, max);
-        maxHP = (int)(level * Random.Range(3, 8));
+        maxHP = (int)(level * Random.Range(3, 8)) * 3;
         currHP = maxHP;
         exp = 0;
         dynamicForm = DynamicPokemonForms.None;

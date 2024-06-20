@@ -7191,6 +7191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currSlot: 0
+  CanAttack: 0
 --- !u!1 &1037850360
 GameObject:
   m_ObjectHideFlags: 0
@@ -14574,6 +14575,18 @@ PrefabInstance:
     - target: {fileID: 1129256487371106835, guid: 5b66327776c7f8848ab4cdc2787b1a83, type: 3}
       propertyPath: m_Name
       value: ClickerButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129256487371106838, guid: 5b66327776c7f8848ab4cdc2787b1a83, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129256487371106838, guid: 5b66327776c7f8848ab4cdc2787b1a83, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129256487371106838, guid: 5b66327776c7f8848ab4cdc2787b1a83, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1129256487371106838, guid: 5b66327776c7f8848ab4cdc2787b1a83, type: 3}
       propertyPath: m_Enabled

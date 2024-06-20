@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using TMPro;
 using UnityEngine;
 
 public class ButtonFunctions : MonoBehaviour
@@ -23,9 +21,9 @@ public class ButtonFunctions : MonoBehaviour
         if (StartShakeBall)
         {
             deltaTime1 += Time.deltaTime;
-            if (deltaTime1 >= 0.0333f)
+            if (deltaTime1 >= 1f/30f)
             {
-                deltaTime1 = 0;
+                deltaTime1 -= 1f/30f;
                 if (!FinishShakeBall)
                 {
                     GameManager.Instance.ThrownBall.transform.Rotate(0, 0, 8);
@@ -111,5 +109,23 @@ public class ButtonFunctions : MonoBehaviour
         ClickerButtonScript.Instance.newPokemon();
         GameManager.Instance.StarterSelection.SetActive(false);
         EnemyAI.Instance.PauseAttack(false);
+    }
+    public void Restart()
+    {
+        Player.Instance.takingDamage = false;
+        ClickerButtonScript.Instance.takingDamage = false;
+        Player.Instance.party.Clear();
+        foreach (UnityEngine.UI.Button partyButton in GameManager.Instance.PartySlots)
+        {
+            partyButton.interactable = false;
+        }
+        GameManager.Instance.setStage(1);
+        GameManager.Instance.StageEnemiesDefeated = 0;
+        GameManager.Instance.StarterSelection.SetActive(true);
+        GameManager.Instance.GameOverScreen.SetActive(false);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

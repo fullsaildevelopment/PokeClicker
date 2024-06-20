@@ -23,14 +23,14 @@ public class EnemyAI : MonoBehaviour
             deltaTime += Time.deltaTime;
             if (deltaTime >= 3)
             {
-                deltaTime = 0;
+                deltaTime -= 3;
                 Attack();
             }
         }
     }
     public void Attack()
     {
-        int damage = (int)(ClickerButtonScript.Instance.enemy.level * 1.5f);
+        int damage = (int)(ClickerButtonScript.Instance.enemy.level * Random.Range(2, 5));
         damage = (int)(damage * GameManager.Instance.TypeMatchup(ClickerButtonScript.Instance.enemy, Player.Instance.party[Player.Instance.currSlot])) / 3;
         Player.Instance.TakeDamage(damage);
     }

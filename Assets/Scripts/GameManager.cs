@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Networking.Types;
 using UnityEngine.UI;
 
 public enum TerraType
@@ -151,6 +149,7 @@ public class GameManager : MonoBehaviour
     [Header("----- UI -----")]
     public GameObject MainScreen;
     public GameObject StarterSelection;
+    public GameObject GameOverScreen;
     public Image ThrownBall;
     public TextMeshProUGUI StageText;
     [Header("----- Game Stats -----")]
@@ -378,7 +377,7 @@ public class Pokemon
         if (min <= 1)
             min = 2;
         level = Random.Range(min, max);
-        maxHP = (int)(level * Random.Range(3, 8)) * 3;
+        maxHP = (int)(level * Random.Range(3, 8));
         currHP = maxHP;
         exp = 0;
         dynamicForm = DynamicPokemonForms.None;

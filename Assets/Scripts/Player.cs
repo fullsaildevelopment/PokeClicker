@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,8 +9,9 @@ public class Player : MonoBehaviour
     [Header("----- Party -----")]
     public int currSlot;
     public List<Pokemon> party = new List<Pokemon>(6);
-
+    public bool takingDamage;
     public bool CanAttack;
+    int txtHP;
 
     private void Awake()
     {
@@ -21,12 +20,33 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CanAttack = false;    }
+        CanAttack = false;    
+        takingDamage = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (takingDamage)
+        {
+            GameManager.Instance.PlayerHP.fillAmount -= 1 * Time.deltaTime;
+            txtHP = (int)(GameManager.Instance.PlayerHP.fillAmount * party[currSlot].maxHP);
+            GameManager.Instance.PlayerHPNum.text = txtHP.ToString() + "/" + party[currSlot].maxHP;
+            if (GameManager.Instance.PlayerHP.fillAmount <= 0.2f)
+                GameManager.Instance.PlayerHP.color = new Color((float)225 / 255, 0, 0);
+            else if (GameManager.Instance.PlayerHP.fillAmount <= 0.5f)
+                GameManager.Instance.PlayerHP.color = Color.yellow;
+            else
+                GameManager.Instance.PlayerHP.color = new Color(0, (float)225 / 255, 0);
+            if (GameManager.Instance.PlayerHP.fillAmount <= (float)party[currSlot].currHP / party[currSlot].maxHP
+                && txtHP <= party[currSlot].currHP)
+            {
+                takingDamage = false;
+                GameManager.Instance.PlayerHP.fillAmount = (float)party[currSlot].currHP / party[currSlot].maxHP;
+                txtHP = party[currSlot].currHP;
+                GameManager.Instance.PlayerHPNum.text = txtHP.ToString() + "/" + party[currSlot].maxHP;
+            }
+        }
     }
     public void SelectStarter(Pokemon starter)
     {
@@ -69,6 +89,7 @@ public class Player : MonoBehaviour
         pokemon.currHP += HPUp * 2;
         if (pokemon.currHP > pokemon.maxHP)
             pokemon.currHP = pokemon.maxHP;
+        txtHP = party[currSlot].currHP;
         GameManager.Instance.PlayerHP.fillAmount = (float)pokemon.currHP / pokemon.maxHP;
         GameManager.Instance.PlayerHPNum.text = pokemon.currHP.ToString() + "/" + pokemon.maxHP.ToString();
         GameManager.Instance.PlayerEXP.fillAmount = pokemon.exp / (float)Math.Pow(party[currSlot].level, 3);
@@ -83,37 +104,46 @@ public class Player : MonoBehaviour
         GameManager.Instance.PlayerLevel.text = "lv." + party[slot].level.ToString();
         GameManager.Instance.PlayerName.text = PokemonList.pokemonNames[party[slot].dexID];
         GameManager.Instance.PlayerHP.fillAmount = (float)party[slot].currHP / party[slot].maxHP;
+        if (GameManager.Instance.PlayerHP.fillAmount <= 0.2f)
+            GameManager.Instance.PlayerHP.color = new Color((float)225 / 255, 0, 0);
+        else if (GameManager.Instance.PlayerHP.fillAmount <= 0.5f)
+            GameManager.Instance.PlayerHP.color = Color.yellow;
+        else
+            GameManager.Instance.PlayerHP.color = new Color(0, (float)225 / 255, 0);
         GameManager.Instance.PlayerHPNum.text = party[slot].currHP.ToString() + "/" + party[slot].maxHP.ToString();
         GameManager.Instance.PlayerEXP.fillAmount = party[slot].exp / (float)Math.Pow(party[slot].level, 3);
+        txtHP = party[currSlot].currHP;
         EnemyAI.Instance.PauseAttack(false);
+        CanAttack = true;
     }
     public void TakeDamage(int damage)
     {
         party[currSlot].currHP -= damage;
-        if (party[currSlot].currHP < 0)
+        if (party[currSlot].currHP < 0) 
             party[currSlot].currHP = 0;
-        StartCoroutine(UpdateHPBar((float)party[currSlot].currHP / party[currSlot].maxHP));
-        GameManager.Instance.PlayerHPNum.text = party[currSlot].currHP.ToString() + "/" + party[currSlot].maxHP.ToString();
+        takingDamage = true;
+        //GameManager.Instance.PlayerHPNum.text = party[currSlot].currHP.ToString() + "/" + party[currSlot].maxHP.ToString();
         if (party[currSlot].currHP <= 0)
         {
+            takingDamage = false;
             EnemyAI.Instance.PauseAttack(true);
             GameManager.Instance.PlayerSprite.enabled = false;
+            CanAttack = false;
+            if (PartyWipe())
+            {
+                GameManager.Instance.GameOverScreen.SetActive(true);
+            }
         }
     }
-    IEnumerator UpdateHPBar(float newPercentage)
+    bool PartyWipe()
     {
-        while (GameManager.Instance.PlayerHP.fillAmount != newPercentage)
+        foreach (Pokemon pokemon in party)
         {
-            GameManager.Instance.PlayerHP.fillAmount -= 0.01f;
-            if (GameManager.Instance.PlayerHP.fillAmount <= 0.2f)
-                GameManager.Instance.PlayerHP.color = new Color((float)225 / 255, 0, 0);
-            else if (GameManager.Instance.PlayerHP.fillAmount <= 0.5f)
-                GameManager.Instance.PlayerHP.color = Color.yellow;
-            else
-                GameManager.Instance.PlayerHP.color = new Color(0, (float)225/255, 0);
-            if (GameManager.Instance.PlayerHP.fillAmount <= newPercentage)
-                GameManager.Instance.PlayerHP.fillAmount = newPercentage;
-            yield return new WaitForSeconds(0.003f); 
+            if (pokemon.currHP > 0)
+            {
+                return false;
+            }
         }
+        return true;
     }
 }

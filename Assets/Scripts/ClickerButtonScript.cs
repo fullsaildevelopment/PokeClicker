@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class ClickerButtonScript : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class ClickerButtonScript : MonoBehaviour
     public int currHP;
     public int level;
     public Pokemon enemy;
-    bool takingDamage;
+    public bool takingDamage;
 
     private void Awake()
     {
@@ -30,7 +28,7 @@ public class ClickerButtonScript : MonoBehaviour
     {
         if (takingDamage)
         {
-            GameManager.Instance.EnemyHP.fillAmount -= 0.01f;
+            GameManager.Instance.EnemyHP.fillAmount -= 2 * Time.deltaTime;
             if (GameManager.Instance.EnemyHP.fillAmount <= 0.2f)
                 GameManager.Instance.EnemyHP.color = new Color((float)225 / 255, 0, 0);
             else if (GameManager.Instance.EnemyHP.fillAmount <= 0.5f)

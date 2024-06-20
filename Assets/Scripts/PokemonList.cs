@@ -1,42 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Numerics;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using System.Threading;
-using Unity.Android.Gradle;
-using Unity.Burst.CompilerServices;
-using Unity.Burst.Intrinsics;
-using Unity.VisualScripting.Antlr3.Runtime;
-using Unity.VisualScripting;
-using UnityEditor.Media;
-using UnityEditor.PackageManager;
-using UnityEditor.U2D.Path;
-using UnityEditor;
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
-using static Unity.Burst.Intrinsics.X86.Sse4_2;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
-using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
-using static UnityEditor.PlayerSettings;
-using static UnityEditor.UIElements.ToolbarMenu;
-using static UnityEngine.AudioSettings;
-using static UnityEngine.EventSystems.EventTrigger;
-using static UnityEngine.ParticleSystem;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
-using UnityEngine.Analytics;
-using UnityEngine.Networking.Types;
-using UnityEngine.Profiling;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.Timeline;
-using UnityEngine.UI;
-using UnityEngine.UIElements.Experimental;
-using UnityEngine.UIElements;
-using UnityEngine.WSA;
-using UnityEngine.XR;
+
 
 public class PokemonList : MonoBehaviour
 {

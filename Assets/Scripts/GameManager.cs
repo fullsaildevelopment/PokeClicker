@@ -325,6 +325,15 @@ public class GameManager : MonoBehaviour
             setStage(StageNumber + 1);
         }
     }
+    public Color GetHPColor(float percent)
+    {
+        if (percent <= 0.2f)
+            return new Color((float)225 / 255, 0, 0);
+        else if (percent <= 0.5f)
+            return Color.yellow;
+        else
+            return new Color(0, (float)225 / 255, 0);
+    }
 }
 public class Pokemon
 {

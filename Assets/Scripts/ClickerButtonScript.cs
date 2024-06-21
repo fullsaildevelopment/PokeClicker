@@ -29,12 +29,7 @@ public class ClickerButtonScript : MonoBehaviour
         if (takingDamage)
         {
             GameManager.Instance.EnemyHP.fillAmount -= 2 * Time.deltaTime;
-            if (GameManager.Instance.EnemyHP.fillAmount <= 0.2f)
-                GameManager.Instance.EnemyHP.color = new Color((float)225 / 255, 0, 0);
-            else if (GameManager.Instance.EnemyHP.fillAmount <= 0.5f)
-                GameManager.Instance.EnemyHP.color = Color.yellow;
-            else
-                GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
+            GameManager.Instance.PlayerHP.color = GameManager.Instance.GetHPColor(GameManager.Instance.PlayerHP.fillAmount);
             if (GameManager.Instance.EnemyHP.fillAmount <= (float)currHP / maxHP)
             {
                 takingDamage = false;

@@ -137,6 +137,7 @@ public enum EXPType
 public enum StageType
 {
     Regular,
+    Trainer,
     MiniBoss,
     Boss,
     BigBoss,
@@ -152,15 +153,33 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public Image ThrownBall;
     public TextMeshProUGUI StageText;
+
     [Header("----- Game Stats -----")]
     public int StageNumber;
     public int StageEnemiesDefeated;
+
     [Header("----- Enemy -----")]
     public Image EnemySprite;
-    public Image EnemyHP;
     public GameObject EnemyCritBox;
     public TextMeshProUGUI EnemyLevel;
     public TextMeshProUGUI EnemyName;
+
+    [Header("----- Normal Enemy -----")]
+    public GameObject EnemyStats;
+    public Image EnemyHP;
+
+    [Header("----- MiniBoss -----")]
+    public GameObject MiniBossStats;
+    public List<Image> MiniBossHPBars;
+
+    [Header("----- Boss -----")]
+    public GameObject BossStats;
+    public List<Image> BossHPBars;
+
+    [Header("----- BigBoss -----")]
+    public GameObject BigBossStats;
+    public List<Image> BigBossHPBars;
+
     [Header("----- Player -----")]
     public Image PlayerSprite;
     public Image PlayerHP;
@@ -311,6 +330,10 @@ public class GameManager : MonoBehaviour
         else if (StageNumber % 25 == 0 && StageNumber > 100)
         {
             stageType = StageType.Special;
+        }
+        else if (StageNumber % 5 == 0)
+        {
+            stageType = StageType.Trainer;
         }
         else
         {

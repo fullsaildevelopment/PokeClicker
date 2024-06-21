@@ -45,6 +45,20 @@ public class ButtonFunctions : MonoBehaviour
             }
         }
     }
+    public void NewStarter(int dexID)
+    {
+        Player.Instance.SelectStarter(new Pokemon(dexID, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None, RegionalForm.None, StaticPokemonForms.None, 5));
+        ClickerButtonScript.Instance.newPokemon();
+        GameManager.Instance.StarterSelection.SetActive(false);
+        EnemyAI.Instance.PauseAttack(false);
+    }
+    public void NewHisuianStarter(int dexID)
+    {
+        Player.Instance.SelectStarter(new Pokemon(dexID, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None, RegionalForm.Hisuian, StaticPokemonForms.None, 5));
+        ClickerButtonScript.Instance.newPokemon();
+        GameManager.Instance.StarterSelection.SetActive(false);
+        EnemyAI.Instance.PauseAttack(false);
+    }
     public void ThrowBall(int BallID)
     {
         BallType ball = PokemonList.BallTypes[BallID];
@@ -103,13 +117,8 @@ public class ButtonFunctions : MonoBehaviour
             Player.Instance.SetActivePokemon(slot);
         }
     }
-    public void NewStarter(int dexID)
-    {
-        Player.Instance.SelectStarter(new Pokemon(dexID, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None, RegionalForm.None, StaticPokemonForms.None, 5));
-        ClickerButtonScript.Instance.newPokemon();
-        GameManager.Instance.StarterSelection.SetActive(false);
-        EnemyAI.Instance.PauseAttack(false);
-    }
+
+
     public void Restart()
     {
         Player.Instance.takingDamage = false;

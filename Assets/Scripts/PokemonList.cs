@@ -2155,8 +2155,8 @@ public class PokemonList : MonoBehaviour
     public static List<Pokemon> StaticFormPokemonData = new List<Pokemon>()
     {
         new(0, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None),
-        new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Alolan, StaticPokemonForms.BlazeBreed),
-        new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Alolan, StaticPokemonForms.AquaBreed),
+        new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Paldean, StaticPokemonForms.BlazeBreed),
+        new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Paldean, StaticPokemonForms.AquaBreed),
         new(201, 0, EvolveMethod.None, 0, PokemonType.Psychic, PokemonType.None, RegionalForm.None, StaticPokemonForms.A)
 
     };

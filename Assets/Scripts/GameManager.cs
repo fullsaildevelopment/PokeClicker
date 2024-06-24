@@ -153,6 +153,8 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public Image ThrownBall;
     public TextMeshProUGUI StageText;
+    public TextMeshProUGUI MoneyText;
+    public TextMeshProUGUI SkillShardText;
 
     [Header("----- Game Stats -----")]
     public int StageNumber;

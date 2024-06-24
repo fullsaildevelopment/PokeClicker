@@ -165,6 +165,7 @@ public class ClickerButtonScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         int exp = (100 * level) / 7;
         Player.Instance.AddEXP(exp, Player.Instance.currSlot);
+        Economy.Instance.UpdateSkillShards(exp / 2);
         GameManager.Instance.IncreaseStageEnemiesDefeated();
         newPokemon();
     }

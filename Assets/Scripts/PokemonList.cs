@@ -2196,6 +2196,56 @@ public class PokemonList : MonoBehaviour
         new(49, 31, EvolveMethod.None, 49, PokemonType.Bug, PokemonType.Poison),
         new(50, 26, EvolveMethod.LevelUp, 51, PokemonType.Ground, PokemonType.None),
         new(51, 26, EvolveMethod.None, 51, PokemonType.Ground, PokemonType.None),
+        new(52, 28, EvolveMethod.LevelUp, 53, PokemonType.Normal, PokemonType.None),
+        new(53, 28, EvolveMethod.None, 53, PokemonType.Normal, PokemonType.None),
+        new(54, 33, EvolveMethod.LevelUp, 55, PokemonType.Water, PokemonType.None),
+        new(55, 33, EvolveMethod.None, 55, PokemonType.Water, PokemonType.None),
+        new(56, 28, EvolveMethod.LevelUp, 57, PokemonType.Fighting, PokemonType.None),
+        new(57, 28, EvolveMethod.None, 57, PokemonType.Fighting, PokemonType.None), //Update this later
+        new(58, 0, EvolveMethod.UseItem, 59, PokemonType.Fire, PokemonType.None),
+        new(59, 0, EvolveMethod.None, 59, PokemonType.Fire, PokemonType.None),
+        new(60, 25, EvolveMethod.LevelUp, 61, PokemonType.Water, PokemonType.None),
+        new(61, 0, EvolveMethod.UseItem, 62, PokemonType.Water, PokemonType.None), //Update this later
+        new(62, 0, EvolveMethod.None, 62, PokemonType.Water, PokemonType.Fighting),
+        new(63, 16, EvolveMethod.LevelUp, 64, PokemonType.Psychic, PokemonType.None),
+        new(64, 0, EvolveMethod.UseItem, 65, PokemonType.Psychic, PokemonType.None),
+        new(65, 0, EvolveMethod.None, 65, PokemonType.Psychic, PokemonType.None),
+        new(66, 28, EvolveMethod.LevelUp, 67, PokemonType.Fighting, PokemonType.None),
+        new(67, 0, EvolveMethod.UseItem, 68, PokemonType.Fighting, PokemonType.None),
+        new(68, 0, EvolveMethod.None, 68, PokemonType.Fighting, PokemonType.None),
+        new(69, 21, EvolveMethod.LevelUp, 70, PokemonType.Grass, PokemonType.Poison),
+        new(70, 0, EvolveMethod.UseItem, 71, PokemonType.Grass, PokemonType.Poison),
+        new(71, 0, EvolveMethod.None, 71, PokemonType.Grass, PokemonType.Poison),
+        new(72, 30, EvolveMethod.LevelUp, 73, PokemonType.Water, PokemonType.Poison),
+        new(73, 30, EvolveMethod.None, 73, PokemonType.Water, PokemonType.Poison),
+        new(74, 25, EvolveMethod.LevelUp, 75, PokemonType.Rock, PokemonType.Ground),
+        new(75, 0, EvolveMethod.UseItem, 76, PokemonType.Rock, PokemonType.Ground),
+        new(76, 0, EvolveMethod.None, 76, PokemonType.Rock, PokemonType.Ground),
+        new(77, 40, EvolveMethod.LevelUp, 78, PokemonType.Fire, PokemonType.None),
+        new(78, 40, EvolveMethod.None, 78, PokemonType.Fire, PokemonType.None),
+        new(79, 37, EvolveMethod.LevelUp, 80, PokemonType.Water, PokemonType.Psychic), //Update this later
+        new(80, 37, EvolveMethod.None, 80, PokemonType.Water, PokemonType.Psychic),
+        new(81, 30, EvolveMethod.LevelUp, 82, PokemonType.Electric, PokemonType.Steel),
+        new(82, 30, EvolveMethod.None, 82, PokemonType.Electric, PokemonType.Steel), //Update this later
+        new(83, 0, EvolveMethod.None, 82, PokemonType.Normal, PokemonType.Flying),
+        new(84, 31, EvolveMethod.LevelUp, 85, PokemonType.Normal, PokemonType.Flying),
+        new(85, 31, EvolveMethod.None, 85, PokemonType.Normal, PokemonType.Flying),
+        new(86, 34, EvolveMethod.LevelUp, 87, PokemonType.Water, PokemonType.None),
+        new(87, 34, EvolveMethod.None, 87, PokemonType.Water, PokemonType.Ice),
+        new(88, 38, EvolveMethod.LevelUp, 89, PokemonType.Poison, PokemonType.None),
+        new(89, 38, EvolveMethod.None, 89, PokemonType.Poison, PokemonType.None),
+        new(90, 0, EvolveMethod.UseItem, 91, PokemonType.Water, PokemonType.None),
+        new(91, 0, EvolveMethod.None, 91, PokemonType.Water, PokemonType.Ice),
+        new(92, 25, EvolveMethod.LevelUp, 93, PokemonType.Ghost, PokemonType.Poison),
+        new(93, 0, EvolveMethod.UseItem, 94, PokemonType.Ghost, PokemonType.Poison),
+        new(94, 0, EvolveMethod.None, 94, PokemonType.Ghost, PokemonType.Poison),
+        new(95, 0, EvolveMethod.None, 95, PokemonType.Rock, PokemonType.Ground), //Update this later
+        new(96, 26, EvolveMethod.LevelUp, 97, PokemonType.Psychic, PokemonType.None),
+        new(97, 26, EvolveMethod.None, 97, PokemonType.Psychic, PokemonType.None),
+        new(98, 28, EvolveMethod.LevelUp, 99, PokemonType.Water, PokemonType.None),
+        new(99, 28, EvolveMethod.None, 99, PokemonType.Water, PokemonType.None),
+        new(100, 30, EvolveMethod.LevelUp, 101, PokemonType.Electric, PokemonType.None),
+        new(101, 30, EvolveMethod.None, 101, PokemonType.Electric, PokemonType.None),
     };
     public static List<Pokemon> RegionalPokemonData = new List<Pokemon>()
     {
@@ -2210,7 +2260,23 @@ public class PokemonList : MonoBehaviour
         new(38, 0, EvolveMethod.None, 38, PokemonType.Ice, PokemonType.Fairy, RegionalForm.Alolan),
         new(50, 26, EvolveMethod.LevelUp, 51, PokemonType.Ground, PokemonType.Steel, RegionalForm.Alolan),
         new(51, 26, EvolveMethod.None, 51, PokemonType.Ground, PokemonType.Steel, RegionalForm.Alolan),
-
+        new(52, 28, EvolveMethod.HeldItemAndLevel, 53, PokemonType.Dark, PokemonType.None, RegionalForm.Alolan),
+        new(52, 0, EvolveMethod.None, 53, PokemonType.Steel, PokemonType.None, RegionalForm.Galarian), //Update this later
+        new(53, 28, EvolveMethod.None, 53, PokemonType.Dark, PokemonType.None, RegionalForm.Alolan),
+        new(58, 0, EvolveMethod.UseItem, 59, PokemonType.Fire, PokemonType.Rock, RegionalForm.Hisuian),
+        new(59, 0, EvolveMethod.None, 59, PokemonType.Fire, PokemonType.Rock, RegionalForm.Hisuian),
+        new(74, 25, EvolveMethod.LevelUp, 75, PokemonType.Rock, PokemonType.Electric, RegionalForm.Alolan),
+        new(75, 0, EvolveMethod.UseItem, 76, PokemonType.Rock, PokemonType.Electric, RegionalForm.Alolan),
+        new(76, 0, EvolveMethod.None, 76, PokemonType.Rock, PokemonType.Electric, RegionalForm.Alolan),
+        new(77, 40, EvolveMethod.LevelUp, 78, PokemonType.Psychic, PokemonType.None, RegionalForm.Galarian),
+        new(78, 40, EvolveMethod.None, 78, PokemonType.Psychic, PokemonType.Fairy, RegionalForm.Galarian),
+        new(79, 37, EvolveMethod.UseItem, 80, PokemonType.Poison, PokemonType.Psychic), //Update this later
+        new(80, 37, EvolveMethod.None, 80, PokemonType.Psychic, PokemonType.None),
+        new(83, 0, EvolveMethod.None, 82, PokemonType.Fighting, PokemonType.None, RegionalForm.Galarian), //Update this later
+        new(88, 38, EvolveMethod.LevelUp, 89, PokemonType.Poison, PokemonType.Dark, RegionalForm.Alolan),
+        new(89, 38, EvolveMethod.None, 89, PokemonType.Poison, PokemonType.Dark, RegionalForm.Alolan),
+        new(100, 30, EvolveMethod.LevelUp, 101, PokemonType.Electric, PokemonType.Grass, RegionalForm.Hisuian),
+        new(101, 30, EvolveMethod.None, 101, PokemonType.Electric, PokemonType.Grass, RegionalForm.Hisuian),
     };
     public static List<Pokemon> StaticFormPokemonData = new List<Pokemon>()
     {

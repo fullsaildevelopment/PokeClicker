@@ -176,13 +176,13 @@ public class ClickerButtonScript : MonoBehaviour
         {
             enemy = new Pokemon();
             GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
-            GameManager.Instance.EnemyHP.fillAmount = (float)enemy.currHP / enemy.maxHP;
+            GameManager.Instance.EnemyHP.fillAmount = 1;
         }
         else if (GameManager.Instance.stageType == StageType.Trainer)
         {
             enemy = new Pokemon();
             GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
-            GameManager.Instance.EnemyHP.fillAmount = (float)enemy.currHP / enemy.maxHP;
+            GameManager.Instance.EnemyHP.fillAmount = 1;
         }
         else if (GameManager.Instance.stageType == StageType.MiniBoss)
         {
@@ -190,7 +190,7 @@ public class ClickerButtonScript : MonoBehaviour
             for (int i = 0; i < 2; ++i)
             {
                 GameManager.Instance.MiniBossHPBars[i].color = new Color(0, (float)225 / 255, 0);
-                GameManager.Instance.MiniBossHPBars[i].fillAmount = (float)enemy.currHP / enemy.maxHP;
+                GameManager.Instance.MiniBossHPBars[i].fillAmount = 1;
             }
             currHPBar = 1;
             currHPSlider = currHPBar;
@@ -201,7 +201,7 @@ public class ClickerButtonScript : MonoBehaviour
             for (int i = 0; i < 4; ++i)
             {
                 GameManager.Instance.BossHPBars[i].color = new Color(0, (float)225 / 255, 0);
-                GameManager.Instance.BossHPBars[i].fillAmount = (float)enemy.currHP / enemy.maxHP;
+                GameManager.Instance.BossHPBars[i].fillAmount = 1;
             }
             currHPBar = 3;
             currHPSlider = currHPBar;
@@ -212,7 +212,7 @@ public class ClickerButtonScript : MonoBehaviour
             for (int i = 0; i < 6; ++i)
             {
                 GameManager.Instance.BigBossHPBars[i].color = new Color(0, (float)225 / 255, 0);
-                GameManager.Instance.BigBossHPBars[i].fillAmount = (float)enemy.currHP / enemy.maxHP;
+                GameManager.Instance.BigBossHPBars[i].fillAmount = 1;
             }
             currHPBar = 5;
             currHPSlider = currHPBar;
@@ -221,7 +221,7 @@ public class ClickerButtonScript : MonoBehaviour
         {
             enemy = new Pokemon();
             GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
-            GameManager.Instance.EnemyHP.fillAmount = (float)enemy.currHP / enemy.maxHP;
+            GameManager.Instance.EnemyHP.fillAmount = 1;
         }
 
         GameManager.Instance.EnemyLevel.text = "lv." + enemy.level.ToString();

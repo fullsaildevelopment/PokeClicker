@@ -2245,7 +2245,7 @@ public class PokemonList : MonoBehaviour
         new(98, 28, EvolveMethod.LevelUp, 99, PokemonType.Water, PokemonType.None),
         new(99, 28, EvolveMethod.None, 99, PokemonType.Water, PokemonType.None),
         new(100, 30, EvolveMethod.LevelUp, 101, PokemonType.Electric, PokemonType.None),
-        new(101, 30, EvolveMethod.None, 101, PokemonType.Electric, PokemonType.None),
+        new(101, 30, EvolveMethod.None, 101, PokemonType.Electric, PokemonType.None)
     };
     public static List<Pokemon> RegionalPokemonData = new List<Pokemon>()
     {
@@ -2276,7 +2276,7 @@ public class PokemonList : MonoBehaviour
         new(88, 38, EvolveMethod.LevelUp, 89, PokemonType.Poison, PokemonType.Dark, RegionalForm.Alolan),
         new(89, 38, EvolveMethod.None, 89, PokemonType.Poison, PokemonType.Dark, RegionalForm.Alolan),
         new(100, 30, EvolveMethod.LevelUp, 101, PokemonType.Electric, PokemonType.Grass, RegionalForm.Hisuian),
-        new(101, 30, EvolveMethod.None, 101, PokemonType.Electric, PokemonType.Grass, RegionalForm.Hisuian),
+        new(101, 30, EvolveMethod.None, 101, PokemonType.Electric, PokemonType.Grass, RegionalForm.Hisuian)
     };
     public static List<Pokemon> StaticFormPokemonData = new List<Pokemon>()
     {

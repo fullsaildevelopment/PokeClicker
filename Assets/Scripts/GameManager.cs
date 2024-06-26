@@ -52,9 +52,22 @@ public enum HeldItem
 {
     None
 }
-public enum EvolveMethod
+public enum EvolveMethod 
 {
-    None, LevelUp, UseItem, HeldItemAndLevel
+    //For move levelup, just change it to level up the level after the move could be learned in the normal games
+    //if the Pokemon has multiple evo paths that use the same methods or isn't listed, let the player choose or make it random.
+
+    None, LevelUp,
+    WaterStone, ThunderStone, FireStone, DawnStone, DuskStone, LeafStone, IceStone, SunStone, MoonStone, 
+    LinkingCable, GalaricaCuff, GalaricaWreath, BlackAugurite,
+    LinkKingsRock, LinkMetalCoat, LinkProtector, LinkDragonScale, LinkElectirizer, LinkMagmarizer,
+    LinkUpgrade, LinkDubiousDisc,
+    LvlUpFriendshipToken, LvlUpOvalStone,
+    Crit3Times
+
+        //If its not listed yet, add it here
+        //Don't add level up by move or time of day methods
+        //Friendship levelups work by having the pokemon hold the friendship token and leveling up.
 }
 public enum Weather
 {
@@ -320,26 +333,33 @@ public class GameManager : MonoBehaviour
         if (StageNumber % 100 == 0)
         {
             stageType = StageType.BigBoss;
+            ThrowBall.interactable = false;
         }
         else if (StageNumber % 50 == 0)
         {
             stageType = StageType.Boss;
+            ThrowBall.interactable = false;
         }
         else if (StageNumber % 10 == 0)
         {
             stageType = StageType.MiniBoss;
+            ThrowBall.interactable = false;
         }
         else if (StageNumber % 25 == 0 && StageNumber > 100)
         {
             stageType = StageType.Special;
+            ThrowBall.interactable = true;
         }
         else if (StageNumber % 5 == 0)
         {
-            stageType = StageType.Trainer;
+            //stageType = StageType.Trainer;
+            stageType = StageType.Regular;
+            ThrowBall.interactable = true;
         }
         else
         {
             stageType = StageType.Regular;
+            ThrowBall.interactable = true;
         }
     }
     public void IncreaseStageEnemiesDefeated()
@@ -419,7 +439,7 @@ public class Pokemon
         reginalForm = RegionalForm.None;
         terraType = TerraType.Normal;
     }
-    public Pokemon(Pokemon pokemon)
+    public Pokemon(Pokemon pokemon, int _level = 0)
     {
         dexID = pokemon.dexID;
         evolveLevel = pokemon.evolveLevel;
@@ -428,6 +448,22 @@ public class Pokemon
         type1 = pokemon.type1;
         type2 = pokemon.type2;
 
+        if (_level == 0 && pokemon.level == 0)
+        {
+            int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10)) / 2;
+            int max = min + 5;
+            if (min <= 1)
+                min = 2;
+            pokemon.level = Random.Range(min, max);
+            pokemon.maxHP = (int)(pokemon.level * Random.Range(3, 8));
+            pokemon.currHP = pokemon.maxHP;
+        }
+        else if (_level != 0)
+        {
+            pokemon.level = _level;
+            pokemon.maxHP = (int)(pokemon.level * Random.Range(3, 8));
+            pokemon.currHP = pokemon.maxHP;
+        }
 
         level = pokemon.level;
         maxHP = pokemon.maxHP;
@@ -451,18 +487,19 @@ public class Pokemon
         evoDexID = _evoDexID;
         type1 = _type1;
         type2 = _type2;
-        if (_level == 0)
+        level = _level;
+        if (level == 0)
         {
-            int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10)) / 2;
-            int max = min + 5;
-            if (min <= 1)
-                min = 2;
-            level = Random.Range(min, max);
+            maxHP = 1;
+            currHP = maxHP;
         }
         else
-            level = _level;
-        maxHP = (int)(level * Random.Range(3, 8));
-        currHP = maxHP;
+        {
+            maxHP = (int)(level * Random.Range(3, 8));
+            currHP = maxHP;
+        }
+        
+
         exp = 0;
         dynamicForm = DynamicPokemonForms.None;
         staticForm = _staticForm;

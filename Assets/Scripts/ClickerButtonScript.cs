@@ -174,19 +174,58 @@ public class ClickerButtonScript : MonoBehaviour
         
         if (GameManager.Instance.stageType == StageType.Regular)
         {
-            enemy = new Pokemon();
+            int id = 0;
+            while (id == 0)
+            {
+                id = Random.Range(1, 149);
+                switch (id) //Don't want to spawn a legendary
+                {
+                    case 144:
+                        id = 0;
+                        break;
+                    case 145:
+                        id = 0;
+                        break;
+                    case 146:
+                        id = 0;
+                        break;
+                }
+            }
+            enemy = new Pokemon(PokemonList.PokemonData[id]);
             GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
             GameManager.Instance.EnemyHP.fillAmount = 1;
         }
         else if (GameManager.Instance.stageType == StageType.Trainer)
         {
-            enemy = new Pokemon();
+            int id = 0;
+            while (id == 0)
+            {
+                id = Random.Range(1, 149);
+                switch (id) //Don't want to spawn a legendary
+                {
+                    case 144:
+                        id = 0;
+                        break;
+                    case 145:
+                        id = 0;
+                        break;
+                    case 146:
+                        id = 0;
+                        break;
+                }
+            }
+            enemy = new Pokemon(PokemonList.PokemonData[id]);
             GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
             GameManager.Instance.EnemyHP.fillAmount = 1;
         }
         else if (GameManager.Instance.stageType == StageType.MiniBoss)
         {
-            enemy = new Pokemon(6, 0, EvolveMethod.None, 0, PokemonType.Fire, PokemonType.Flying, RegionalForm.None, StaticPokemonForms.None, (GameManager.Instance.StageNumber / 2) + 3);
+            List<int> MiniBossIDs = new List<int>()
+            {
+                3, 6, 9, 18, 31, 34, 38, 59, 65, 68, 89, 94, 95, 112, 130, 131, 142, 143, 149
+            };
+            int bossLvl = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10)) + Random.Range(1, 4);
+            enemy = new Pokemon(PokemonList.PokemonData[MiniBossIDs[Random.Range(0, MiniBossIDs.Count - 1)]], bossLvl);
             for (int i = 0; i < 2; ++i)
             {
                 GameManager.Instance.MiniBossHPBars[i].color = new Color(0, (float)225 / 255, 0);
@@ -197,7 +236,12 @@ public class ClickerButtonScript : MonoBehaviour
         }
         else if (GameManager.Instance.stageType == StageType.Boss)
         {
-            enemy = new Pokemon(646, 0, EvolveMethod.None, 0, PokemonType.Dragon, PokemonType.Ice, RegionalForm.None, StaticPokemonForms.None, (GameManager.Instance.StageNumber / 2) + 3);
+            int bossLvl = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10)) + Random.Range(1, 4);
+            List<int> BossIDs = new List<int>()
+            {
+                144, 145, 146
+            };
+            enemy = new Pokemon(PokemonList.PokemonData[BossIDs[Random.Range(0, BossIDs.Count - 1)]], bossLvl);
             for (int i = 0; i < 4; ++i)
             {
                 GameManager.Instance.BossHPBars[i].color = new Color(0, (float)225 / 255, 0);
@@ -208,7 +252,8 @@ public class ClickerButtonScript : MonoBehaviour
         }
         else if (GameManager.Instance.stageType == StageType.BigBoss)
         {
-            enemy = new Pokemon(493, 0, EvolveMethod.None, 0, PokemonType.Normal, PokemonType.None, RegionalForm.None, StaticPokemonForms.None, (GameManager.Instance.StageNumber / 2) + 3);
+            int bossLvl = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10)) + Random.Range(1, 4);
+            enemy = new Pokemon(PokemonList.PokemonData[150], bossLvl);
             for (int i = 0; i < 6; ++i)
             {
                 GameManager.Instance.BigBossHPBars[i].color = new Color(0, (float)225 / 255, 0);
@@ -219,7 +264,7 @@ public class ClickerButtonScript : MonoBehaviour
         }
         else if (GameManager.Instance.stageType == StageType.Special)
         {
-            enemy = new Pokemon();
+            enemy = new Pokemon(PokemonList.PokemonData[151]);
             GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
             GameManager.Instance.EnemyHP.fillAmount = 1;
         }

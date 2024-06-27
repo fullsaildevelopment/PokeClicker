@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ClickerButtonScript : MonoBehaviour
@@ -11,6 +12,7 @@ public class ClickerButtonScript : MonoBehaviour
     public int level;
     public Pokemon enemy;
     public bool takingDamage;
+    bool IsFainting;
     int currHPBar;
     int currHPSlider;
 
@@ -113,6 +115,19 @@ public class ClickerButtonScript : MonoBehaviour
                 }
             }
         }
+        if (IsFainting)
+        {
+            Vector3 pos = GameManager.Instance.EnemySprite.gameObject.transform.localPosition;
+            pos.y -= 4000 * Time.deltaTime;
+            GameManager.Instance.EnemySprite.gameObject.transform.localPosition = pos;
+            GameManager.Instance.EnemyFaintMask.SetActive(true);
+            if (GameManager.Instance.EnemySprite.gameObject.transform.localPosition.y <= -400)
+            {
+                IsFainting = false;
+                GameManager.Instance.EnemySprite.gameObject.transform.localPosition = new Vector3(500, 0, 0);
+                GameManager.Instance.EnemySprite.enabled = false;
+            }
+        }
     }
 
     public void click()
@@ -162,7 +177,9 @@ public class ClickerButtonScript : MonoBehaviour
     IEnumerator FaintPokemon()
     {
         Player.Instance.CanAttack = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
+        IsFainting = true;
+        yield return new WaitForSeconds(0.7f);
         int exp = (100 * level) / 7;
         Player.Instance.AddEXP(exp, Player.Instance.currSlot);
         Economy.Instance.UpdateSkillShards(exp / 2);
@@ -273,6 +290,8 @@ public class ClickerButtonScript : MonoBehaviour
         GameManager.Instance.EnemySprite.sprite = Resources.Load<Sprite>("Pokemon/Normal/" + PokemonList.pokemonIDs[enemy.dexID].ToLower());
         GameManager.Instance.EnemyName.text = PokemonList.pokemonNames[enemy.dexID];
         SwitchEnemyStatBox();
+        GameManager.Instance.EnemyFaintMask.SetActive(false);
+        GameManager.Instance.EnemySprite.enabled = true;
         level = enemy.level;
         maxHP = enemy.maxHP;
         currHP = enemy.currHP;

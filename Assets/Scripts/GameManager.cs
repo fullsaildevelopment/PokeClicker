@@ -178,6 +178,7 @@ public class GameManager : MonoBehaviour
     public GameObject EnemyCritBox;
     public TextMeshProUGUI EnemyLevel;
     public TextMeshProUGUI EnemyName;
+    public GameObject EnemyFaintMask;
 
     [Header("----- Normal Enemy -----")]
     public GameObject EnemyStats;

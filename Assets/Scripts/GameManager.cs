@@ -427,7 +427,7 @@ public class Pokemon
         type1 = PokemonType.None; 
         type2 = PokemonType.None;
 
-        int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10)) / 2;
+        int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10));
         int max = min + 5;
         if (min <= 1)
             min = 2;
@@ -451,7 +451,7 @@ public class Pokemon
 
         if (_level == 0 && pokemon.level == 0)
         {
-            int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10)) / 2;
+            int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10));
             int max = min + 5;
             if (min <= 1)
                 min = 2;

@@ -69,11 +69,11 @@ public class ButtonFunctions : MonoBehaviour
         Pokemon pokemon = ClickerButtonScript.Instance.enemy;
         
         //Shakes on Successes
-        float CatchChance = Mathf.Floor((3 * pokemon.maxHP - 2 * pokemon.currHP) * 4096 + 0.5f);
-        //CatchChance *= SpeciesRate;
+        float CatchChance = Mathf.Floor(((3 * pokemon.maxHP - 2 * pokemon.currHP) / 3 * pokemon.maxHP) * 4096 + 0.5f);
+        CatchChance *= 250; //Species Catch Rate
         CatchChance *= ball.BaseCatchRate;
         //CatchChance *= StatusCondition;
-        float ShakeChance = 65536 / (float)Math.Pow(((255 * 4096) / CatchChance), 0.1875);
+        float ShakeChance = 65535 / (float)Math.Pow(CatchChance/1044480, 0.1875);
         StartCoroutine(BallShakes(ShakeChance));
         
     }

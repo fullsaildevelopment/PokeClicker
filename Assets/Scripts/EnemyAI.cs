@@ -21,9 +21,9 @@ public class EnemyAI : MonoBehaviour
         if (CanDealDamage)
         {
             deltaTime += Time.deltaTime;
-            if (deltaTime >= 3)
+            if (deltaTime >= 1.5f)
             {
-                deltaTime -= 3;
+                deltaTime -= 1.5f;
                 Attack();
             }
         }
@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
             if (Player.Instance.party[Player.Instance.currSlot].currHP > 0)
             {
                 int damage = (int)(ClickerButtonScript.Instance.enemy.level * Random.Range(2, 5));
-                damage = (int)(damage * GameManager.Instance.TypeMatchup(ClickerButtonScript.Instance.enemy, Player.Instance.party[Player.Instance.currSlot])) / 3;
+                damage = (int)(damage * GameManager.Instance.TypeMatchup(ClickerButtonScript.Instance.enemy, Player.Instance.party[Player.Instance.currSlot]));
                 Player.Instance.TakeDamage(damage);
             }
         }

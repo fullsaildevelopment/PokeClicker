@@ -69,12 +69,12 @@ public class ButtonFunctions : MonoBehaviour
         Pokemon pokemon = ClickerButtonScript.Instance.enemy;
         
         //Shakes on Successes
-        float CatchChance = Mathf.Floor(((3 * pokemon.maxHP - 2 * pokemon.currHP) / 3 * pokemon.maxHP) * 4096 + 0.5f);
-        CatchChance *= 250; //Species Catch Rate
-        CatchChance *= ball.BaseCatchRate;
-        //CatchChance *= StatusCondition;
-        float ShakeChance = 65535 / (float)Math.Pow(CatchChance/1044480, 0.1875);
-        StartCoroutine(BallShakes(ShakeChance));
+        //float CatchChance = Mathf.Floor(((3 * pokemon.maxHP - 2 * pokemon.currHP) / 3 * pokemon.maxHP) * 4096 + 0.5f);
+        //CatchChance *= 250; //Species Catch Rate
+        //CatchChance *= ball.BaseCatchRate;
+        ////CatchChance *= StatusCondition;
+        //float ShakeChance = 65535 / (float)Math.Pow(CatchChance/1044480, 0.1875);
+        StartCoroutine(BallShakes(0.5f));
         
     }
     IEnumerator BallShakes(float ShakeChance)
@@ -82,7 +82,7 @@ public class ButtonFunctions : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             yield return new WaitForSeconds(1);
-            bool success = UnityEngine.Random.Range(0, 65536) < ShakeChance;
+            bool success = UnityEngine.Random.Range(0, 1) < ShakeChance;
             if (!success)
             {
                 //Break out

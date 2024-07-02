@@ -417,29 +417,6 @@ public class Pokemon
     public bool isDyna = false; //is active for 3 turns or until the Pokemon faints or switches out
     public TerraType terraType; //is active until the pokemon faints or switches out
 
-
-    public Pokemon()    //Remove this constructor when the Pokemon Database is setup
-    {
-        dexID = Random.Range(1, 1025);
-        evolveLevel = 0;
-        evolveLevel = 0;
-        evoDexID = 0;
-        type1 = PokemonType.None; 
-        type2 = PokemonType.None;
-
-        int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10));
-        int max = min + 5;
-        if (min <= 1)
-            min = 2;
-        level = Random.Range(min, max);
-        maxHP = (int)(level * Random.Range(3, 8));
-        currHP = maxHP;
-        exp = 0;
-        dynamicForm = DynamicPokemonForms.None;
-        staticForm = StaticPokemonForms.None;
-        reginalForm = RegionalForm.None;
-        terraType = TerraType.Normal;
-    }
     public Pokemon(Pokemon pokemon, int _level = 0)
     {
         dexID = pokemon.dexID;
@@ -451,10 +428,10 @@ public class Pokemon
 
         if (_level == 0 && pokemon.level == 0)
         {
-            int min = (GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 10));
-            int max = min + 5;
+            int min = GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 5);
+            int max = min + 4;
             if (min <= 1)
-                min = 2;
+                min = 3;
             pokemon.level = Random.Range(min, max);
             pokemon.maxHP = (int)(pokemon.level * Random.Range(3, 8));
             pokemon.currHP = pokemon.maxHP;

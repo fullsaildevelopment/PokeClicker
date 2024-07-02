@@ -2088,6 +2088,7 @@ public class PokemonList : MonoBehaviour
         new(){PokemonType.Fire, PokemonType.Ice, PokemonType.Flying, PokemonType.Bug}, //Rock
         new(){PokemonType.Psychic, PokemonType.Ghost}, //Ghost
         new(){PokemonType.Dragon }, //Dragon
+        new(){PokemonType.Psychic, PokemonType.Ghost }, //Dark
         new(){PokemonType.Ice, PokemonType.Rock, PokemonType.Fairy }, //Steel
         new(){PokemonType.Fighting, PokemonType.Dragon, PokemonType.Dark } //Fairy
     };

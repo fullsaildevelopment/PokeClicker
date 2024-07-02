@@ -35,7 +35,7 @@ public class ClickerButtonScript : MonoBehaviour
             if (GameManager.Instance.stageType == StageType.Regular || GameManager.Instance.stageType == StageType.Trainer || GameManager.Instance.stageType == StageType.Special)
             {
                 GameManager.Instance.EnemyHP.fillAmount -= 2 * Time.deltaTime;
-                GameManager.Instance.PlayerHP.color = GameManager.Instance.GetHPColor(GameManager.Instance.PlayerHP.fillAmount);
+                GameManager.Instance.EnemyHP.color = GameManager.Instance.GetHPColor(GameManager.Instance.EnemyHP.fillAmount);
                 if (GameManager.Instance.EnemyHP.fillAmount <= (float)currHP / maxHP)
                 {
                     takingDamage = false;
@@ -45,12 +45,14 @@ public class ClickerButtonScript : MonoBehaviour
             else if (GameManager.Instance.stageType == StageType.MiniBoss)
             {
                 GameManager.Instance.MiniBossHPBars[currHPSlider].fillAmount -= 2 * Time.deltaTime;
+                GameManager.Instance.MiniBossHPBars[currHPSlider].color = 
+                    GameManager.Instance.GetHPColor(GameManager.Instance.MiniBossHPBars[currHPSlider].fillAmount);
                 if (currHPSlider == currHPBar)
                 {
                     if (GameManager.Instance.MiniBossHPBars[currHPSlider].fillAmount <= (float)currHP / maxHP)
                     {
                         takingDamage = false;
-                        GameManager.Instance.EnemyHP.fillAmount = (float)currHP / maxHP;
+                        GameManager.Instance.MiniBossHPBars[currHPSlider].fillAmount = (float)currHP / maxHP;
                     }
 
                 }
@@ -69,12 +71,14 @@ public class ClickerButtonScript : MonoBehaviour
             else if (GameManager.Instance.stageType == StageType.Boss)
             {
                 GameManager.Instance.BossHPBars[currHPSlider].fillAmount -= 2 * Time.deltaTime;
+                GameManager.Instance.BossHPBars[currHPSlider].color =
+                    GameManager.Instance.GetHPColor(GameManager.Instance.BossHPBars[currHPSlider].fillAmount);
                 if (currHPSlider == currHPBar)
                 {
                     if (GameManager.Instance.BossHPBars[currHPSlider].fillAmount <= (float)currHP / maxHP)
                     {
                         takingDamage = false;
-                        GameManager.Instance.EnemyHP.fillAmount = (float)currHP / maxHP;
+                        GameManager.Instance.BossHPBars[currHPSlider].fillAmount = (float)currHP / maxHP;
                     }
 
                 }
@@ -82,7 +86,7 @@ public class ClickerButtonScript : MonoBehaviour
                 {
                     if (GameManager.Instance.BossHPBars[currHPSlider].fillAmount <= 0)
                     {
-                        GameManager.Instance.EnemyHP.fillAmount = 0;
+                        GameManager.Instance.BossHPBars[currHPSlider].fillAmount = 0;
                         if (currHPSlider != 0)
                         {
                             currHPSlider--;
@@ -93,12 +97,14 @@ public class ClickerButtonScript : MonoBehaviour
             else if (GameManager.Instance.stageType == StageType.BigBoss)
             {
                 GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount -= 2 * Time.deltaTime;
+                GameManager.Instance.BigBossHPBars[currHPSlider].color =
+                    GameManager.Instance.GetHPColor(GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount);
                 if (currHPSlider == currHPBar)
                 {
                     if (GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount <= (float)currHP / maxHP)
                     {
                         takingDamage = false;
-                        GameManager.Instance.EnemyHP.fillAmount = (float)currHP / maxHP;
+                        GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount = (float)currHP / maxHP;
                     }
 
                 }
@@ -106,7 +112,7 @@ public class ClickerButtonScript : MonoBehaviour
                 {
                     if (GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount <= 0)
                     {
-                        GameManager.Instance.EnemyHP.fillAmount = 0;
+                        GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount = 0;
                         if (currHPSlider != 0)
                         {
                             currHPSlider--;

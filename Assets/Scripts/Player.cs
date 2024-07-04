@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour
             pokemon = LevelUp(pokemon);
             party[slot] = pokemon;
         }
+        
     }
     Pokemon LevelUp(Pokemon pokemon)
     {
@@ -99,7 +101,93 @@ public class Player : MonoBehaviour
         GameManager.Instance.PlayerHP.color = GameManager.Instance.GetHPColor(GameManager.Instance.PlayerHP.fillAmount);
         GameManager.Instance.PlayerEXP.fillAmount = pokemon.exp / (float)Math.Pow(party[currSlot].level, 3);
         GameManager.Instance.PlayerLevel.text = "lv." + pokemon.level.ToString();
+        if (pokemon.exp < (int)Math.Pow(pokemon.level, 3))
+        {
+            for (int i = 0; i < pokemon.evolveLevels.Count; i++)
+            {
+                if (pokemon.level >= pokemon.evolveLevels[i] && pokemon.evolveMethods[i] == EvolveMethod.LevelUp)
+                {
+                    EvolvePokemon(pokemon, pokemon.evoDexIDs[i]);
+                    break;
+                }
+            }
+        }
         return pokemon;
+    }
+    void EvolvePokemon(Pokemon pokemon, int evoDexID)
+    {
+        Pokemon evolvedForm = null;
+        if (pokemon.reginalForm == RegionalForm.None)
+        {
+            if (isOtherStarterPokemon(pokemon.dexID))
+            {
+                foreach (Pokemon OtherPokemon in PokemonList.OtherStarters)
+                {
+                    if (OtherPokemon.dexID == evoDexID && OtherPokemon.reginalForm == RegionalForm.None)
+                    {
+                        evolvedForm = OtherPokemon;
+                        break;
+                    }
+                }
+            }
+            else
+                evolvedForm = PokemonList.PokemonData[evoDexID];
+        } 
+        else
+        {
+            if (isOtherStarterPokemon(pokemon.dexID))
+            {
+                foreach (Pokemon OtherPokemon in PokemonList.OtherStarters)
+                {
+                    if (OtherPokemon.dexID == evoDexID && OtherPokemon.reginalForm == pokemon.reginalForm)
+                    {
+                        evolvedForm = OtherPokemon;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                foreach (Pokemon regionalPokemon in PokemonList.RegionalPokemonData)
+                {
+                    if (regionalPokemon.dexID == evoDexID && pokemon.reginalForm == regionalPokemon.reginalForm)
+                    {
+                        evolvedForm = regionalPokemon;
+                        break;
+                    }
+                }
+                if (evolvedForm == null) //can't find regional form. Using default.
+                {
+                    if (isOtherStarterPokemon(pokemon.dexID))
+                    {
+                        foreach (Pokemon OtherPokemon in PokemonList.OtherStarters)
+                        {
+                            if (OtherPokemon.dexID == evoDexID && OtherPokemon.reginalForm == pokemon.reginalForm)
+                            {
+                                evolvedForm = OtherPokemon;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                        evolvedForm = PokemonList.PokemonData[evoDexID];
+                }
+                    
+            }
+        }
+
+        pokemon.dexID = evolvedForm.dexID;
+        pokemon.evolveLevels.Clear();
+        pokemon.evolveMethods.Clear();
+        pokemon.evoDexIDs.Clear();
+        pokemon.evolveLevels.AddRange(evolvedForm.evolveLevels);
+        pokemon.evolveMethods.AddRange(evolvedForm.evolveMethods);
+        pokemon.evoDexIDs.AddRange(evolvedForm.evoDexIDs);
+        pokemon.type1 = evolvedForm.type1;
+        pokemon.type2 = evolvedForm.type2;
+        pokemon.staticForm = evolvedForm.staticForm;
+        GameManager.Instance.PlayerSprite.sprite = Resources.Load<Sprite>("Pokemon/NormalBack/" + PokemonList.pokemonIDs[pokemon.dexID].ToLower());
+        GameManager.Instance.PlayerName.text = PokemonList.pokemonNames[pokemon.dexID];
     }
     public void SetActivePokemon(int slot)
     {
@@ -146,5 +234,13 @@ public class Player : MonoBehaviour
         }
         return true;
     }
-    
+    bool isOtherStarterPokemon(int dexID)
+    {
+        foreach (Pokemon pokemon in PokemonList.OtherStarters)
+        {
+            if (pokemon.dexID == dexID)
+                return true;
+        }
+        return false;
+    }
 }

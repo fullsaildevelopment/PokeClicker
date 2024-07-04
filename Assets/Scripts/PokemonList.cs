@@ -2338,14 +2338,118 @@ public class PokemonList : MonoBehaviour
         new(128, 0, EvolveMethod.None, 128, PokemonType.Normal, PokemonType.None, RegionalForm.Paldean, StaticPokemonForms.CombatBreed),
         new(144, 0, EvolveMethod.None, 144, PokemonType.Psychic, PokemonType.Flying, RegionalForm.Galarian),
         new(145, 0, EvolveMethod.None, 145, PokemonType.Fighting, PokemonType.Flying, RegionalForm.Galarian),
-        new(146, 0, EvolveMethod.None, 146, PokemonType.Dark, PokemonType.Flying, RegionalForm.Galarian),
+        new(146, 0, EvolveMethod.None, 146, PokemonType.Dark, PokemonType.Flying, RegionalForm.Galarian)
     };
     public static List<Pokemon> StaticFormPokemonData = new List<Pokemon>()
     {
         new(0, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None),
         new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Paldean, StaticPokemonForms.BlazeBreed),
-        new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Paldean, StaticPokemonForms.AquaBreed),
+        new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Paldean, StaticPokemonForms.AquaBreed)
         //new(201, 0, EvolveMethod.None, 0, PokemonType.Psychic, PokemonType.None, RegionalForm.None, StaticPokemonForms.A)
 
+    };
+    //This list will have Pokemon from generations not included in the regular list. Remove them when added to the regular list and update the starter button.
+    public static List<Pokemon> OtherStarters = new List<Pokemon>() 
+    {
+        //Gen 1 has been added to the regular list
+
+        //Gen 2
+        new(152, 16, EvolveMethod.LevelUp, 153, PokemonType.Grass, PokemonType.None),
+        new(153, 32, EvolveMethod.LevelUp, 154, PokemonType.Grass, PokemonType.None),
+        new(154, 32, EvolveMethod.None, 154, PokemonType.Grass, PokemonType.None),
+        new(155, 14, EvolveMethod.LevelUp, 156, PokemonType.Fire, PokemonType.None),
+        new(156, 36, EvolveMethod.LevelUp, 157, PokemonType.Fire, PokemonType.None),
+        new(157, 36, EvolveMethod.None, 157, PokemonType.Fire, PokemonType.None),
+        new(158, 18, EvolveMethod.LevelUp, 159, PokemonType.Water, PokemonType.None),
+        new(159, 30, EvolveMethod.LevelUp, 160, PokemonType.Water, PokemonType.None),
+        new(160, 30, EvolveMethod.None, 160, PokemonType.Water, PokemonType.None),
+
+        //Gen 3
+        new(252, 16, EvolveMethod.LevelUp, 253, PokemonType.Grass, PokemonType.None),
+        new(253, 36, EvolveMethod.LevelUp, 254, PokemonType.Grass, PokemonType.None),
+        new(254, 36, EvolveMethod.None, 254, PokemonType.Grass, PokemonType.None),
+        new(255, 16, EvolveMethod.LevelUp, 256, PokemonType.Fire, PokemonType.None),
+        new(256, 36, EvolveMethod.LevelUp, 257, PokemonType.Fire, PokemonType.Fighting),
+        new(257, 36, EvolveMethod.None, 257, PokemonType.Fire, PokemonType.Fighting),
+        new(258, 16, EvolveMethod.LevelUp, 259, PokemonType.Water, PokemonType.None),
+        new(259, 36, EvolveMethod.LevelUp, 260, PokemonType.Water, PokemonType.Ground),
+        new(260, 36, EvolveMethod.None, 260, PokemonType.Water, PokemonType.Ground),
+
+        //Gen 4
+        new(387, 18, EvolveMethod.LevelUp, 388, PokemonType.Grass, PokemonType.None),
+        new(388, 32, EvolveMethod.LevelUp, 389, PokemonType.Grass, PokemonType.None),
+        new(389, 32, EvolveMethod.None, 389, PokemonType.Grass, PokemonType.Ground),
+        new(390, 14, EvolveMethod.LevelUp, 391, PokemonType.Fire, PokemonType.None),
+        new(391, 36, EvolveMethod.LevelUp, 392, PokemonType.Fire, PokemonType.Fighting),
+        new(392, 36, EvolveMethod.None, 392, PokemonType.Fire, PokemonType.Fighting),
+        new(393, 16, EvolveMethod.LevelUp, 394, PokemonType.Water, PokemonType.None),
+        new(394, 36, EvolveMethod.LevelUp, 395, PokemonType.Water, PokemonType.None),
+        new(395, 36, EvolveMethod.None, 395, PokemonType.Water, PokemonType.Steel),
+
+        //Gen 5
+        new(495, 17, EvolveMethod.LevelUp, 496, PokemonType.Grass, PokemonType.None),
+        new(496, 36, EvolveMethod.LevelUp, 497, PokemonType.Grass, PokemonType.None),
+        new(497, 36, EvolveMethod.None, 497, PokemonType.Grass, PokemonType.None),
+        new(498, 17, EvolveMethod.LevelUp, 499, PokemonType.Fire, PokemonType.None),
+        new(499, 36, EvolveMethod.LevelUp, 500, PokemonType.Fire, PokemonType.Fighting),
+        new(500, 36, EvolveMethod.None, 500, PokemonType.Fire, PokemonType.Fighting),
+        new(501, 17, EvolveMethod.LevelUp, 502, PokemonType.Water, PokemonType.None),
+        new(502, 36, EvolveMethod.LevelUp, 503, PokemonType.Water, PokemonType.None),
+        new(503, 36, EvolveMethod.None, 503, PokemonType.Water, PokemonType.None),
+
+        //Gen 6
+        new(650, 16, EvolveMethod.LevelUp, 651, PokemonType.Grass, PokemonType.None),
+        new(651, 36, EvolveMethod.LevelUp, 652, PokemonType.Grass, PokemonType.None),
+        new(652, 36, EvolveMethod.None, 652, PokemonType.Grass, PokemonType.Fighting),
+        new(653, 16, EvolveMethod.LevelUp, 654, PokemonType.Fire, PokemonType.None),
+        new(654, 36, EvolveMethod.LevelUp, 655, PokemonType.Fire, PokemonType.None),
+        new(655, 36, EvolveMethod.None, 655, PokemonType.Fire, PokemonType.Psychic),
+        new(656, 16, EvolveMethod.LevelUp, 657, PokemonType.Water, PokemonType.None),
+        new(657, 36, EvolveMethod.LevelUp, 658, PokemonType.Water, PokemonType.None),
+        new(658, 36, EvolveMethod.None, 658, PokemonType.Water, PokemonType.Dark),
+
+        //Gen 7
+        new(722, 17, EvolveMethod.LevelUp, 723, PokemonType.Grass, PokemonType.Flying),
+        new(723, 34, EvolveMethod.LevelUp, 724, PokemonType.Grass, PokemonType.Flying),
+        new(724, 34, EvolveMethod.None, 724, PokemonType.Grass, PokemonType.Ghost),
+        new(725, 17, EvolveMethod.LevelUp, 726, PokemonType.Fire, PokemonType.None),
+        new(726, 34, EvolveMethod.LevelUp, 727, PokemonType.Fire, PokemonType.None),
+        new(727, 34, EvolveMethod.None, 727, PokemonType.Fire, PokemonType.Dark),
+        new(728, 17, EvolveMethod.LevelUp, 729, PokemonType.Water, PokemonType.None),
+        new(729, 34, EvolveMethod.LevelUp, 730, PokemonType.Water, PokemonType.None),
+        new(730, 34, EvolveMethod.None, 730, PokemonType.Water, PokemonType.Fairy),
+
+        //Gen 8
+        new(810, 16, EvolveMethod.LevelUp, 811, PokemonType.Grass, PokemonType.None),
+        new(811, 35, EvolveMethod.LevelUp, 812, PokemonType.Grass, PokemonType.None),
+        new(812, 35, EvolveMethod.None, 812, PokemonType.Grass, PokemonType.None),
+        new(813, 16, EvolveMethod.LevelUp, 814, PokemonType.Fire, PokemonType.None),
+        new(814, 35, EvolveMethod.LevelUp, 815, PokemonType.Fire, PokemonType.None),
+        new(815, 35, EvolveMethod.None, 815, PokemonType.Fire, PokemonType.None),
+        new(816, 16, EvolveMethod.LevelUp, 817, PokemonType.Water, PokemonType.None),
+        new(817, 35, EvolveMethod.LevelUp, 818, PokemonType.Water, PokemonType.None),
+        new(818, 35, EvolveMethod.None, 818, PokemonType.Water, PokemonType.None),
+
+        //Gen 8 Hisui
+        new(722, 17, EvolveMethod.LevelUp, 723, PokemonType.Grass, PokemonType.Flying, RegionalForm.Hisuian),
+        new(723, 34, EvolveMethod.LevelUp, 724, PokemonType.Grass, PokemonType.Flying, RegionalForm.Hisuian),
+        new(724, 34, EvolveMethod.None, 724, PokemonType.Grass, PokemonType.Fighting, RegionalForm.Hisuian),
+        new(155, 17, EvolveMethod.LevelUp, 156, PokemonType.Fire, PokemonType.None, RegionalForm.Hisuian),
+        new(156, 36, EvolveMethod.LevelUp, 157, PokemonType.Fire, PokemonType.None, RegionalForm.Hisuian),
+        new(157, 36, EvolveMethod.None, 157, PokemonType.Fire, PokemonType.Ghost, RegionalForm.Hisuian),
+        new(501, 17, EvolveMethod.LevelUp, 502, PokemonType.Water, PokemonType.None, RegionalForm.Hisuian),
+        new(502, 36, EvolveMethod.LevelUp, 503, PokemonType.Water, PokemonType.None, RegionalForm.Hisuian),
+        new(503, 36, EvolveMethod.None, 503, PokemonType.Water, PokemonType.Dark, RegionalForm.Hisuian),
+
+        //Gen 9
+        new(906, 16, EvolveMethod.LevelUp, 907, PokemonType.Grass, PokemonType.None),
+        new(907, 36, EvolveMethod.LevelUp, 908, PokemonType.Grass, PokemonType.None),
+        new(908, 36, EvolveMethod.None, 908, PokemonType.Grass, PokemonType.Dark),
+        new(909, 16, EvolveMethod.LevelUp, 910, PokemonType.Fire, PokemonType.None),
+        new(910, 36, EvolveMethod.LevelUp, 911, PokemonType.Fire, PokemonType.None),
+        new(911, 36, EvolveMethod.None, 911, PokemonType.Fire, PokemonType.Ghost),
+        new(912, 16, EvolveMethod.LevelUp, 913, PokemonType.Water, PokemonType.None),
+        new(913, 36, EvolveMethod.LevelUp, 914, PokemonType.Water, PokemonType.None),
+        new(914, 36, EvolveMethod.None, 914, PokemonType.Water, PokemonType.Fighting),
     };
 }

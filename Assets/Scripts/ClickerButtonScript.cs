@@ -200,7 +200,7 @@ public class ClickerButtonScript : MonoBehaviour
             int id = 0;
             while (id == 0)
             {
-                id = Random.Range(1, 149);
+                id = Random.Range(10, 149);
                 switch (id) //Don't want to spawn a legendary
                 {
                     case 144:
@@ -223,7 +223,7 @@ public class ClickerButtonScript : MonoBehaviour
             int id = 0;
             while (id == 0)
             {
-                id = Random.Range(1, 149);
+                id = Random.Range(10, 149);
                 switch (id) //Don't want to spawn a legendary
                 {
                     case 144:

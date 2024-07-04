@@ -384,20 +384,15 @@ public class GameManager : MonoBehaviour
 public class Pokemon
 {
     public int dexID;                   //The pokemon's National Pokedex numeber
-    public int evolveLevel;             //The level a Pokemon needs to evolve (0 if no level required or can't evolve)
-    public EvolveMethod evolveMethod;
-    public int evoDexID;                //the national dex number the pokemon evolves into (0 if the pokemon can't evolve)
+    public List<int> evolveLevels = new List<int>();      //The level a Pokemon needs to evolve (0 if no level required or can't evolve)
+    public List<EvolveMethod> evolveMethods = new List<EvolveMethod>();
+    public List<int> evoDexIDs = new List<int>();         //the national dex number the pokemon evolves into (put its own ID if the pokemon can't evolve)
     public PokemonType type1;
     public PokemonType type2;
-
-
 
     public DynamicPokemonForms dynamicForm;
     public StaticPokemonForms staticForm;
     public RegionalForm reginalForm;
-
-
-
 
     public int maxHP;
     public int currHP;
@@ -417,75 +412,40 @@ public class Pokemon
     public bool isDyna = false; //is active for 3 turns or until the Pokemon faints or switches out
     public TerraType terraType; //is active until the pokemon faints or switches out
 
+    //Main Constructor to use when generating Pokemon to use.
     public Pokemon(Pokemon pokemon, int _level = 0)
     {
         dexID = pokemon.dexID;
-        evolveLevel = pokemon.evolveLevel;
-        evolveMethod = pokemon.evolveMethod;
-        evoDexID = pokemon.evoDexID;
+        evolveLevels.AddRange(pokemon.evolveLevels);
+        evolveMethods.AddRange(pokemon.evolveMethods);
+        evoDexIDs.AddRange(pokemon.evoDexIDs);
         type1 = pokemon.type1;
         type2 = pokemon.type2;
 
-        if (_level == 0 && pokemon.level == 0)
+        if (_level != 0)
+        {
+            level = _level;
+            maxHP = (int)(level * Random.Range(3, 8));
+            currHP = maxHP;
+        }
+        else
         {
             int min = GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 5);
             int max = min + 4;
             if (min <= 1)
                 min = 3;
-            pokemon.level = Random.Range(min, max);
-            pokemon.maxHP = (int)(pokemon.level * Random.Range(3, 8));
-            pokemon.currHP = pokemon.maxHP;
-        }
-        else if (_level != 0)
-        {
-            pokemon.level = _level;
-            pokemon.maxHP = (int)(pokemon.level * Random.Range(3, 8));
-            pokemon.currHP = pokemon.maxHP;
-        }
-
-        level = pokemon.level;
-        maxHP = pokemon.maxHP;
-        currHP = pokemon.currHP;
-        exp = pokemon.exp;
-
-        dynamicForm = pokemon.dynamicForm;
-        staticForm = pokemon.staticForm;
-        reginalForm = pokemon.reginalForm;
-        terraType = pokemon.terraType;
-    }
-    public Pokemon(int _dexID, int _evolveLevel, EvolveMethod _evolveMethod, int _evoDexID,
-                   PokemonType _type1, PokemonType _type2,
-                   RegionalForm _reginalForm = RegionalForm.None, 
-                   StaticPokemonForms _staticForm = StaticPokemonForms.None, 
-                   int _level = 0)
-    {
-        dexID= _dexID;
-        evolveLevel= _evolveLevel;
-        evolveMethod= _evolveMethod;
-        evoDexID = _evoDexID;
-        type1 = _type1;
-        type2 = _type2;
-        level = _level;
-        if (level == 0)
-        {
-            maxHP = 1;
-            currHP = maxHP;
-        }
-        else
-        {
+            level = Random.Range(min, max);
             maxHP = (int)(level * Random.Range(3, 8));
             currHP = maxHP;
         }
-        
-
         exp = 0;
-        dynamicForm = DynamicPokemonForms.None;
-        staticForm = _staticForm;
-        reginalForm = _reginalForm;
 
+        dynamicForm = DynamicPokemonForms.None;
+        staticForm = pokemon.staticForm;
+        reginalForm = pokemon.reginalForm;
         if (type2 != PokemonType.None)
         {
-            if (Random.Range(0,1) >= 0.5f)
+            if (Random.Range(0, 1) >= 0.5f)
                 terraType = (TerraType)type1;
             else
                 terraType = (TerraType)type2;
@@ -493,6 +453,38 @@ public class Pokemon
         else
             terraType = (TerraType)type1;
     }
+    //Constructor for preset Pokemon that have only 1 evolve path or none.
+    public Pokemon(int _dexID, int _evolveLevel, EvolveMethod _evolveMethod, int _evoDexID,
+                   PokemonType _type1, PokemonType _type2,
+                   RegionalForm _reginalForm = RegionalForm.None, 
+                   StaticPokemonForms _staticForm = StaticPokemonForms.None)
+    {
+        dexID = _dexID;
+        evolveLevels.Add(_evolveLevel);
+        evolveMethods.Add(_evolveMethod);
+        evoDexIDs.Add(_evoDexID);
+        type1 = _type1;
+        type2 = _type2;
+        reginalForm = _reginalForm;
+        staticForm = _staticForm;
+    }
+    //Constructor for preset Pokemon that have more than 1 evolve path.
+    public Pokemon(int _dexID, int[] _evolveLevels, EvolveMethod[] _evolveMethods, int[] _evoDexIDs, 
+                   PokemonType _type1, PokemonType _type2,
+                   RegionalForm _reginalForm = RegionalForm.None,
+                   StaticPokemonForms _staticForm = StaticPokemonForms.None)
+    {
+        dexID = _dexID;
+        evolveLevels.AddRange(_evolveLevels);
+        evolveMethods.AddRange(_evolveMethods);
+        evoDexIDs.AddRange(_evoDexIDs);
+        type1 = _type1;
+        type2 = _type2;
+        reginalForm = _reginalForm;
+        staticForm = _staticForm;
+    }
+
+
     
 }
 public class BallType

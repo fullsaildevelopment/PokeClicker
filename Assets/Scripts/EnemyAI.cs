@@ -36,6 +36,9 @@ public class EnemyAI : MonoBehaviour
             {
                 int damage = (int)(ClickerButtonScript.Instance.enemy.level * Random.Range(2, 5));
                 damage = (int)(damage * GameManager.Instance.TypeMatchup(ClickerButtonScript.Instance.enemy, Player.Instance.party[Player.Instance.currSlot]));
+                damage /= 2;
+                if (damage < 1)
+                    damage = 1;
                 Player.Instance.TakeDamage(damage);
             }
         }

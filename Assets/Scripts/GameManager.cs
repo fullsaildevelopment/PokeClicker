@@ -431,7 +431,7 @@ public class Pokemon
         else
         {
             int min = GameManager.Instance.StageNumber - (GameManager.Instance.StageNumber % 5);
-            int max = min + 4;
+            int max = min + 8;
             if (min <= 1)
                 min = 3;
             level = Random.Range(min, max);

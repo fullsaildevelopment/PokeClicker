@@ -130,7 +130,7 @@ public class ClickerButtonScript : MonoBehaviour
             if (GameManager.Instance.EnemySprite.gameObject.transform.localPosition.y <= -400)
             {
                 IsFainting = false;
-                GameManager.Instance.EnemySprite.gameObject.transform.localPosition = new Vector3(500, 0, 0);
+                GameManager.Instance.EnemySprite.gameObject.transform.localPosition = new Vector3(11, 180, 0);
                 GameManager.Instance.EnemySprite.enabled = false;
             }
         }
@@ -144,6 +144,8 @@ public class ClickerButtonScript : MonoBehaviour
             damage = (int)(damage * GameManager.Instance.TypeMatchup(Player.Instance.party[Player.Instance.currSlot], enemy));
             if (crit())
                 damage *= 2;
+            if (damage == 0)
+                damage = 1;
             currHP -= damage;
             takingDamage = true;
             if (GameManager.Instance.stageType == StageType.Regular || GameManager.Instance.stageType == StageType.Trainer || GameManager.Instance.stageType == StageType.Special)

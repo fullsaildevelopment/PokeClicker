@@ -47,13 +47,21 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void NewStarter(int dexID)
     {
-        foreach (Pokemon pokemon in PokemonList.OtherStarters)
+        if (dexID > 151)
         {
-            if (pokemon.dexID == dexID && pokemon.reginalForm == RegionalForm.None)
+            foreach (Pokemon pokemon in PokemonList.OtherStarters)
             {
-                Player.Instance.SelectStarter(new Pokemon(pokemon, 5));
+                if (pokemon.dexID == dexID && pokemon.reginalForm == RegionalForm.None)
+                {
+                    Player.Instance.SelectStarter(new Pokemon(pokemon, 5));
+                }
             }
         }
+        else
+        {
+            Player.Instance.SelectStarter(new Pokemon(PokemonList.PokemonData[dexID], 5));
+        }
+        
         ClickerButtonScript.Instance.newPokemon();
         GameManager.Instance.StarterSelection.SetActive(false);
         EnemyAI.Instance.PauseAttack(false);

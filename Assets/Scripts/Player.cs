@@ -204,6 +204,7 @@ public class Player : MonoBehaviour
         txtHP = party[currSlot].currHP;
         EnemyAI.Instance.PauseAttack(false);
         CanAttack = true;
+        GameManager.Instance.ThrowBall.interactable = true;
     }
     public void TakeDamage(int damage)
     {
@@ -216,6 +217,7 @@ public class Player : MonoBehaviour
         {
             EnemyAI.Instance.PauseAttack(true);
             GameManager.Instance.PlayerSprite.enabled = false;
+            GameManager.Instance.ThrowBall.interactable = false;
             CanAttack = false;
             if (PartyWipe())
             {

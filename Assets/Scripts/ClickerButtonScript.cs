@@ -164,6 +164,7 @@ public class ClickerButtonScript : MonoBehaviour
                 else if (currHP <= 0 && currHPBar <= 0)
                 {
                     EnemyAI.Instance.PauseAttack(true);
+                    GameManager.Instance.ThrowBall.interactable = false;
                     StartCoroutine(FaintPokemon());
                 }
             }
@@ -303,6 +304,7 @@ public class ClickerButtonScript : MonoBehaviour
         currHP = enemy.currHP;
         EnemyAI.Instance.PauseAttack(false);
         Player.Instance.CanAttack = true;
+        GameManager.Instance.ThrowBall.interactable = true;
     }
 
     void SwitchEnemyStatBox()

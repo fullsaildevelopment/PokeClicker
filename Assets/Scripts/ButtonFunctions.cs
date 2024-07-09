@@ -94,7 +94,7 @@ public class ButtonFunctions : MonoBehaviour
         //CatchChance *= ball.BaseCatchRate;
         ////CatchChance *= StatusCondition;
         //float ShakeChance = 65535 / (float)Math.Pow(CatchChance/1044480, 0.1875);
-        StartCoroutine(BallShakes(0.5f));
+        StartCoroutine(BallShakes(0.8f));
         
     }
     IEnumerator BallShakes(float ShakeChance)
@@ -102,7 +102,7 @@ public class ButtonFunctions : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             yield return new WaitForSeconds(1);
-            bool success = UnityEngine.Random.Range(0, 1) < ShakeChance;
+            bool success = UnityEngine.Random.Range(0f, 1f) < ShakeChance;
             if (!success)
             {
                 //Break out

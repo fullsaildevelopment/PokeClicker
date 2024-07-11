@@ -206,6 +206,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI PlayerName;
     [Header("----- Buttons -----")]
     public List<Button> PartySlots;
+    public List<Image> PartySlotSprites;
+    public List<TextMeshProUGUI> PartySlotNames;
+    public List<TextMeshProUGUI> PartySlotLevels;
+    public List<TextMeshProUGUI> PartySlotHPTexts;
+    public List<Image> PartySlotHPBars;
     public Button ThrowBall;
     public List<Button> Starters;
 
@@ -379,6 +384,25 @@ public class GameManager : MonoBehaviour
             return Color.yellow;
         else
             return new Color(0, (float)225 / 255, 0);
+    }
+
+    public void UpdatePartyButton(int partySlot, Pokemon pokemon)
+    {
+        PartySlotSprites[partySlot].sprite = Resources.Load<Sprite>("Pokemon/Normal/" + PokemonList.pokemonIDs[pokemon.dexID].ToLower());
+        PartySlotSprites[partySlot].enabled = true;
+        PartySlotNames[partySlot].text = PokemonList.pokemonNames[pokemon.dexID];
+        PartySlotLevels[partySlot].text = "lv." + pokemon.level.ToString();
+        PartySlotHPBars[partySlot].fillAmount = (float)pokemon.currHP / pokemon.maxHP;
+        PartySlotHPBars[partySlot].transform.parent.gameObject.SetActive(true);
+        PartySlotHPTexts[partySlot].text = pokemon.currHP.ToString() + "/" + pokemon.maxHP.ToString();
+    }
+    public void ClearPartySlot(int partySlot)
+    {
+        PartySlotSprites[partySlot].enabled = false;
+        PartySlotNames[partySlot].text = "";
+        PartySlotLevels[partySlot].text = "";
+        PartySlotHPBars[partySlot].transform.parent.gameObject.SetActive(false);
+        PartySlotHPTexts[partySlot].text = "";
     }
 }
 public class Pokemon

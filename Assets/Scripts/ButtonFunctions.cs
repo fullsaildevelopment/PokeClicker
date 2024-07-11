@@ -144,9 +144,12 @@ public class ButtonFunctions : MonoBehaviour
         Player.Instance.takingDamage = false;
         ClickerButtonScript.Instance.takingDamage = false;
         Player.Instance.party.Clear();
+        int i = 0;
         foreach (UnityEngine.UI.Button partyButton in GameManager.Instance.PartySlots)
         {
             partyButton.interactable = false;
+            GameManager.Instance.ClearPartySlot(i);
+            ++i;
         }
         GameManager.Instance.setStage(1);
         GameManager.Instance.StageEnemiesDefeated = 0;

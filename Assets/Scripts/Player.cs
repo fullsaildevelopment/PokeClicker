@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
         {
             party.Add(pokemon);
             GameManager.Instance.PartySlots[party.Count - 1].interactable = true;
+            GameManager.Instance.UpdatePartyButton(party.Count - 1, pokemon);
         }
     }
     public void AddEXP(int exp, int slot)
@@ -112,6 +113,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        GameManager.Instance.UpdatePartyButton(currSlot, pokemon);
         return pokemon;
     }
     void EvolvePokemon(Pokemon pokemon, int evoDexID)
@@ -224,6 +226,7 @@ public class Player : MonoBehaviour
                 GameManager.Instance.GameOverScreen.SetActive(true);
             }
         }
+        GameManager.Instance.UpdatePartyButton(currSlot, party[currSlot]);
     }
     bool PartyWipe()
     {

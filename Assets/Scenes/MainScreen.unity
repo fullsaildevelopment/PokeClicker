@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 496577}
   - component: {fileID: 496576}
   m_Layer: 5
-  m_Name: PlayerPokemonHPBar
+  m_Name: PartyPokemonHPBar6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,9 +153,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1985215414}
   - {fileID: 645123163}
   m_Father: {fileID: 1515717135}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1957,7 +1958,7 @@ GameObject:
   - component: {fileID: 261697972}
   - component: {fileID: 261697971}
   m_Layer: 5
-  m_Name: Name1
+  m_Name: Name6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2513,7 +2514,7 @@ GameObject:
   - component: {fileID: 313028025}
   - component: {fileID: 313028024}
   m_Layer: 5
-  m_Name: HP1
+  m_Name: HP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2532,7 +2533,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2057326845}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2958,7 +2959,7 @@ GameObject:
   - component: {fileID: 343404282}
   - component: {fileID: 343404281}
   m_Layer: 5
-  m_Name: Level1
+  m_Name: Level4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4451,7 +4452,7 @@ GameObject:
   - component: {fileID: 422604196}
   - component: {fileID: 422604195}
   m_Layer: 5
-  m_Name: PlayerPokemonHPSlider
+  m_Name: PartyPokemonHPSlider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4470,7 +4471,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 965140906}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5276,7 +5277,7 @@ GameObject:
   - component: {fileID: 457914834}
   - component: {fileID: 457914833}
   m_Layer: 5
-  m_Name: Pokemon1
+  m_Name: Pokemon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5567,7 +5568,7 @@ GameObject:
   - component: {fileID: 483378337}
   - component: {fileID: 483378336}
   m_Layer: 5
-  m_Name: PlayerPokemonHPSlider
+  m_Name: PartyPokemonHPSlider4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5586,7 +5587,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1253583562}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5777,12 +5778,12 @@ GameObject:
   - component: {fileID: 515480351}
   - component: {fileID: 515480350}
   m_Layer: 5
-  m_Name: HP1Txt
+  m_Name: HP2Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &515480349
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5795,12 +5796,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2057326845}
-  m_RootOrder: 3
+  m_Father: {fileID: 826439903}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: -9}
+  m_AnchoredPosition: {x: -93, y: 0}
   m_SizeDelta: {x: 35, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &515480350
@@ -6047,7 +6048,7 @@ GameObject:
   - component: {fileID: 517416214}
   - component: {fileID: 517416213}
   m_Layer: 5
-  m_Name: HP1
+  m_Name: HP3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6066,7 +6067,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2104729006}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6317,7 +6318,7 @@ GameObject:
   - component: {fileID: 532969590}
   - component: {fileID: 532969589}
   m_Layer: 5
-  m_Name: HP1
+  m_Name: HP4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6336,7 +6337,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 905733390}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7886,7 +7887,6 @@ RectTransform:
   - {fileID: 1489099779}
   - {fileID: 775268259}
   - {fileID: 1669016498}
-  - {fileID: 2108693131}
   - {fileID: 1742879755}
   - {fileID: 1821264759}
   m_Father: {fileID: 706206914}
@@ -8272,7 +8272,7 @@ GameObject:
   - component: {fileID: 645123165}
   - component: {fileID: 645123164}
   m_Layer: 5
-  m_Name: PlayerPokemonHPSlider
+  m_Name: PartyPokemonHPSlider6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8291,7 +8291,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 496575}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8424,12 +8424,12 @@ GameObject:
   - component: {fileID: 676076656}
   - component: {fileID: 676076655}
   m_Layer: 5
-  m_Name: HP1Txt
+  m_Name: HP4Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &676076654
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8437,17 +8437,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676076653}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 905733390}
-  m_RootOrder: 3
+  m_Father: {fileID: 1253583562}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: -9}
+  m_AnchoredPosition: {x: -93, y: 0}
   m_SizeDelta: {x: 35, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &676076655
@@ -9306,7 +9306,7 @@ GameObject:
   - component: {fileID: 710732786}
   - component: {fileID: 710732785}
   m_Layer: 5
-  m_Name: PlayerPokemonHPSlider
+  m_Name: PartyPokemonHPSlider5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9325,7 +9325,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1742879755}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9382,7 +9382,7 @@ GameObject:
   - component: {fileID: 775268261}
   - component: {fileID: 775268260}
   m_Layer: 5
-  m_Name: Name1
+  m_Name: Name5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9692,7 +9692,7 @@ GameObject:
   - component: {fileID: 826439905}
   - component: {fileID: 826439904}
   m_Layer: 5
-  m_Name: PlayerPokemonHPBar
+  m_Name: PartyPokemonHPBar2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9710,9 +9710,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 515480349}
   - {fileID: 962199037}
   m_Father: {fileID: 2057326845}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10115,7 +10116,7 @@ GameObject:
   - component: {fileID: 868207010}
   - component: {fileID: 868207009}
   m_Layer: 5
-  m_Name: Pokemon1
+  m_Name: Pokemon6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10348,7 +10349,6 @@ RectTransform:
   - {fileID: 2107355560}
   - {fileID: 1996366804}
   - {fileID: 343404280}
-  - {fileID: 676076654}
   - {fileID: 1253583562}
   - {fileID: 532969588}
   m_Father: {fileID: 706206914}
@@ -10465,7 +10465,7 @@ GameObject:
   - component: {fileID: 906945926}
   - component: {fileID: 906945925}
   m_Layer: 5
-  m_Name: HP1
+  m_Name: HP6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10484,7 +10484,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1515717135}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10812,7 +10812,7 @@ GameObject:
   - component: {fileID: 934296068}
   - component: {fileID: 934296067}
   m_Layer: 5
-  m_Name: Level1
+  m_Name: Level6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10947,7 +10947,7 @@ GameObject:
   - component: {fileID: 962199039}
   - component: {fileID: 962199038}
   m_Layer: 5
-  m_Name: PlayerPokemonHPSlider
+  m_Name: PartyPokemonHPSlider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10966,7 +10966,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 826439903}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11023,7 +11023,7 @@ GameObject:
   - component: {fileID: 965140908}
   - component: {fileID: 965140907}
   m_Layer: 5
-  m_Name: PlayerPokemonHPBar
+  m_Name: PartyPokemonHPBar3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11041,9 +11041,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1862549402}
   - {fileID: 422604194}
   m_Father: {fileID: 2104729006}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11318,7 +11319,7 @@ GameObject:
   - component: {fileID: 971842215}
   - component: {fileID: 971842214}
   m_Layer: 5
-  m_Name: Name1
+  m_Name: Name2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12939,7 +12940,7 @@ GameObject:
   - component: {fileID: 1222406362}
   - component: {fileID: 1222406361}
   m_Layer: 5
-  m_Name: Level1
+  m_Name: Level3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13633,7 +13634,7 @@ GameObject:
   - component: {fileID: 1253583564}
   - component: {fileID: 1253583563}
   m_Layer: 5
-  m_Name: PlayerPokemonHPBar
+  m_Name: PartyPokemonHPBar4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13651,9 +13652,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 676076654}
   - {fileID: 483378335}
   m_Father: {fileID: 905733390}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13979,6 +13981,7 @@ GameObject:
   - component: {fileID: 1271613058}
   - component: {fileID: 1271613057}
   - component: {fileID: 1271613056}
+  - component: {fileID: 1271613059}
   m_Layer: 5
   m_Name: Gen1Grass
   m_TagString: Untagged
@@ -14101,6 +14104,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271613054}
   m_CullTransparentMesh: 1
+--- !u!114 &1271613059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271613054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1291480350
 GameObject:
   m_ObjectHideFlags: 0
@@ -14189,7 +14213,7 @@ GameObject:
   - component: {fileID: 1328386211}
   - component: {fileID: 1328386210}
   m_Layer: 5
-  m_Name: Level1
+  m_Name: Level2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15163,7 +15187,7 @@ GameObject:
   - component: {fileID: 1385906443}
   - component: {fileID: 1385906442}
   m_Layer: 5
-  m_Name: Name1
+  m_Name: Name3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16469,7 +16493,7 @@ GameObject:
   - component: {fileID: 1489099781}
   - component: {fileID: 1489099780}
   m_Layer: 5
-  m_Name: Pokemon1
+  m_Name: Pokemon5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16567,7 +16591,6 @@ RectTransform:
   - {fileID: 868207008}
   - {fileID: 261697970}
   - {fileID: 934296066}
-  - {fileID: 1985215414}
   - {fileID: 496575}
   - {fileID: 906945924}
   m_Father: {fileID: 706206914}
@@ -16953,7 +16976,7 @@ GameObject:
   - component: {fileID: 1545496926}
   - component: {fileID: 1545496925}
   m_Layer: 5
-  m_Name: Pokemon1
+  m_Name: Pokemon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18375,7 +18398,7 @@ GameObject:
   - component: {fileID: 1665090615}
   - component: {fileID: 1665090614}
   m_Layer: 5
-  m_Name: PlayerPokemonHPBar
+  m_Name: PartyPokemonHPBar1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18452,7 +18475,7 @@ GameObject:
   - component: {fileID: 1669016500}
   - component: {fileID: 1669016499}
   m_Layer: 5
-  m_Name: Level1
+  m_Name: Level5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19805,7 +19828,7 @@ GameObject:
   - component: {fileID: 1742879757}
   - component: {fileID: 1742879756}
   m_Layer: 5
-  m_Name: PlayerPokemonHPBar
+  m_Name: PartyPokemonHPBar5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19823,9 +19846,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2108693131}
   - {fileID: 710732784}
   m_Father: {fileID: 634976731}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20361,7 +20385,7 @@ GameObject:
   - component: {fileID: 1821264761}
   - component: {fileID: 1821264760}
   m_Layer: 5
-  m_Name: HP1
+  m_Name: HP5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20380,7 +20404,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 634976731}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20874,12 +20898,12 @@ GameObject:
   - component: {fileID: 1862549404}
   - component: {fileID: 1862549403}
   m_Layer: 5
-  m_Name: HP1Txt
+  m_Name: HP3Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1862549402
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20892,12 +20916,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2104729006}
-  m_RootOrder: 3
+  m_Father: {fileID: 965140906}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: -9}
+  m_AnchoredPosition: {x: -93, y: 0}
   m_SizeDelta: {x: 35, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1862549403
@@ -22047,7 +22071,7 @@ GameObject:
   - component: {fileID: 1962148617}
   - component: {fileID: 1962148616}
   m_Layer: 5
-  m_Name: PlayerPokemonHPSlider
+  m_Name: PartyPokemonHPSlider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22123,12 +22147,12 @@ GameObject:
   - component: {fileID: 1985215416}
   - component: {fileID: 1985215415}
   m_Layer: 5
-  m_Name: HP1Txt
+  m_Name: HP6Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1985215414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22141,12 +22165,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1515717135}
-  m_RootOrder: 3
+  m_Father: {fileID: 496575}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: -9}
+  m_AnchoredPosition: {x: -93, y: 0}
   m_SizeDelta: {x: 35, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1985215415
@@ -22469,7 +22493,7 @@ GameObject:
   - component: {fileID: 1996366806}
   - component: {fileID: 1996366805}
   m_Layer: 5
-  m_Name: Name1
+  m_Name: Name4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22718,7 +22742,6 @@ RectTransform:
   - {fileID: 457914832}
   - {fileID: 971842213}
   - {fileID: 1328386209}
-  - {fileID: 515480349}
   - {fileID: 826439903}
   - {fileID: 313028023}
   m_Father: {fileID: 706206914}
@@ -23070,7 +23093,6 @@ RectTransform:
   - {fileID: 1545496924}
   - {fileID: 1385906441}
   - {fileID: 1222406360}
-  - {fileID: 1862549402}
   - {fileID: 965140906}
   - {fileID: 517416212}
   m_Father: {fileID: 706206914}
@@ -23187,7 +23209,7 @@ GameObject:
   - component: {fileID: 2107355562}
   - component: {fileID: 2107355561}
   m_Layer: 5
-  m_Name: Pokemon1
+  m_Name: Pokemon4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23263,12 +23285,12 @@ GameObject:
   - component: {fileID: 2108693133}
   - component: {fileID: 2108693132}
   m_Layer: 5
-  m_Name: HP1Txt
+  m_Name: HP5Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2108693131
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23281,12 +23303,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 634976731}
-  m_RootOrder: 3
+  m_Father: {fileID: 1742879755}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: -9}
+  m_AnchoredPosition: {x: -93, y: 0}
   m_SizeDelta: {x: 35, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2108693132
@@ -24021,6 +24043,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotNames.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPBars.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotLevels.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
       propertyPath: BigBossHPBars.Array.data[0]
       value: 
       objectReference: {fileID: 2072782310}
@@ -24045,6 +24079,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1585624973}
     - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPTexts.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotSprites.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
       propertyPath: MiniBossHPBars.Array.data[0]
       value: 
       objectReference: {fileID: 399433882}
@@ -24052,6 +24094,126 @@ PrefabInstance:
       propertyPath: MiniBossHPBars.Array.data[1]
       value: 
       objectReference: {fileID: 1001806809}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotNames.Array.data[0]
+      value: 
+      objectReference: {fileID: 1697561727}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotNames.Array.data[1]
+      value: 
+      objectReference: {fileID: 971842214}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotNames.Array.data[2]
+      value: 
+      objectReference: {fileID: 1385906442}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotNames.Array.data[3]
+      value: 
+      objectReference: {fileID: 1996366805}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotNames.Array.data[4]
+      value: 
+      objectReference: {fileID: 775268260}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotNames.Array.data[5]
+      value: 
+      objectReference: {fileID: 261697971}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPBars.Array.data[0]
+      value: 
+      objectReference: {fileID: 1962148616}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPBars.Array.data[1]
+      value: 
+      objectReference: {fileID: 962199038}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPBars.Array.data[2]
+      value: 
+      objectReference: {fileID: 422604195}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPBars.Array.data[3]
+      value: 
+      objectReference: {fileID: 483378336}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPBars.Array.data[4]
+      value: 
+      objectReference: {fileID: 710732785}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPBars.Array.data[5]
+      value: 
+      objectReference: {fileID: 645123164}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotLevels.Array.data[0]
+      value: 
+      objectReference: {fileID: 320136539}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotLevels.Array.data[1]
+      value: 
+      objectReference: {fileID: 1328386210}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotLevels.Array.data[2]
+      value: 
+      objectReference: {fileID: 1222406361}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotLevels.Array.data[3]
+      value: 
+      objectReference: {fileID: 343404281}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotLevels.Array.data[4]
+      value: 
+      objectReference: {fileID: 1669016499}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotLevels.Array.data[5]
+      value: 
+      objectReference: {fileID: 934296067}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPTexts.Array.data[0]
+      value: 
+      objectReference: {fileID: 1619875306}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPTexts.Array.data[1]
+      value: 
+      objectReference: {fileID: 313028024}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPTexts.Array.data[2]
+      value: 
+      objectReference: {fileID: 517416213}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPTexts.Array.data[3]
+      value: 
+      objectReference: {fileID: 532969589}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPTexts.Array.data[4]
+      value: 
+      objectReference: {fileID: 1821264760}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotHPTexts.Array.data[5]
+      value: 
+      objectReference: {fileID: 906945925}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 1562211886}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 457914833}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 1545496925}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 2107355561}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 1489099780}
+    - target: {fileID: 7541364092268207856, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
+      propertyPath: PartySlotSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 868207009}
     - target: {fileID: 7541364092268207857, guid: cd04a5339a22b98409b87ee46b24bc9c, type: 3}
       propertyPath: m_RootOrder
       value: 3

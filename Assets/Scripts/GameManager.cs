@@ -180,21 +180,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI EnemyName;
     public GameObject EnemyFaintMask;
 
-    [Header("----- Normal Enemy -----")]
-    public GameObject EnemyStats;
-    public Image EnemyHP;
+    public Image BossStatBGShadow;
+    public Image BossStatBG;
+    public List<GameObject> EnemyHPBars;
+    public List<Image> EnemyHPSliders;
 
-    [Header("----- MiniBoss -----")]
-    public GameObject MiniBossStats;
-    public List<Image> MiniBossHPBars;
-
-    [Header("----- Boss -----")]
-    public GameObject BossStats;
-    public List<Image> BossHPBars;
-
-    [Header("----- BigBoss -----")]
-    public GameObject BigBossStats;
-    public List<Image> BigBossHPBars;
+    
 
     [Header("----- Player -----")]
     public Image PlayerSprite;

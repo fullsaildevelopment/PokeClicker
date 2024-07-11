@@ -34,33 +34,33 @@ public class ClickerButtonScript : MonoBehaviour
         {
             if (GameManager.Instance.stageType == StageType.Regular || GameManager.Instance.stageType == StageType.Trainer || GameManager.Instance.stageType == StageType.Special)
             {
-                GameManager.Instance.EnemyHP.fillAmount -= 2 * Time.deltaTime;
-                GameManager.Instance.EnemyHP.color = GameManager.Instance.GetHPColor(GameManager.Instance.EnemyHP.fillAmount);
-                if (GameManager.Instance.EnemyHP.fillAmount <= (float)currHP / maxHP)
+                GameManager.Instance.EnemyHPSliders[0].fillAmount -= 2 * Time.deltaTime;
+                GameManager.Instance.EnemyHPSliders[0].color = GameManager.Instance.GetHPColor(GameManager.Instance.EnemyHPSliders[0].fillAmount);
+                if (GameManager.Instance.EnemyHPSliders[0].fillAmount <= (float)currHP / maxHP)
                 {
                     takingDamage = false;
-                    GameManager.Instance.EnemyHP.fillAmount = (float)currHP / maxHP;
+                    GameManager.Instance.EnemyHPSliders[0].fillAmount = (float)currHP / maxHP;
                 }
             }
             else if (GameManager.Instance.stageType == StageType.MiniBoss)
             {
-                GameManager.Instance.MiniBossHPBars[currHPSlider].fillAmount -= 2 * Time.deltaTime;
-                GameManager.Instance.MiniBossHPBars[currHPSlider].color = 
-                    GameManager.Instance.GetHPColor(GameManager.Instance.MiniBossHPBars[currHPSlider].fillAmount);
+                GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount -= 2 * Time.deltaTime;
+                GameManager.Instance.EnemyHPSliders[currHPSlider].color = 
+                    GameManager.Instance.GetHPColor(GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount);
                 if (currHPSlider == currHPBar)
                 {
-                    if (GameManager.Instance.MiniBossHPBars[currHPSlider].fillAmount <= (float)currHP / maxHP)
+                    if (GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount <= (float)currHP / maxHP)
                     {
                         takingDamage = false;
-                        GameManager.Instance.MiniBossHPBars[currHPSlider].fillAmount = (float)currHP / maxHP;
+                        GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount = (float)currHP / maxHP;
                     }
 
                 }
                 else
                 {
-                    if (GameManager.Instance.MiniBossHPBars[currHPSlider].fillAmount <= 0)
+                    if (GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount <= 0)
                     {
-                        GameManager.Instance.EnemyHP.fillAmount = 0;
+                        GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount = 0;
                         if (currHPSlider != 0)
                         {
                             currHPSlider--;
@@ -70,23 +70,23 @@ public class ClickerButtonScript : MonoBehaviour
             }
             else if (GameManager.Instance.stageType == StageType.Boss)
             {
-                GameManager.Instance.BossHPBars[currHPSlider].fillAmount -= 2 * Time.deltaTime;
-                GameManager.Instance.BossHPBars[currHPSlider].color =
-                    GameManager.Instance.GetHPColor(GameManager.Instance.BossHPBars[currHPSlider].fillAmount);
+                GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount -= 2 * Time.deltaTime;
+                GameManager.Instance.EnemyHPSliders[currHPSlider].color =
+                    GameManager.Instance.GetHPColor(GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount);
                 if (currHPSlider == currHPBar)
                 {
-                    if (GameManager.Instance.BossHPBars[currHPSlider].fillAmount <= (float)currHP / maxHP)
+                    if (GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount <= (float)currHP / maxHP)
                     {
                         takingDamage = false;
-                        GameManager.Instance.BossHPBars[currHPSlider].fillAmount = (float)currHP / maxHP;
+                        GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount = (float)currHP / maxHP;
                     }
 
                 }
                 else
                 {
-                    if (GameManager.Instance.BossHPBars[currHPSlider].fillAmount <= 0)
+                    if (GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount <= 0)
                     {
-                        GameManager.Instance.BossHPBars[currHPSlider].fillAmount = 0;
+                        GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount = 0;
                         if (currHPSlider != 0)
                         {
                             currHPSlider--;
@@ -96,23 +96,23 @@ public class ClickerButtonScript : MonoBehaviour
             }
             else if (GameManager.Instance.stageType == StageType.BigBoss)
             {
-                GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount -= 2 * Time.deltaTime;
-                GameManager.Instance.BigBossHPBars[currHPSlider].color =
-                    GameManager.Instance.GetHPColor(GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount);
+                GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount -= 2 * Time.deltaTime;
+                GameManager.Instance.EnemyHPSliders[currHPSlider].color =
+                    GameManager.Instance.GetHPColor(GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount);
                 if (currHPSlider == currHPBar)
                 {
-                    if (GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount <= (float)currHP / maxHP)
+                    if (GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount <= (float)currHP / maxHP)
                     {
                         takingDamage = false;
-                        GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount = (float)currHP / maxHP;
+                        GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount = (float)currHP / maxHP;
                     }
 
                 }
                 else
                 {
-                    if (GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount <= 0)
+                    if (GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount <= 0)
                     {
-                        GameManager.Instance.BigBossHPBars[currHPSlider].fillAmount = 0;
+                        GameManager.Instance.EnemyHPSliders[currHPSlider].fillAmount = 0;
                         if (currHPSlider != 0)
                         {
                             currHPSlider--;
@@ -218,8 +218,8 @@ public class ClickerButtonScript : MonoBehaviour
                 }
             }
             enemy = new Pokemon(PokemonList.PokemonData[id]);
-            GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
-            GameManager.Instance.EnemyHP.fillAmount = 1;
+            GameManager.Instance.EnemyHPSliders[0].color = new Color(0, (float)225 / 255, 0);
+            GameManager.Instance.EnemyHPSliders[0].fillAmount = 1;
         }
         else if (GameManager.Instance.stageType == StageType.Trainer)
         {
@@ -241,8 +241,8 @@ public class ClickerButtonScript : MonoBehaviour
                 }
             }
             enemy = new Pokemon(PokemonList.PokemonData[id]);
-            GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
-            GameManager.Instance.EnemyHP.fillAmount = 1;
+            GameManager.Instance.EnemyHPSliders[0].color = new Color(0, (float)225 / 255, 0);
+            GameManager.Instance.EnemyHPSliders[0].fillAmount = 1;
         }
         else if (GameManager.Instance.stageType == StageType.MiniBoss)
         {
@@ -254,8 +254,8 @@ public class ClickerButtonScript : MonoBehaviour
             enemy = new Pokemon(PokemonList.PokemonData[MiniBossIDs[Random.Range(0, MiniBossIDs.Count - 1)]], bossLvl);
             for (int i = 0; i < 2; ++i)
             {
-                GameManager.Instance.MiniBossHPBars[i].color = new Color(0, (float)225 / 255, 0);
-                GameManager.Instance.MiniBossHPBars[i].fillAmount = 1;
+                GameManager.Instance.EnemyHPSliders[i].color = new Color(0, (float)225 / 255, 0);
+                GameManager.Instance.EnemyHPSliders[i].fillAmount = 1;
             }
             currHPBar = 1;
             currHPSlider = currHPBar;
@@ -270,8 +270,8 @@ public class ClickerButtonScript : MonoBehaviour
             enemy = new Pokemon(PokemonList.PokemonData[BossIDs[Random.Range(0, BossIDs.Count - 1)]], bossLvl);
             for (int i = 0; i < 4; ++i)
             {
-                GameManager.Instance.BossHPBars[i].color = new Color(0, (float)225 / 255, 0);
-                GameManager.Instance.BossHPBars[i].fillAmount = 1;
+                GameManager.Instance.EnemyHPSliders[i].color = new Color(0, (float)225 / 255, 0);
+                GameManager.Instance.EnemyHPSliders[i].fillAmount = 1;
             }
             currHPBar = 3;
             currHPSlider = currHPBar;
@@ -282,8 +282,8 @@ public class ClickerButtonScript : MonoBehaviour
             enemy = new Pokemon(PokemonList.PokemonData[150], bossLvl);
             for (int i = 0; i < 6; ++i)
             {
-                GameManager.Instance.BigBossHPBars[i].color = new Color(0, (float)225 / 255, 0);
-                GameManager.Instance.BigBossHPBars[i].fillAmount = 1;
+                GameManager.Instance.EnemyHPSliders[i].color = new Color(0, (float)225 / 255, 0);
+                GameManager.Instance.EnemyHPSliders[i].fillAmount = 1;
             }
             currHPBar = 5;
             currHPSlider = currHPBar;
@@ -291,8 +291,8 @@ public class ClickerButtonScript : MonoBehaviour
         else if (GameManager.Instance.stageType == StageType.Special)
         {
             enemy = new Pokemon(PokemonList.PokemonData[151]);
-            GameManager.Instance.EnemyHP.color = new Color(0, (float)225 / 255, 0);
-            GameManager.Instance.EnemyHP.fillAmount = 1;
+            GameManager.Instance.EnemyHPSliders[0].color = new Color(0, (float)225 / 255, 0);
+            GameManager.Instance.EnemyHPSliders[0].fillAmount = 1;
         }
 
         GameManager.Instance.EnemyLevel.text = "lv." + enemy.level.ToString();
@@ -313,31 +313,36 @@ public class ClickerButtonScript : MonoBehaviour
     {
         if (GameManager.Instance.stageType == StageType.Regular || GameManager.Instance.stageType == StageType.Trainer || GameManager.Instance.stageType == StageType.Special)
         {
-            GameManager.Instance.EnemyStats.SetActive(true);
-            GameManager.Instance.MiniBossStats.SetActive(false);
-            GameManager.Instance.BossStats.SetActive(false);
-            GameManager.Instance.BigBossStats.SetActive(false);
+            GameManager.Instance.BossStatBG.transform.localPosition = new Vector3(0, 20, 0);
+            GameManager.Instance.BossStatBGShadow.transform.localPosition = new Vector3(0, 20, 0);
+            for (int i = 1; i < 6; ++i)
+            {
+                GameManager.Instance.EnemyHPBars[i].SetActive(false);
+            }
         }
         else if (GameManager.Instance.stageType == StageType.MiniBoss)
         {
-            GameManager.Instance.EnemyStats.SetActive(false);
-            GameManager.Instance.MiniBossStats.SetActive(true);
-            GameManager.Instance.BossStats.SetActive(false);
-            GameManager.Instance.BigBossStats.SetActive(false);
+            GameManager.Instance.BossStatBG.transform.localPosition = new Vector3(0, -11, 0);
+            GameManager.Instance.BossStatBGShadow.transform.localPosition = new Vector3(0, -11, 0);
+            GameManager.Instance.EnemyHPBars[1].SetActive(true);
         }
         else if (GameManager.Instance.stageType == StageType.Boss)
         {
-            GameManager.Instance.EnemyStats.SetActive(false);
-            GameManager.Instance.MiniBossStats.SetActive(false);
-            GameManager.Instance.BossStats.SetActive(true);
-            GameManager.Instance.BigBossStats.SetActive(false);
+            GameManager.Instance.BossStatBG.transform.localPosition = new Vector3(0, -73, 0);
+            GameManager.Instance.BossStatBGShadow.transform.localPosition = new Vector3(0, -73, 0);
+            for (int i = 1; i < 4; ++i)
+            {
+                GameManager.Instance.EnemyHPBars[i].SetActive(true);
+            }
         }
         else if (GameManager.Instance.stageType == StageType.BigBoss)
         {
-            GameManager.Instance.EnemyStats.SetActive(false);
-            GameManager.Instance.MiniBossStats.SetActive(false);
-            GameManager.Instance.BossStats.SetActive(false);
-            GameManager.Instance.BigBossStats.SetActive(true);
+            GameManager.Instance.BossStatBG.transform.localPosition = new Vector3(0, -135, 0);
+            GameManager.Instance.BossStatBGShadow.transform.localPosition = new Vector3(0, -135, 0);
+            for (int i = 1; i < 6; ++i)
+            {
+                GameManager.Instance.EnemyHPBars[i].SetActive(true);
+            }
         }
     }
 }

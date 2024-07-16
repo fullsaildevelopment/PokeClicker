@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ButtonFunctions : MonoBehaviour
@@ -159,5 +160,13 @@ public class ButtonFunctions : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void ToggleCredits(bool toggle)
+    {
+        GameManager.Instance.CreditsScreen.SetActive(toggle);
+        if (toggle)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 }

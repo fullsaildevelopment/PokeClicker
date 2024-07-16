@@ -164,6 +164,7 @@ public class GameManager : MonoBehaviour
     public GameObject MainScreen;
     public GameObject StarterSelection;
     public GameObject GameOverScreen;
+    public GameObject CreditsScreen;
     public Image ThrownBall;
     public TextMeshProUGUI StageText;
     public TextMeshProUGUI MoneyText;
@@ -384,6 +385,7 @@ public class GameManager : MonoBehaviour
         PartySlotNames[partySlot].text = PokemonList.pokemonNames[pokemon.dexID];
         PartySlotLevels[partySlot].text = "lv." + pokemon.level.ToString();
         PartySlotHPBars[partySlot].fillAmount = (float)pokemon.currHP / pokemon.maxHP;
+        PartySlotHPBars[partySlot].color = GetHPColor(PartySlotHPBars[partySlot].fillAmount);
         PartySlotHPBars[partySlot].transform.parent.gameObject.SetActive(true);
         PartySlotHPTexts[partySlot].text = pokemon.currHP.ToString() + "/" + pokemon.maxHP.ToString();
     }

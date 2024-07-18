@@ -188,7 +188,9 @@ public class GameManager : MonoBehaviour
     public List<GameObject> EnemyHPBars;
     public List<Image> EnemyHPSliders;
 
-    
+    public TextMeshProUGUI EnemyImmuneText;
+    public TextMeshProUGUI EnemyNotVeryEffectiveText;
+    public TextMeshProUGUI EnemySuperEffectiveText;
 
     [Header("----- Player -----")]
     public Image PlayerSprite;
@@ -210,12 +212,14 @@ public class GameManager : MonoBehaviour
 
     public StageType stageType;
 
+
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
         StarterSelection.SetActive(true);
         setStage(1);
+        
     }
 
     // Update is called once per frame

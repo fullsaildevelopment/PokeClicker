@@ -56,7 +56,7 @@ public class EnemyAI : MonoBehaviour
             GameManager.Instance.EnemySprite.transform.localPosition = location;
         }
     }
-    public void Attack()
+    public void Attack() //Called after a set time to attack the player. Damage math is done here.
     {
         if (Player.Instance.party.Count != 0)
         {

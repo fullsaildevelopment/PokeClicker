@@ -2144,7 +2144,7 @@ public class PokemonList : MonoBehaviour
         new("Master Ball", 0)
     };
     public static List<Pokemon> PokemonData = new List<Pokemon>()
-    {
+    { //DexID, EvolveLevel, Evolve Method, Evolve DexID, Type 1, Type 2
         new(0, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None),
         new(1, 16, EvolveMethod.LevelUp, 2, PokemonType.Grass, PokemonType.Poison),
         new(2, 32, EvolveMethod.LevelUp, 3, PokemonType.Grass, PokemonType.Poison),
@@ -2299,7 +2299,7 @@ public class PokemonList : MonoBehaviour
         new(151, 0, EvolveMethod.None, 151, PokemonType.Psychic, PokemonType.None)
     };
     public static List<Pokemon> RegionalPokemonData = new List<Pokemon>()
-    {
+    {//DexID, EvolveLevel, Evolve Method, Evolve DexID, Type 1, Type 2, Regional Form, Static Form
         new(0, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None),
         new(19, 20, EvolveMethod.LevelUp, 20, PokemonType.Dark, PokemonType.Normal, RegionalForm.Alolan),
         new(20, 20, EvolveMethod.None, 20, PokemonType.Dark, PokemonType.Normal, RegionalForm.Alolan),
@@ -2341,7 +2341,7 @@ public class PokemonList : MonoBehaviour
         new(146, 0, EvolveMethod.None, 146, PokemonType.Dark, PokemonType.Flying, RegionalForm.Galarian)
     };
     public static List<Pokemon> StaticFormPokemonData = new List<Pokemon>()
-    {
+    {//DexID, EvolveLevel, Evolve Method, Evolve DexID, Type 1, Type 2, Regional Form, Static Form
         new(0, 0, EvolveMethod.None, 0, PokemonType.None, PokemonType.None),
         new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Paldean, StaticPokemonForms.BlazeBreed),
         new(128, 0, EvolveMethod.None, 0, PokemonType.Fighting, PokemonType.None, RegionalForm.Paldean, StaticPokemonForms.AquaBreed)

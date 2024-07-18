@@ -183,11 +183,13 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI EnemyName;
     public GameObject EnemyFaintMask;
 
+    //For extra space for more HP bars
     public Image BossStatBGShadow;
     public Image BossStatBG;
     public List<GameObject> EnemyHPBars;
     public List<Image> EnemyHPSliders;
 
+    //For a text popup if you hit for super effective, etc.
     public TextMeshProUGUI EnemyImmuneText;
     public TextMeshProUGUI EnemyNotVeryEffectiveText;
     public TextMeshProUGUI EnemySuperEffectiveText;
@@ -217,7 +219,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        StarterSelection.SetActive(true);
+        StarterSelection.SetActive(true); //Start the game and let the player select a starter
         setStage(1);
         
     }
@@ -236,7 +238,7 @@ public class GameManager : MonoBehaviour
         float multiplier = 1;
         foreach (PokemonType type in PokemonList.SuperEffectiveTypes[(int)aType1])
         {
-            if (type == dType1)
+            if (type == dType1) //if the attack is super effective
                 multiplier *= 2;
             if (type == dType2)
                 multiplier *= 2;
@@ -251,7 +253,7 @@ public class GameManager : MonoBehaviour
         }
         foreach (PokemonType type in PokemonList.NotVeryEffectiveTypes[(int)aType1])
         {
-            if (type == dType1)
+            if (type == dType1) //if the attack is not very effective
                 multiplier /= 2;
             if (type == dType2)
                 multiplier /= 2;
@@ -265,7 +267,7 @@ public class GameManager : MonoBehaviour
         }
         foreach (PokemonType type in PokemonList.ImmuneTypes[(int)aType1])
         {
-            if (type == dType1)
+            if (type == dType1) //if the defending pokemon has immunity to attacker
                 multiplier = 0.1f;
             if (type == dType2)
                 multiplier = 0.1f;
@@ -279,88 +281,39 @@ public class GameManager : MonoBehaviour
         }
         return multiplier;
     }
-    Pokemon CreatePokemon(int _dexID, RegionalForm rForm = RegionalForm.None, StaticPokemonForms sForm = StaticPokemonForms.None,
-                          bool RandomizeRegionalForm = false, bool RandomizeStaticForm = false)
-    {   //IMPLEMENT THIS FUNCTION AFTER THE POKEMON DATABASE IS SETUP
-        RegionalForm regionalForm = rForm;
-        StaticPokemonForms staticForm = sForm;
-        //Randomization if enabled
-        if (RandomizeRegionalForm)
-        {
-            List<Pokemon> forms = new List<Pokemon>();
-            forms.Add(PokemonList.PokemonData[_dexID]);
-            for (int i = 0; i < PokemonList.RegionalPokemonData.Count; ++i)
-            {
-                if (PokemonList.RegionalPokemonData[i].dexID == _dexID)
-                    forms.Add(PokemonList.RegionalPokemonData[i]);
-            }
-            regionalForm = forms[Random.Range(1, forms.Count) - 1].reginalForm;
-        }
-        if (RandomizeStaticForm)
-        {
-            List<Pokemon> forms = new List<Pokemon>();
-            forms.Add(PokemonList.PokemonData[_dexID]);
-            for (int i = 0; i < PokemonList.StaticFormPokemonData.Count; ++i)
-            {
-                if (PokemonList.StaticFormPokemonData[i].dexID == _dexID)
-                {
-                    forms.Add(PokemonList.StaticFormPokemonData[i]);
-                }
-            }
-            staticForm = forms[Random.Range(1, forms.Count) - 1].staticForm;
-        }
-
-        //Searching for and returning the Pokemon
-        if ((regionalForm != RegionalForm.None && staticForm != StaticPokemonForms.None) || staticForm != StaticPokemonForms.None)
-        { //if the Pokemon has a static form and/or a regional form too
-            foreach (Pokemon pokemon in PokemonList.StaticFormPokemonData)
-            {
-                if (pokemon.dexID == _dexID && pokemon.reginalForm == regionalForm && pokemon.staticForm == staticForm)
-                    return new Pokemon(pokemon);
-            }
-        }
-        else if (regionalForm != RegionalForm.None)
-        { //if the pokemon just has a regional form
-            foreach (Pokemon pokemon in PokemonList.RegionalPokemonData)
-            {
-                if (pokemon.dexID == _dexID && pokemon.reginalForm == regionalForm)
-                    return new Pokemon(pokemon);
-            }
-        }
-        return new Pokemon(PokemonList.PokemonData[_dexID]);
-    }
+   
     public void setStage(int stagenum)
-    {
+    { 
         StageNumber = stagenum;
         StageText.text = "Stage " + StageNumber.ToString();
         StageEnemiesDefeated = 0;
-        if (StageNumber % 100 == 0)
+        if (StageNumber % 100 == 0)//Every 100 stages, there is a Big Boss with 6 HP Bars 
         {
             stageType = StageType.BigBoss;
             ThrowBall.interactable = false;
         }
-        else if (StageNumber % 50 == 0)
+        else if (StageNumber % 50 == 0) //Every 50 stages, there is a Boss with 4 HP Bars
         {
             stageType = StageType.Boss;
             ThrowBall.interactable = false;
         }
-        else if (StageNumber % 10 == 0)
+        else if (StageNumber % 10 == 0) //Every 10 stages, there is a Mini Boss with 2 HP Bars
         {
             stageType = StageType.MiniBoss;
             ThrowBall.interactable = false;
         }
-        else if (StageNumber % 25 == 0 && StageNumber > 100)
+        else if (StageNumber % 25 == 0 && StageNumber > 100) //Every 25 stages after stage 100 will have a special/rare Pokemon
         {
             stageType = StageType.Special;
             ThrowBall.interactable = true;
         }
-        else if (StageNumber % 5 == 0)
-        {
+        else if (StageNumber % 5 == 0) //Every 5 stages, encounter a trainer (not yet implemented)
+        {//This can be changed to be random if wanted
             //stageType = StageType.Trainer;
             stageType = StageType.Regular;
             ThrowBall.interactable = true;
         }
-        else
+        else //if no conditions are it, its a regular stage. Defeat 10 pokemon to progress to the next stage
         {
             stageType = StageType.Regular;
             ThrowBall.interactable = true;
@@ -369,12 +322,15 @@ public class GameManager : MonoBehaviour
     public void IncreaseStageEnemiesDefeated()
     {
         StageEnemiesDefeated++;
+        //Regular stages, you need to beat 10 pokemon to progress stages
+        //Other stages will finish after 1 pokemon
+        //If its a trainer battle (when its implemented) the stage will progress after the trainer battle
         if ((StageEnemiesDefeated >= 10 && stageType == StageType.Regular) || (StageEnemiesDefeated != 0 && stageType != StageType.Regular))
         {
             setStage(StageNumber + 1);
         }
     }
-    public Color GetHPColor(float percent)
+    public Color GetHPColor(float percent) //change the color of the HP bar based on HP % remaining
     {
         if (percent <= 0.2f)
             return new Color((float)225 / 255, 0, 0);
@@ -384,7 +340,7 @@ public class GameManager : MonoBehaviour
             return new Color(0, (float)225 / 255, 0);
     }
 
-    public void UpdatePartyButton(int partySlot, Pokemon pokemon)
+    public void UpdatePartyButton(int partySlot, Pokemon pokemon) //Updates the Pokemon data in the party slots
     {
         PartySlotSprites[partySlot].sprite = Resources.Load<Sprite>("Pokemon/Normal/" + PokemonList.pokemonIDs[pokemon.dexID].ToLower());
         PartySlotSprites[partySlot].enabled = true;
@@ -395,7 +351,7 @@ public class GameManager : MonoBehaviour
         PartySlotHPBars[partySlot].transform.parent.gameObject.SetActive(true);
         PartySlotHPTexts[partySlot].text = pokemon.currHP.ToString() + "/" + pokemon.maxHP.ToString();
     }
-    public void ClearPartySlot(int partySlot)
+    public void ClearPartySlot(int partySlot) //Called when resetting the game or removing a Pokemon
     {
         PartySlotSprites[partySlot].enabled = false;
         PartySlotNames[partySlot].text = "";
@@ -510,7 +466,7 @@ public class Pokemon
 
     
 }
-public class BallType
+public class BallType //will store the type of Pokeball to be called easily later to get data.
 {
     public string BallName;
     //Sprite BallSprite;

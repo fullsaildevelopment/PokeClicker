@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
     public bool gainingExp;
     public bool CanAttack;
     int txtHP;
+    public bool CanAttackAnim;
+    public bool startingAttackAnim;
+    bool endingAttackAnim;
+    bool isFainting;
 
     private void Awake()
     {
@@ -25,6 +29,7 @@ public class Player : MonoBehaviour
         CanAttack = false;    
         takingDamage = false;
         gainingExp = false;
+        CanAttackAnim = true;
     }
 
     // Update is called once per frame
@@ -54,6 +59,47 @@ public class Player : MonoBehaviour
         //        
         //    }
         //}
+        if (startingAttackAnim) //attacking peak -250, -280 //normal location: -290, -300
+        {
+            CanAttackAnim = false;
+            Vector3 playerLoc = GameManager.Instance.PlayerSprite.transform.localPosition;
+            if (!endingAttackAnim)
+            {
+                
+                playerLoc.x += Time.deltaTime * 400;
+                playerLoc.y += Time.deltaTime * 200;
+                if (playerLoc.x >= -250 &&  playerLoc.y >= -280)
+                    endingAttackAnim = true;
+                
+            }
+            else
+            {
+                playerLoc.x -= Time.deltaTime * 400;
+                playerLoc.y -= Time.deltaTime * 200;
+                if (playerLoc.x <= -290 && playerLoc.y <= -300)
+                {
+                    startingAttackAnim = false;
+                    endingAttackAnim = false;
+                    playerLoc.x = -290;
+                    playerLoc.y = -300;
+                    StartCoroutine(AttackAnimCooldown());
+                }
+            }
+            GameManager.Instance.PlayerSprite.transform.localPosition = playerLoc;
+        }
+        if (isFainting)
+        {
+            Vector3 loc = GameManager.Instance.PlayerSprite.transform.localPosition;
+            loc.y -= Time.deltaTime * 3000;
+            GameManager.Instance.PlayerSprite.transform.localPosition = loc;
+            if (loc.y <= -510)
+            {
+                isFainting = false;
+                GameManager.Instance.PlayerSprite.enabled = false;
+                loc.y = -300;
+                GameManager.Instance.PlayerSprite.transform.localPosition = loc;
+            }
+        }
     }
     public void SelectStarter(Pokemon starter)
     {
@@ -193,6 +239,7 @@ public class Player : MonoBehaviour
     }
     public void SetActivePokemon(int slot)
     {
+        ResetFaintAnim();
         takingDamage = false;
         currSlot = slot;
         GameManager.Instance.PlayerSprite.sprite = Resources.Load<Sprite>("Pokemon/NormalBack/" + PokemonList.pokemonIDs[party[slot].dexID].ToLower());
@@ -218,7 +265,7 @@ public class Player : MonoBehaviour
         if (party[currSlot].currHP <= 0)
         {
             EnemyAI.Instance.PauseAttack(true);
-            GameManager.Instance.PlayerSprite.enabled = false;
+            isFainting = true;
             GameManager.Instance.ThrowBall.interactable = false;
             CanAttack = false;
             if (PartyWipe())
@@ -239,7 +286,7 @@ public class Player : MonoBehaviour
         }
         return true;
     }
-    bool isOtherStarterPokemon(int dexID)
+    bool isOtherStarterPokemon(int dexID) //used for starters in generations not yet implemented
     {
         foreach (Pokemon pokemon in PokemonList.OtherStarters)
         {
@@ -247,5 +294,15 @@ public class Player : MonoBehaviour
                 return true;
         }
         return false;
+    }
+    IEnumerator AttackAnimCooldown()
+    {
+        yield return new WaitForSeconds(0.3f);
+        CanAttackAnim = true;
+    }
+    void ResetFaintAnim()
+    {
+        isFainting = false;
+        GameManager.Instance.PlayerSprite.transform.localPosition = new Vector3(-290, -300, 0);
     }
 }

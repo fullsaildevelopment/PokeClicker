@@ -162,6 +162,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [Header("----- UI -----")]
     public GameObject MainScreen;
+    public GameObject BattleScreen;
     public GameObject StarterSelection;
     public GameObject GameOverScreen;
     public GameObject CreditsScreen;
@@ -177,6 +178,7 @@ public class GameManager : MonoBehaviour
     [Header("----- Enemy -----")]
     public Image EnemySprite;
     public GameObject EnemyCritBox;
+    public GameObject EnemyDamageCounter;
     public TextMeshProUGUI EnemyLevel;
     public TextMeshProUGUI EnemyName;
     public GameObject EnemyFaintMask;

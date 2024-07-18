@@ -44,9 +44,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e840b3e72450574f84247932212ca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Canvas: {fileID: 0}
+  MainScreen: {fileID: 0}
+  BattleScreen: {fileID: 0}
+  StarterSelection: {fileID: 0}
+  GameOverScreen: {fileID: 0}
+  CreditsScreen: {fileID: 0}
+  ThrownBall: {fileID: 0}
+  StageText: {fileID: 0}
+  MoneyText: {fileID: 0}
+  SkillShardText: {fileID: 0}
+  StageNumber: 0
+  StageEnemiesDefeated: 0
   EnemySprite: {fileID: 0}
-  EnemyHP: {fileID: 0}
-  EnemyCritBox: {fileID: 4643560006246936373, guid: 53cd5d407b1f8c5439e9e03f40680bf3, type: 3}
+  EnemyCritBox: {fileID: 8068638473468334867, guid: ded65ba67ac25424b9d605ac6961bffe, type: 3}
+  EnemyDamageCounter: {fileID: 3670541339964174243, guid: e5964b198e0ae094dac2177c20d49166, type: 3}
   EnemyLevel: {fileID: 0}
   EnemyName: {fileID: 0}
+  EnemyFaintMask: {fileID: 0}
+  BossStatBGShadow: {fileID: 0}
+  BossStatBG: {fileID: 0}
+  EnemyHPBars: []
+  EnemyHPSliders: []
+  PlayerSprite: {fileID: 0}
+  PlayerHP: {fileID: 0}
+  PlayerHPNum: {fileID: 0}
+  PlayerEXP: {fileID: 0}
+  PlayerLevel: {fileID: 0}
+  PlayerName: {fileID: 0}
+  PartySlots: []
+  PartySlotSprites: []
+  PartySlotNames: []
+  PartySlotLevels: []
+  PartySlotHPTexts: []
+  PartySlotHPBars: []
+  ThrowBall: {fileID: 0}
+  Starters: []
+  stageType: 0

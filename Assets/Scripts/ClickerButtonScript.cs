@@ -15,6 +15,7 @@ public class ClickerButtonScript : MonoBehaviour
     bool IsFainting;
     int currHPBar;
     int currHPSlider;
+    public int takenDamage;
 
     private void Awake()
     {
@@ -124,13 +125,13 @@ public class ClickerButtonScript : MonoBehaviour
         if (IsFainting)
         {
             Vector3 pos = GameManager.Instance.EnemySprite.gameObject.transform.localPosition;
-            pos.y -= 4000 * Time.deltaTime;
+            pos.y -= 3000 * Time.deltaTime;
             GameManager.Instance.EnemySprite.gameObject.transform.localPosition = pos;
             GameManager.Instance.EnemyFaintMask.SetActive(true);
             if (GameManager.Instance.EnemySprite.gameObject.transform.localPosition.y <= -400)
             {
                 IsFainting = false;
-                GameManager.Instance.EnemySprite.gameObject.transform.localPosition = new Vector3(11, 180, 0);
+                GameManager.Instance.EnemySprite.gameObject.transform.localPosition = new Vector3(330, 0, 0);
                 GameManager.Instance.EnemySprite.enabled = false;
             }
         }
@@ -140,14 +141,19 @@ public class ClickerButtonScript : MonoBehaviour
     {
         if (Player.Instance.party[Player.Instance.currSlot].currHP > 0 && Player.Instance.CanAttack)
         {
-            int damage = (int)(Player.Instance.party[Player.Instance.currSlot].level * 1.5f);
-            damage = (int)(damage * GameManager.Instance.TypeMatchup(Player.Instance.party[Player.Instance.currSlot], enemy));
+            takenDamage = (int)(Player.Instance.party[Player.Instance.currSlot].level * 1.5f);
+            takenDamage = (int)(takenDamage * GameManager.Instance.TypeMatchup(Player.Instance.party[Player.Instance.currSlot], enemy));
             if (crit())
-                damage *= 2;
-            if (damage == 0)
-                damage = 1;
-            currHP -= damage;
+                takenDamage *= 2;
+            if (takenDamage == 0)
+                takenDamage = 1;
+            currHP -= takenDamage;
+            Instantiate(GameManager.Instance.EnemyDamageCounter, GameManager.Instance.BattleScreen.transform);
             takingDamage = true;
+            if (Player.Instance.CanAttackAnim)
+            {
+                Player.Instance.startingAttackAnim = true;
+            }
             if (GameManager.Instance.stageType == StageType.Regular || GameManager.Instance.stageType == StageType.Trainer || GameManager.Instance.stageType == StageType.Special)
             {
                 if (currHP <= 0)
@@ -178,7 +184,7 @@ public class ClickerButtonScript : MonoBehaviour
         float rng = Random.Range(0.0f, 1.0f);
         if (rng >= 0.99f)
         {
-            Instantiate(GameManager.Instance.EnemyCritBox, GameManager.Instance.MainScreen.transform);
+            Instantiate(GameManager.Instance.EnemyCritBox, GameManager.Instance.BattleScreen.transform);
             return true;
         }
         return false;

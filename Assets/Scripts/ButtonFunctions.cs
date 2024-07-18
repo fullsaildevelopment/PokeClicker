@@ -9,22 +9,26 @@ public class ButtonFunctions : MonoBehaviour
     bool StartShakeBall;
     bool FinishShakeBall;
     int BallCurrentRotationZ;
-    float deltaTime1;
+    float BallDeltaTime;
+    bool isJumping;
+    bool StarterHoverAnim;
+    int StarterButton;
+    float StarterDeltaTime;
     private void Start()
     {
         StartShakeBall = false;
         FinishShakeBall = false;
         BallCurrentRotationZ = 0;
-        deltaTime1 = 0;
+        BallDeltaTime = 0;
     }
     private void Update()
     {
         if (StartShakeBall)
         {
-            deltaTime1 += Time.deltaTime;
-            if (deltaTime1 >= 1f/30f)
+            BallDeltaTime += Time.deltaTime;
+            if (BallDeltaTime >= 1f/30f)
             {
-                deltaTime1 -= 1f/30f;
+                BallDeltaTime -= 1f/30f;
                 if (!FinishShakeBall)
                 {
                     GameManager.Instance.ThrownBall.transform.Rotate(0, 0, 8);
@@ -43,6 +47,30 @@ public class ButtonFunctions : MonoBehaviour
                     }
 
                 }
+            }
+        }
+        if (StarterHoverAnim)
+        {
+            StarterDeltaTime += Time.deltaTime;
+            if (StarterDeltaTime > 0.3f)
+            {
+                StarterDeltaTime -= 0.3f;
+                Vector3 spritePos = GameManager.Instance.StarterNames[StarterButton].transform.parent.localPosition;
+                Vector3 textPos = GameManager.Instance.StarterNames[StarterButton].transform.localPosition;
+                if (!isJumping)
+                {
+                    spritePos.y += 15;
+                    textPos.y -= 15;
+                    isJumping = true;
+                }
+                else
+                {
+                    spritePos.y -= 15;
+                    textPos.y += 15;
+                    isJumping = false;
+                }
+                GameManager.Instance.StarterNames[StarterButton].transform.parent.localPosition = spritePos;
+                GameManager.Instance.StarterNames[StarterButton].transform.localPosition = textPos;
             }
         }
     }
@@ -128,8 +156,8 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.Instance.ThrownBall.color = Color.white;
         GameManager.Instance.EnemySprite.enabled = true;
         GameManager.Instance.ThrownBall.enabled = false;
-        GameManager.Instance.ThrowBall.interactable = true;
         EnemyAI.Instance.PauseAttack(false);
+        GameManager.Instance.ThrowBall.interactable = true;
     }
     public void SetActivePartyPokemon(int slot)
     {
@@ -168,5 +196,29 @@ public class ButtonFunctions : MonoBehaviour
             Time.timeScale = 0;
         else
             Time.timeScale = 1;
+    }
+    public void StarterScreenOnHover(int button)
+    {
+        StarterDeltaTime = 0.3f;
+        StarterButton = button;
+        isJumping = false;
+        StarterHoverAnim = true;
+        GameManager.Instance.StarterNames[button].fontStyle = TMPro.FontStyles.Bold;
+        //bool
+    }
+    public void StarterScreenEndHover(int button)
+    {
+        StarterHoverAnim = false;
+        GameManager.Instance.StarterNames[button].fontStyle = TMPro.FontStyles.Normal;
+        if (isJumping)
+        {
+            Vector3 spritePos = GameManager.Instance.StarterNames[button].transform.parent.localPosition;
+            Vector3 textPos = GameManager.Instance.StarterNames[button].transform.localPosition;
+            spritePos.y -= 15;
+            textPos.y += 15;
+            GameManager.Instance.StarterNames[button].transform.parent.localPosition = spritePos;
+            GameManager.Instance.StarterNames[button].transform.localPosition = textPos;
+            isJumping = false;
+        }
     }
 }

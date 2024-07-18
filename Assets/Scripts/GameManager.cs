@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
     public List<TextMeshProUGUI> PartySlotHPTexts;
     public List<Image> PartySlotHPBars;
     public Button ThrowBall;
-    public List<Button> Starters;
+    public List<TextMeshProUGUI> StarterNames;
 
     public StageType stageType;
 

@@ -90,7 +90,10 @@ public class ButtonFunctions : MonoBehaviour
         {
             Player.Instance.SelectStarter(new Pokemon(PokemonList.PokemonData[dexID], 5));
         }
-        
+        for (int i = 0; i < GameManager.Instance.StarterNames.Count; i++)
+        {
+            StarterScreenEndHover(i); //End any starter select animations
+        }
         ClickerButtonScript.Instance.newPokemon();
         GameManager.Instance.StarterSelection.SetActive(false);
         EnemyAI.Instance.PauseAttack(false);
@@ -103,6 +106,10 @@ public class ButtonFunctions : MonoBehaviour
             {
                 Player.Instance.SelectStarter(new Pokemon(pokemon, 5));
             }
+        }
+        for (int i = 0; i < GameManager.Instance.StarterNames.Count; i++)
+        {
+            StarterScreenEndHover(i); //End any starter select animations
         }
         ClickerButtonScript.Instance.newPokemon();
         GameManager.Instance.StarterSelection.SetActive(false);
@@ -167,7 +174,24 @@ public class ButtonFunctions : MonoBehaviour
         }
     }
 
-
+    public void Continue() //makes the player go back to the start of the area (stage 1, stage 11, stage 21, etc.) with healed Pokemon
+    {
+        Player.Instance.takingDamage = false;
+        ClickerButtonScript.Instance.takingDamage = false;
+        int i = 0;
+        foreach (Pokemon pokemon in Player.Instance.party) //heal party
+        {
+            pokemon.currHP = pokemon.maxHP;
+            GameManager.Instance.UpdatePartyButton(i, pokemon);
+            i++;
+        }
+        SetActivePartyPokemon(Player.Instance.currSlot);
+        int subtractStage = (GameManager.Instance.StageNumber % 10) - 1;
+        GameManager.Instance.setStage(GameManager.Instance.StageNumber - subtractStage);
+        GameManager.Instance.StageEnemiesDefeated = 0;
+        ClickerButtonScript.Instance.newPokemon();
+        GameManager.Instance.GameOverScreen.SetActive(false);
+    }
     public void Restart()
     {
         Player.Instance.takingDamage = false;

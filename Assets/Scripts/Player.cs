@@ -320,8 +320,6 @@ public class Player : MonoBehaviour
             if (PartyWipe())
             {
                 GameManager.Instance.GameOverScreen.SetActive(true); 
-                //full game over for now. 
-                //I want to make the player go back to the start of the area (stage 1, stage 11, stage 21, etc.)
             }
         }
         GameManager.Instance.UpdatePartyButton(currSlot, party[currSlot]);

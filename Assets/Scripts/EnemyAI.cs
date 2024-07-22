@@ -30,26 +30,25 @@ public class EnemyAI : MonoBehaviour
                 Attack();
             }
         }
-        if (startAttackAnim) //normal location: 330, 0 //peak attack = 290, -20
+        if (startAttackAnim) //normal location: 0, 0 //peak attack = -40, -20
         {
             Vector3 location = GameManager.Instance.EnemySprite.transform.localPosition;
             if (!endAttackAnim)
             {
                 location.x -= Time.deltaTime * 400;
                 location.y -= Time.deltaTime * 200;
-                if (location.x <= 290 && location.y <= -20)
+                if (location.x <= -40 && location.y <= -20)
                     endAttackAnim = true;
             }
             else
             {
                 location.x += Time.deltaTime * 400;
                 location.y += Time.deltaTime * 200;
-                if (location.x >= 330 && location.y >= 0)
+                if (location.x >= 0 && location.y >= 0)
                 {
                     startAttackAnim = false;
                     endAttackAnim = false;
-                    location.x = 330;
-                    location.y = 0;
+                    location = Vector3.zero;
                 }
             }
 
@@ -63,11 +62,13 @@ public class EnemyAI : MonoBehaviour
             if (Player.Instance.party[Player.Instance.currSlot].currHP > 0)
             {
                 int damage = (int)(ClickerButtonScript.Instance.enemy.level * Random.Range(2, 5));
-                damage = (int)(damage * GameManager.Instance.TypeMatchup(ClickerButtonScript.Instance.enemy, Player.Instance.party[Player.Instance.currSlot]));
-                damage /= 2;
+                float multiplier = GameManager.Instance.TypeMatchup(ClickerButtonScript.Instance.enemy, Player.Instance.party[Player.Instance.currSlot]);
+                damage = (int)(damage * multiplier);
+                damage /= 2; //Give the player an advantage (keep until multiple ways to heal are implemented)
                 if (damage < 1)
                     damage = 1;
                 startAttackAnim = true;
+                Player.Instance.FlashPlayerEffectiveness(multiplier);
                 Player.Instance.TakeDamage(damage);
             }
         }

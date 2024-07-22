@@ -53,11 +53,11 @@ MonoBehaviour:
   StageText: {fileID: 0}
   MoneyText: {fileID: 0}
   SkillShardText: {fileID: 0}
+  DamageCounter: {fileID: 3670541339964174243, guid: e5964b198e0ae094dac2177c20d49166, type: 3}
   StageNumber: 0
   StageEnemiesDefeated: 0
   EnemySprite: {fileID: 0}
   EnemyCritBox: {fileID: 8068638473468334867, guid: ded65ba67ac25424b9d605ac6961bffe, type: 3}
-  EnemyDamageCounter: {fileID: 3670541339964174243, guid: e5964b198e0ae094dac2177c20d49166, type: 3}
   EnemyLevel: {fileID: 0}
   EnemyName: {fileID: 0}
   EnemyFaintMask: {fileID: 0}
@@ -65,6 +65,9 @@ MonoBehaviour:
   BossStatBG: {fileID: 0}
   EnemyHPBars: []
   EnemyHPSliders: []
+  EnemyImmuneText: {fileID: 0}
+  EnemyNotVeryEffectiveText: {fileID: 0}
+  EnemySuperEffectiveText: {fileID: 0}
   PlayerSprite: {fileID: 0}
   PlayerHP: {fileID: 0}
   PlayerHPNum: {fileID: 0}
@@ -78,5 +81,5 @@ MonoBehaviour:
   PartySlotHPTexts: []
   PartySlotHPBars: []
   ThrowBall: {fileID: 0}
-  Starters: []
+  StarterNames: []
   stageType: 0

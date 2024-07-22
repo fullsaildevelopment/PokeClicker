@@ -137,10 +137,10 @@ public class ClickerButtonScript : MonoBehaviour
             pos.y -= 3000 * Time.deltaTime;
             GameManager.Instance.EnemySprite.gameObject.transform.localPosition = pos;
             GameManager.Instance.EnemyFaintMask.SetActive(true);
-            if (GameManager.Instance.EnemySprite.gameObject.transform.localPosition.y <= -400)
+            if (GameManager.Instance.EnemySprite.gameObject.transform.localPosition.y <= -300)
             {
                 IsFainting = false;
-                GameManager.Instance.EnemySprite.gameObject.transform.localPosition = new Vector3(330, 0, 0);
+                GameManager.Instance.EnemySprite.gameObject.transform.localPosition = Vector3.zero;
                 GameManager.Instance.EnemySprite.enabled = false;
             }
         }
@@ -195,43 +195,9 @@ public class ClickerButtonScript : MonoBehaviour
             if (takenDamage == 0)
                 takenDamage = 1;
             currHP -= takenDamage;
-            if (multiplier > 1)
-            {
-                GameManager.Instance.EnemySuperEffectiveText.gameObject.SetActive(true);
-                GameManager.Instance.EnemyNotVeryEffectiveText.gameObject.SetActive(false);
-                GameManager.Instance.EnemyImmuneText.gameObject.SetActive(false);
-                if (!flashEnemySuperEffective)
-                {
-                    GameManager.Instance.EnemySuperEffectiveText.transform.localScale = new Vector3(1.1f, 1.1f, 1);
-                    deltaTime = 0;
-                    flashEnemySuperEffective = true;
-                }
-            }
-            else if (multiplier == 0.1f)
-            {
-                GameManager.Instance.EnemySuperEffectiveText.gameObject.SetActive(false);
-                GameManager.Instance.EnemyNotVeryEffectiveText.gameObject.SetActive(false);
-                GameManager.Instance.EnemyImmuneText.gameObject.SetActive(true);
-                if (!flashEnemyImmune)
-                {
-                    GameManager.Instance.EnemyImmuneText.transform.localScale = new Vector3(1.1f, 1.1f, 1);
-                    deltaTime = 0;
-                    flashEnemyImmune = true;
-                }
-            }
-            else if (multiplier < 1)
-            {
-                GameManager.Instance.EnemySuperEffectiveText.gameObject.SetActive(false);
-                GameManager.Instance.EnemyNotVeryEffectiveText.gameObject.SetActive(true);
-                GameManager.Instance.EnemyImmuneText.gameObject.SetActive(false);
-                if (!flashEnemyNotVeryEffective)
-                {
-                    GameManager.Instance.EnemyNotVeryEffectiveText.transform.localScale = new Vector3(1.1f, 1.1f, 1);
-                    deltaTime = 0;
-                    flashEnemyNotVeryEffective = true;
-                }
-            }
-            Instantiate(GameManager.Instance.EnemyDamageCounter, GameManager.Instance.BattleScreen.transform);
+            FlashEnemyEffectiveness(multiplier);
+
+            Instantiate(GameManager.Instance.DamageCounter, GameManager.Instance.EnemySprite.transform.parent);
             takingDamage = true;
             if (Player.Instance.CanAttackAnim)
             {
@@ -431,6 +397,45 @@ public class ClickerButtonScript : MonoBehaviour
             for (int i = 1; i < 6; ++i)
             {
                 GameManager.Instance.EnemyHPBars[i].SetActive(true);
+            }
+        }
+    }
+    void FlashEnemyEffectiveness(float multiplier)
+    {
+        if (multiplier > 1)
+        {
+            GameManager.Instance.EnemySuperEffectiveText.gameObject.SetActive(true);
+            GameManager.Instance.EnemyNotVeryEffectiveText.gameObject.SetActive(false);
+            GameManager.Instance.EnemyImmuneText.gameObject.SetActive(false);
+            if (!flashEnemySuperEffective)
+            {
+                GameManager.Instance.EnemySuperEffectiveText.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                deltaTime = 0;
+                flashEnemySuperEffective = true;
+            }
+        }
+        else if (multiplier == 0.1f)
+        {
+            GameManager.Instance.EnemySuperEffectiveText.gameObject.SetActive(false);
+            GameManager.Instance.EnemyNotVeryEffectiveText.gameObject.SetActive(false);
+            GameManager.Instance.EnemyImmuneText.gameObject.SetActive(true);
+            if (!flashEnemyImmune)
+            {
+                GameManager.Instance.EnemyImmuneText.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                deltaTime = 0;
+                flashEnemyImmune = true;
+            }
+        }
+        else if (multiplier < 1)
+        {
+            GameManager.Instance.EnemySuperEffectiveText.gameObject.SetActive(false);
+            GameManager.Instance.EnemyNotVeryEffectiveText.gameObject.SetActive(true);
+            GameManager.Instance.EnemyImmuneText.gameObject.SetActive(false);
+            if (!flashEnemyNotVeryEffective)
+            {
+                GameManager.Instance.EnemyNotVeryEffectiveText.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                deltaTime = 0;
+                flashEnemyNotVeryEffective = true;
             }
         }
     }

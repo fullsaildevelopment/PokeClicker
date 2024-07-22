@@ -12,9 +12,13 @@ public class DamageCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int damage = ClickerButtonScript.Instance.takenDamage;
-        x = Random.Range(150, 500);
-        y = Random.Range(50, 150);
+        int damage = 0;
+        if (transform.parent == GameManager.Instance.EnemySprite.transform.parent)
+            damage = ClickerButtonScript.Instance.takenDamage;
+        else if (transform.parent == GameManager.Instance.PlayerSprite.transform.parent)
+            damage = Player.Instance.damageTaken;
+        x = Random.Range(-200, 200);
+        y = Random.Range(100, 200);
         transform.localPosition = new Vector3(x, y, 0);
         deltaTime = 0;
 

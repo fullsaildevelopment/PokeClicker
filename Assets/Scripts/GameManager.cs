@@ -170,6 +170,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI StageText;
     public TextMeshProUGUI MoneyText;
     public TextMeshProUGUI SkillShardText;
+    public GameObject DamageCounter;
 
     [Header("----- Game Stats -----")]
     public int StageNumber;
@@ -178,7 +179,6 @@ public class GameManager : MonoBehaviour
     [Header("----- Enemy -----")]
     public Image EnemySprite;
     public GameObject EnemyCritBox;
-    public GameObject EnemyDamageCounter;
     public TextMeshProUGUI EnemyLevel;
     public TextMeshProUGUI EnemyName;
     public GameObject EnemyFaintMask;
@@ -202,6 +202,13 @@ public class GameManager : MonoBehaviour
     //public GameObject PlayerCritBox;
     public TextMeshProUGUI PlayerLevel;
     public TextMeshProUGUI PlayerName;
+
+    //For a text popup if you hit for super effective, etc.
+    public TextMeshProUGUI PlayerImmuneText;
+    public TextMeshProUGUI PlayerNotVeryEffectiveText;
+    public TextMeshProUGUI PlayerSuperEffectiveText;
+
+
     [Header("----- Buttons -----")]
     public List<Button> PartySlots;
     public List<Image> PartySlotSprites;

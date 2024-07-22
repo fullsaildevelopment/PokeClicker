@@ -18,6 +18,12 @@ public class Player : MonoBehaviour
     public bool startingAttackAnim;
     bool endingAttackAnim;
     bool isFainting;
+    public int damageTaken;
+
+    bool flashPlayerSuperEffective;
+    bool flashPlayerNotVeryEffective;
+    bool flashPlayerImmune;
+    float deltaTime;
 
     private void Awake()
     {
@@ -30,6 +36,12 @@ public class Player : MonoBehaviour
         takingDamage = false;
         gainingExp = false;
         CanAttackAnim = true;
+        damageTaken = 0;
+
+        flashPlayerImmune = false;
+        flashPlayerSuperEffective = false;
+        flashPlayerNotVeryEffective = false;
+        deltaTime = 0;
     }
 
     // Update is called once per frame
@@ -59,7 +71,7 @@ public class Player : MonoBehaviour
         //        
         //    }
         //}
-        if (startingAttackAnim) //attacking peak -250, -280 //normal location: -290, -300
+        if (startingAttackAnim) //attacking peak 40, 20 //normal location: 0, 0
         {
             CanAttackAnim = false;
             Vector3 playerLoc = GameManager.Instance.PlayerSprite.transform.localPosition;
@@ -68,7 +80,7 @@ public class Player : MonoBehaviour
                 
                 playerLoc.x += Time.deltaTime * 400;
                 playerLoc.y += Time.deltaTime * 200;
-                if (playerLoc.x >= -250 &&  playerLoc.y >= -280)
+                if (playerLoc.x >= 40 &&  playerLoc.y >= 20)
                     endingAttackAnim = true;
                 
             }
@@ -76,12 +88,11 @@ public class Player : MonoBehaviour
             {
                 playerLoc.x -= Time.deltaTime * 400;
                 playerLoc.y -= Time.deltaTime * 200;
-                if (playerLoc.x <= -290 && playerLoc.y <= -300)
+                if (playerLoc.x <= 0 && playerLoc.y <= 0)
                 {
                     startingAttackAnim = false;
                     endingAttackAnim = false;
-                    playerLoc.x = -290;
-                    playerLoc.y = -300;
+                    playerLoc = Vector3.zero;
                     StartCoroutine(AttackAnimCooldown());
                 }
             }
@@ -92,12 +103,49 @@ public class Player : MonoBehaviour
             Vector3 loc = GameManager.Instance.PlayerSprite.transform.localPosition;
             loc.y -= Time.deltaTime * 3000;
             GameManager.Instance.PlayerSprite.transform.localPosition = loc;
-            if (loc.y <= -510)
+            if (loc.y <= -300)
             {
                 isFainting = false;
                 GameManager.Instance.PlayerSprite.enabled = false;
-                loc.y = -300;
+                loc.y = 0;
                 GameManager.Instance.PlayerSprite.transform.localPosition = loc;
+            }
+        }
+
+        if (flashPlayerSuperEffective)
+        {
+            if (deltaTime > 0.2f)
+            {
+                GameManager.Instance.PlayerSuperEffectiveText.transform.localScale = Vector3.one;
+                flashPlayerSuperEffective = false;
+            }
+        }
+        if (flashPlayerNotVeryEffective)
+        {
+            if (deltaTime > 0.2f)
+            {
+                GameManager.Instance.PlayerNotVeryEffectiveText.transform.localScale = Vector3.one;
+                flashPlayerNotVeryEffective = false;
+            }
+        }
+        if (flashPlayerImmune)
+        {
+            if (deltaTime > 0.2f)
+            {
+                GameManager.Instance.PlayerImmuneText.transform.localScale = Vector3.one;
+                flashPlayerImmune = false;
+            }
+        }
+        if (GameManager.Instance.PlayerNotVeryEffectiveText.gameObject.activeSelf ||
+            GameManager.Instance.PlayerSuperEffectiveText.gameObject.activeSelf ||
+            GameManager.Instance.PlayerImmuneText.gameObject.activeSelf)
+        {
+            deltaTime += Time.deltaTime;
+            if (deltaTime > 1.5f)
+            {
+                GameManager.Instance.PlayerSuperEffectiveText.gameObject.SetActive(false);
+                GameManager.Instance.PlayerNotVeryEffectiveText.gameObject.SetActive(false);
+                GameManager.Instance.PlayerImmuneText.gameObject.SetActive(false);
             }
         }
     }
@@ -261,7 +309,8 @@ public class Player : MonoBehaviour
         if (party[currSlot].currHP < 0) 
             party[currSlot].currHP = 0;
         takingDamage = true;
-        //GameManager.Instance.PlayerHPNum.text = party[currSlot].currHP.ToString() + "/" + party[currSlot].maxHP.ToString();
+        damageTaken = damage;
+        Instantiate(GameManager.Instance.DamageCounter, GameManager.Instance.PlayerSprite.transform.parent);
         if (party[currSlot].currHP <= 0)
         {
             EnemyAI.Instance.PauseAttack(true);
@@ -305,6 +354,45 @@ public class Player : MonoBehaviour
     void ResetFaintAnim() //Called after a Pokemon faints or if the player switches to a new Pokemon during the animation
     {
         isFainting = false;
-        GameManager.Instance.PlayerSprite.transform.localPosition = new Vector3(-290, -300, 0);
+        GameManager.Instance.PlayerSprite.transform.localPosition = Vector3.zero;
+    }
+    public void FlashPlayerEffectiveness(float multiplier)
+    {
+        if (multiplier > 1)
+        {
+            GameManager.Instance.PlayerSuperEffectiveText.gameObject.SetActive(true);
+            GameManager.Instance.PlayerNotVeryEffectiveText.gameObject.SetActive(false);
+            GameManager.Instance.PlayerImmuneText.gameObject.SetActive(false);
+            if (!flashPlayerSuperEffective)
+            {
+                GameManager.Instance.PlayerSuperEffectiveText.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                deltaTime = 0;
+                flashPlayerSuperEffective = true;
+            }
+        }
+        else if (multiplier == 0.1f)
+        {
+            GameManager.Instance.PlayerSuperEffectiveText.gameObject.SetActive(false);
+            GameManager.Instance.PlayerNotVeryEffectiveText.gameObject.SetActive(false);
+            GameManager.Instance.PlayerImmuneText.gameObject.SetActive(true);
+            if (!flashPlayerImmune)
+            {
+                GameManager.Instance.PlayerImmuneText.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                deltaTime = 0;
+                flashPlayerImmune = true;
+            }
+        }
+        else if (multiplier < 1)
+        {
+            GameManager.Instance.PlayerSuperEffectiveText.gameObject.SetActive(false);
+            GameManager.Instance.PlayerNotVeryEffectiveText.gameObject.SetActive(true);
+            GameManager.Instance.PlayerImmuneText.gameObject.SetActive(false);
+            if (!flashPlayerNotVeryEffective)
+            {
+                GameManager.Instance.PlayerNotVeryEffectiveText.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                deltaTime = 0;
+                flashPlayerNotVeryEffective = true;
+            }
+        }
     }
 }

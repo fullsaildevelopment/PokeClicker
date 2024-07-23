@@ -319,7 +319,7 @@ public class Player : MonoBehaviour
             CanAttack = false;
             if (PartyWipe())
             {
-                GameManager.Instance.GameOverScreen.SetActive(true); 
+                GameManager.Instance.GameOverScreen.SetActive(true);
             }
         }
         GameManager.Instance.UpdatePartyButton(currSlot, party[currSlot]);

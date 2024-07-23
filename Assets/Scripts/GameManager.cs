@@ -216,6 +216,7 @@ public class GameManager : MonoBehaviour
     public List<TextMeshProUGUI> PartySlotLevels;
     public List<TextMeshProUGUI> PartySlotHPTexts;
     public List<Image> PartySlotHPBars;
+    public List<Image> PartySlotReviveSliders;
     public Button ThrowBall;
     public List<TextMeshProUGUI> StarterNames;
 
@@ -357,6 +358,11 @@ public class GameManager : MonoBehaviour
         PartySlotHPBars[partySlot].color = GetHPColor(PartySlotHPBars[partySlot].fillAmount);
         PartySlotHPBars[partySlot].transform.parent.gameObject.SetActive(true);
         PartySlotHPTexts[partySlot].text = pokemon.currHP.ToString() + "/" + pokemon.maxHP.ToString();
+        if (pokemon.currHP <= 0)
+        {
+            PartySlotReviveSliders[partySlot].fillAmount = 1;
+        }
+            
     }
     public void ClearPartySlot(int partySlot) //Called when resetting the game or removing a Pokemon
     {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonFunctions : MonoBehaviour
 {
@@ -14,12 +15,14 @@ public class ButtonFunctions : MonoBehaviour
     bool StarterHoverAnim;
     int StarterButton;
     float StarterDeltaTime;
+    float ReviveDeltaTime;
     private void Start()
     {
         StartShakeBall = false;
         FinishShakeBall = false;
         BallCurrentRotationZ = 0;
         BallDeltaTime = 0;
+        ReviveDeltaTime = 0;
     }
     private void Update()
     {
@@ -73,6 +76,20 @@ public class ButtonFunctions : MonoBehaviour
                 GameManager.Instance.StarterNames[StarterButton].transform.localPosition = textPos;
             }
         }
+        for (int i = 0; i < GameManager.Instance.PartySlotReviveSliders.Count; ++i)
+        {
+            if (GameManager.Instance.PartySlotReviveSliders[i].fillAmount > 0 && Player.Instance.party[Player.Instance.currSlot].currHP > 0)
+            {
+                GameManager.Instance.PartySlotReviveSliders[i].fillAmount -= Time.deltaTime * (1f/60f); //1 minute timer
+                if (GameManager.Instance.PartySlotReviveSliders[i].fillAmount <= 0) //when the timer ends
+                {
+                    Player.Instance.party[i].currHP = Player.Instance.party[i].maxHP; //reset HP
+                    GameManager.Instance.UpdatePartyButton(i, Player.Instance.party[i]); //update the party slot
+                    if (Player.Instance.currSlot == i)
+                        Player.Instance.SetActivePokemon(i); //Reset the fainted state if the player actually waited that long
+                }
+            }
+        }
     }
     public void NewStarter(int dexID)
     {
@@ -117,21 +134,21 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void ThrowBall(int BallID)
     {
-        BallType ball = PokemonList.BallTypes[BallID];
+        //BallType ball = PokemonList.BallTypes[BallID];
         GameManager.Instance.ThrowBall.interactable = false;
         GameManager.Instance.EnemySprite.enabled = false;
         GameManager.Instance.ThrownBall.enabled = true;
         EnemyAI.Instance.PauseAttack(true);
-        Pokemon pokemon = ClickerButtonScript.Instance.enemy;
         
         //Shakes on Successes
-        //float CatchChance = Mathf.Floor(((3 * pokemon.maxHP - 2 * pokemon.currHP) / 3 * pokemon.maxHP) * 4096 + 0.5f);
-        //CatchChance *= 250; //Species Catch Rate
-        //CatchChance *= ball.BaseCatchRate;
-        ////CatchChance *= StatusCondition;
-        //float ShakeChance = 65535 / (float)Math.Pow(CatchChance/1044480, 0.1875);
-        StartCoroutine(BallShakes(0.8f));
-        
+        if ((float)ClickerButtonScript.Instance.currHP / ClickerButtonScript.Instance.maxHP > 0.6f)
+            StartCoroutine(BallShakes(0.6f));
+        else if ((float)ClickerButtonScript.Instance.currHP / ClickerButtonScript.Instance.maxHP > 0.2f)
+            StartCoroutine(BallShakes(0.73f));
+        else
+            StartCoroutine(BallShakes(0.88f));
+
+
     }
     IEnumerator BallShakes(float ShakeChance)
     {
@@ -185,6 +202,10 @@ public class ButtonFunctions : MonoBehaviour
             GameManager.Instance.UpdatePartyButton(i, pokemon);
             i++;
         }
+        foreach (Image slider in GameManager.Instance.PartySlotReviveSliders)
+        {
+            slider.fillAmount = 0;
+        }
         SetActivePartyPokemon(Player.Instance.currSlot);
         int subtractStage = (GameManager.Instance.StageNumber % 10) - 1;
         GameManager.Instance.setStage(GameManager.Instance.StageNumber - subtractStage);
@@ -203,6 +224,10 @@ public class ButtonFunctions : MonoBehaviour
             partyButton.interactable = false;
             GameManager.Instance.ClearPartySlot(i);
             ++i;
+        }
+        foreach (Image slider in GameManager.Instance.PartySlotReviveSliders)
+        {
+            slider.fillAmount = 0;
         }
         GameManager.Instance.setStage(1);
         GameManager.Instance.StageEnemiesDefeated = 0;

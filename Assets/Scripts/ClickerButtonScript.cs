@@ -207,7 +207,6 @@ public class ClickerButtonScript : MonoBehaviour
             {
                 if (currHP <= 0)
                 {
-                    EnemyAI.Instance.PauseAttack(true);
                     StartCoroutine(FaintPokemon());
                 }
             }
@@ -220,8 +219,6 @@ public class ClickerButtonScript : MonoBehaviour
                 }
                 else if (currHP <= 0 && currHPBar <= 0)
                 {
-                    EnemyAI.Instance.PauseAttack(true);
-                    GameManager.Instance.ThrowBall.interactable = false;
                     StartCoroutine(FaintPokemon());
                 }
             }
@@ -240,6 +237,8 @@ public class ClickerButtonScript : MonoBehaviour
     }
     IEnumerator FaintPokemon()
     {
+        EnemyAI.Instance.PauseAttack(true);
+        GameManager.Instance.ThrowBall.interactable = false;
         Player.Instance.CanAttack = false;
         yield return new WaitForSeconds(0.3f);
         IsFainting = true;
@@ -275,6 +274,7 @@ public class ClickerButtonScript : MonoBehaviour
             enemy = new Pokemon(PokemonList.PokemonData[id]);
             GameManager.Instance.EnemyHPSliders[0].color = new Color(0, (float)225 / 255, 0);
             GameManager.Instance.EnemyHPSliders[0].fillAmount = 1;
+            GameManager.Instance.ThrowBall.interactable = true;
         }
         else if (GameManager.Instance.stageType == StageType.Trainer)
         {
@@ -298,6 +298,7 @@ public class ClickerButtonScript : MonoBehaviour
             enemy = new Pokemon(PokemonList.PokemonData[id]);
             GameManager.Instance.EnemyHPSliders[0].color = new Color(0, (float)225 / 255, 0);
             GameManager.Instance.EnemyHPSliders[0].fillAmount = 1;
+            GameManager.Instance.ThrowBall.interactable = true; //make this false when trainers are actually implemented
         }
         else if (GameManager.Instance.stageType == StageType.MiniBoss)
         {
@@ -314,6 +315,7 @@ public class ClickerButtonScript : MonoBehaviour
             }
             currHPBar = 1;
             currHPSlider = currHPBar;
+            GameManager.Instance.ThrowBall.interactable = false;
         }
         else if (GameManager.Instance.stageType == StageType.Boss)
         {
@@ -330,6 +332,7 @@ public class ClickerButtonScript : MonoBehaviour
             }
             currHPBar = 3;
             currHPSlider = currHPBar;
+            GameManager.Instance.ThrowBall.interactable = false;
         }
         else if (GameManager.Instance.stageType == StageType.BigBoss)
         {
@@ -342,12 +345,14 @@ public class ClickerButtonScript : MonoBehaviour
             }
             currHPBar = 5;
             currHPSlider = currHPBar;
+            GameManager.Instance.ThrowBall.interactable = false;
         }
         else if (GameManager.Instance.stageType == StageType.Special)
         {
             enemy = new Pokemon(PokemonList.PokemonData[151]);
             GameManager.Instance.EnemyHPSliders[0].color = new Color(0, (float)225 / 255, 0);
             GameManager.Instance.EnemyHPSliders[0].fillAmount = 1;
+            GameManager.Instance.ThrowBall.interactable = true;
         }
 
         GameManager.Instance.EnemyLevel.text = "lv." + enemy.level.ToString();
@@ -361,7 +366,7 @@ public class ClickerButtonScript : MonoBehaviour
         currHP = enemy.currHP;
         EnemyAI.Instance.PauseAttack(false);
         Player.Instance.CanAttack = true;
-        GameManager.Instance.ThrowBall.interactable = true;
+        
     }
 
     void SwitchEnemyStatBox()
